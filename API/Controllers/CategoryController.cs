@@ -1,0 +1,27 @@
+using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
+
+namespace API.Controllers
+{
+    public class CategoryController
+    {
+        private readonly ImageGalleryContext _context;
+        public CategoryController(ImageGalleryContext context)
+        {
+            _context = context;            
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Category>>> GetCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
+        [HttpGet("{id}")] //api/categories/catcat
+        public async Task<ActionResult<Category>> GetCategory(int id)
+        {
+            return await _context.Categories.FindAsync(id);
+        }
+    }
+}
