@@ -5,7 +5,7 @@ using Persistence;
 
 namespace API.Controllers
 {
-    public class ImageController
+    public class ImageController : BaseApiController
     {
         private readonly ImageGalleryContext _context;
         public ImageController(ImageGalleryContext context)
@@ -13,7 +13,7 @@ namespace API.Controllers
             _context = context;            
         }
 
-        [HttpGet]
+        [HttpGet] //api/images 
         public async Task<ActionResult<List<Image>>> GetImages()
         {
             return await _context.Images.ToListAsync();

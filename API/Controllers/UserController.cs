@@ -5,7 +5,7 @@ using Persistence;
 
 namespace API.Controllers
 {
-    public class UserController
+    public class UserController : BaseApiController
     {
         private readonly ImageGalleryContext _context;
         public UserController(ImageGalleryContext context)
