@@ -5,10 +5,10 @@ using Persistence;
 
 namespace API.Controllers
 {
-    public class UserController : BaseApiController
+    public class UsersController : BaseApiController
     {
         private readonly ImageGalleryContext _context;
-        public UserController(ImageGalleryContext context)
+        public UsersController(ImageGalleryContext context)
         {
             _context = context;            
         }
