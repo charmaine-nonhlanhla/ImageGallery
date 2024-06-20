@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
+import { Header, List } from 'semantic-ui-react';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -14,12 +15,12 @@ function App() {
 
   return (
     <div>
-      <h1>ImageGallery</h1>
-      <ul>
+      <Header as ='h2' icon='users' content='Image Gallery' />
+      <List>
         {images.map((image: any) => (
-          <li key={image.id}></li>
+          <List.Item key={image.id}></List.Item>
         ))}
-      </ul>
+      </List>
     </div>
   )
 
