@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ImageGalleryContext))]
-    [Migration("20240621131025_initialcreate")]
-    partial class initialcreate
+    [Migration("20240624090049_ReintroducingComments")]
+    partial class ReintroducingComments
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,33 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Domain.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CommentText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NewProperty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Domain.Models.Image", b =>
@@ -146,6 +173,17 @@ namespace Persistence.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Domain.Models.Comment", b =>
+                {
+                    b.HasOne("Domain.Models.Image", "Image")
+                        .WithMany("Comments")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+                });
+
             modelBuilder.Entity("Domain.Models.Image", b =>
                 {
                     b.HasOne("Domain.Models.Category", "Category")
@@ -191,6 +229,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.Image", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("ImageTags");
                 });
 
