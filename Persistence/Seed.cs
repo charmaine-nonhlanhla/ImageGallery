@@ -6,7 +6,7 @@ namespace Persistence
     {
         public static async Task SeedData(ImageGalleryContext context)
         {
-
+            await context.SaveChangesAsync();
         }
     }
 }
