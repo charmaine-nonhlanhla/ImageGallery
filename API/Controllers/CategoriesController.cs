@@ -7,21 +7,15 @@ namespace API.Controllers
 {
     public class CategoriesController : BaseApiController
     {
-        private readonly ImageGalleryContext _context;
-        public CategoriesController(ImageGalleryContext context)
-        {
-            _context = context;            
-        }
-
-        [HttpGet]
+        [HttpGet] //api/categories 
         public async Task<ActionResult<List<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await Mediator.Send(new CategoryList.Query());
         }
         [HttpGet("{id}")] //api/categories/catcat
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            return await _context.Categories.FindAsync(id);
+            return await Mediator.Send(new CategoryDetails.Query{Id = id});
         }
     }
 }

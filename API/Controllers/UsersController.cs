@@ -7,21 +7,15 @@ namespace API.Controllers
 {
     public class UsersController : BaseApiController
     {
-        private readonly ImageGalleryContext _context;
-        public UsersController(ImageGalleryContext context)
-        {
-            _context = context;            
-        }
-
-        [HttpGet]
+        [HttpGet] //api/users 
         public async Task<ActionResult<List<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await Mediator.Send(new UserList.Query());
         }
-        [HttpGet("{id}")] //api/users/ususus
+        [HttpGet("{id}")] //api/users/usus
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await Mediator.Send(new UserDetails.Query{Id = id});
         }
     }
 }

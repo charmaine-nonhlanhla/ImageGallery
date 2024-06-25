@@ -7,21 +7,15 @@ namespace API.Controllers
 {
     public class TagsController : BaseApiController
     {
-        private readonly ImageGalleryContext _context;
-        public TagsController(ImageGalleryContext context)
+        [HttpGet] //api/tags 
+        public async Task<ActionResult<List<Image>>> GetTags()
         {
-            _context = context;            
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<List<Tag>>> GetTags()
-        {
-            return await _context.Tags.ToListAsync();
+            return await Mediator.Send(new TagList.Query());
         }
         [HttpGet("{id}")] //api/tags/tagtag
         public async Task<ActionResult<Tag>> GetTag(int id)
         {
-            return await _context.Tags.FindAsync(id);
+            return await Mediator.Send(new TagDetails.Query{Id = id});
         }
     }
 }

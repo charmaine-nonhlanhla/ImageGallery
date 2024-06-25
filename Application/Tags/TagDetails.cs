@@ -2,16 +2,16 @@ using Domain.Models;
 using MediatR;
 using Persistence;
 
-namespace Application.Images
+namespace Application.Tags
 {
-    public class Details
+    public class TagDetails
     {
-        public class Query : IRequest<Image>
+        public class Query : IRequest<Tag>
         {
             public int Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Image>
+        public class Handler : IRequestHandler<Query, Tag>
         {
         private readonly ImageGalleryContext _context;
             public Handler(ImageGalleryContext context)
@@ -19,9 +19,9 @@ namespace Application.Images
             _context = context;
                 
             }
-            public async Task<Image> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Tag> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Images.FindAsync(request.Id);
+                return await _context.Tags.FindAsync(request.Id);
             }
         }
     }

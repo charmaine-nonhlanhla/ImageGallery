@@ -175,7 +175,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Models.Comment", b =>
                 {
                     b.HasOne("Domain.Models.Image", "Image")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -200,7 +200,7 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -213,13 +213,13 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Models.ImageTag", b =>
                 {
                     b.HasOne("Domain.Models.Image", "Image")
-                        .WithMany()
+                        .WithMany("ImageTags")
                         .HasForeignKey("ImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Models.Tag", "Tag")
-                        .WithMany()
+                        .WithMany("ImageTags")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -234,9 +234,23 @@ namespace Persistence.Migrations
                     b.Navigation("Images");
                 });
 
+            modelBuilder.Entity("Domain.Models.Image", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("ImageTags");
+                });
+
+            modelBuilder.Entity("Domain.Models.Tag", b =>
+                {
+                    b.Navigation("ImageTags");
+                });
+
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

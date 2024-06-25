@@ -4,6 +4,6 @@ namespace Domain.Models
     {
     public int CategoryId { get; set; }
     public string Name { get; set; }
-    public ICollection<Image> Images { get; set; } 
+    public ICollection<Image> Images { get; set; } = new List<Image>();
     }
 }

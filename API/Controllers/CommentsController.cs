@@ -7,21 +7,15 @@ namespace API.Controllers
 {
     public class CommentsController : BaseApiController
     {
-        private readonly ImageGalleryContext _context;
-        public CommentsController(ImageGalleryContext context)
-        {
-            _context = context;            
-        }
-
-        [HttpGet]
+        [HttpGet] //api/comments 
         public async Task<ActionResult<List<Comment>>> GetComments()
         {
-            return await _context.Comments.ToListAsync();
+            return await Mediator.Send(new CommentList.Query());
         }
         [HttpGet("{id}")] //api/comments/comcom
-        public async Task<ActionResult<Category>> GetComment(int id)
+        public async Task<ActionResult<Comment>> GetComment(int id)
         {
-            return await _context.Comments.FindAsync(id);
+            return await Mediator.Send(new CommentDetails.Query{Id = id});
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Domain.Models
         public string Description { get; set; }
         public DateTime UploadDate { get; set; }
         public string SecretEditCode { get; set; }
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<ImageTag> ImageTags { get; set; } = new List<ImageTag>();
         
     }
 }

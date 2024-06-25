@@ -4,7 +4,7 @@ using Persistence;
 
 namespace Application.Categories
 {
-    public class Details
+    public class CategoryDetails
     {
         public class Query : IRequest<Category>
         {
@@ -17,7 +17,7 @@ namespace Application.Categories
             public Handler(ImageGalleryContext context)
             {
             _context = context;
-                
+           
             }
             public async Task<Category> Handle(Query request, CancellationToken cancellationToken)
             {
