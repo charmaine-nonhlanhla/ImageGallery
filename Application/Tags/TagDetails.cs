@@ -17,8 +17,8 @@ namespace Application.Tags
             public Handler(ImageGalleryContext context)
             {
             _context = context;
-                
             }
+
             public async Task<Tag> Handle(Query request, CancellationToken cancellationToken)
             {
                 return await _context.Tags.FindAsync(request.Id);

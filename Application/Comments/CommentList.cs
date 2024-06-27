@@ -17,7 +17,6 @@ namespace Application.Comments
             _context = context;
                 
             }
-
             public async Task<List<Comment>> Handle(Query request, CancellationToken cancellationToken)
             {
                 return await _context.Comments.ToListAsync();

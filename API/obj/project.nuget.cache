@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bbyBJPEj/ZQ=",
+  "dgSpecHash": "jZJnM4KQHVw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -7,7 +7,7 @@ namespace Application.Tags
 {
     public class TagList
     {
-                public class Query : IRequest<List<Tag>> {}
+        public class Query : IRequest<List<Tag>> {}
 
         public class Handler : IRequestHandler<Query, List<Tag>>
         {

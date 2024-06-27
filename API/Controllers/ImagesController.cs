@@ -20,9 +20,12 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateImage(Image image)
         {
-            await Mediator.Send(new Create.Command { Image = image});
+            await Mediator.Send(new CreateImage.Command { Image = image});
 
             return Ok();
         }
+
+        
+        
     }
 }

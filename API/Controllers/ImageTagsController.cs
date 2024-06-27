@@ -1,7 +1,6 @@
+using Application.ImageTags;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace API.Controllers
 {
@@ -16,6 +15,13 @@ namespace API.Controllers
         public async Task<ActionResult<ImageTag>> GetImageTag(int id)
         {
             return await Mediator.Send(new ImageTagDetails.Query{Id = id});
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateImageTag (ImageTag imagetag)
+        {
+            await Mediator.Send(new CreateImageTag.Command { ImageTag = imagetag});
+
+            return Ok();
         }
     }
 }
