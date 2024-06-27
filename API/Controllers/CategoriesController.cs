@@ -24,5 +24,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditCategory(int id, Category category)
+        {
+            category.CategoryId = id;
+
+            await Mediator.Send(new EditCategory.Command { Category = category });
+
+            return Ok();
+        }
     }
 }

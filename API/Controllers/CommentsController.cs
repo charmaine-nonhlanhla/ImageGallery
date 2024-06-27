@@ -24,5 +24,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditComment(int id, Comment comment)
+        {
+            comment.CommentId = id;
+
+            await Mediator.Send(new EditComment.Command { Comment = comment });
+
+            return Ok();
+        }
     }
 }

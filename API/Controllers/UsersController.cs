@@ -24,5 +24,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditUser(int id, User user)
+        {
+            user.UserId = id;
+
+            await Mediator.Send(new EditUser.Command { User = user });
+
+            return Ok();
+        }
     }
 }

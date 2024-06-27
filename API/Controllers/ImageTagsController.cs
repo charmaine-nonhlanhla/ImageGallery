@@ -23,5 +23,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditImageTag(int id, ImageTag imagetag)
+        {
+            imagetag.ImageId = id;
+
+            await Mediator.Send(new EditImageTag.Command { ImageTag = imagetag });
+
+            return Ok();
+        }
     }
 }

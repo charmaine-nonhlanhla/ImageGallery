@@ -24,8 +24,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditImage(int id, Image image)
+        {
+            image.ImageId = id;
 
-        
-        
+            await Mediator.Send(new EditImage.Command { Image = image });
+
+            return Ok();
+        }
     }
 }

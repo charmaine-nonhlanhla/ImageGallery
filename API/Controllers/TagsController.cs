@@ -23,5 +23,14 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditTag(int id, Tag tag)
+        {
+            tag.TagId = id;
+
+            await Mediator.Send(new EditTag.Command { Tag = tag });
+
+            return Ok();
+        }
     }
 }
