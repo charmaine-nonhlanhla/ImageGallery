@@ -6,6 +6,7 @@ namespace API.Controllers
 {
     public class ImageTagsController : BaseApiController
     {
+        
         [HttpGet] //api/imagetags 
         public async Task<ActionResult<List<ImageTag>>> GetImageTags()
         {
@@ -29,6 +30,13 @@ namespace API.Controllers
             imagetag.ImageId = id;
 
             await Mediator.Send(new EditImageTag.Command { ImageTag = imagetag });
+
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteImageTag(int id)
+        {
+            await Mediator.Send(new DeleteImageTag.Command { Id = id});
 
             return Ok();
         }

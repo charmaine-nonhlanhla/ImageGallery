@@ -1,31 +1,28 @@
-using AutoMapper;
-using Domain.Models;
 using MediatR;
 using Persistence;
 
-namespace Application.Images
+namespace Application.ImageTags
 {
-    public class EditImage
+    public class DeleteImageTag
     {
         public class Command : IRequest
         {
-            public Image Image { get; set; }
+            public int Id { get; set; }
         }
+
         public class Handler : IRequestHandler<Command>
         {
         private readonly ImageGalleryContext _context;
-        private readonly IMapper _mapper;
-            public Handler(ImageGalleryContext context, IMapper mapper)
+            public Handler(ImageGalleryContext context)
             {
-            _mapper = mapper;
             _context = context;
                 
             }
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var image = await _context.Images.FindAsync(request.Image.ImageId);
+                var imagetag = await _context.ImageTags.FindAsync(request.Id);
 
-                _mapper.Map(request.Image, image);
+                _context.Remove(imagetag);
 
                 await _context.SaveChangesAsync();
             }

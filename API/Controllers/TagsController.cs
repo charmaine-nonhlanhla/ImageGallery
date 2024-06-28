@@ -6,6 +6,7 @@ namespace API.Controllers
 {
     public class TagsController : BaseApiController
     {
+        
         [HttpGet] //api/tags 
         public async Task<ActionResult<List<Tag>>> GetTags()
         {
@@ -29,6 +30,13 @@ namespace API.Controllers
             tag.TagId = id;
 
             await Mediator.Send(new EditTag.Command { Tag = tag });
+
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTag(int id)
+        {
+            await Mediator.Send(new DeleteTag.Command { Id = id});
 
             return Ok();
         }

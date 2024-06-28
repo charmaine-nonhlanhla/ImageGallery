@@ -1,38 +1,12 @@
-using Application.Images;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Application.Categories;
-using Application.Comments;
-using Application.ImageTags;
-using Application.Tags;
-using Application.Users;
+using API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<ImageGalleryContext>(opt =>
-{
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-builder.Services.AddCors(opt => {
-    opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
-    });
-});
-
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ImageList.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryList.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CommentList.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ImageTagList.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(TagList.Handler).Assembly));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
-
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 

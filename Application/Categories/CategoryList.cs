@@ -19,7 +19,7 @@ namespace Application.Categories
             }
             public async Task<List<Category>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Categories.ToListAsync();
+                return await _context.Categories.ToListAsync();  
             }
         }
     }

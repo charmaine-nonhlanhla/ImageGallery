@@ -33,5 +33,12 @@ namespace API.Controllers
 
             return Ok();
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteImage(int id)
+        {
+            await Mediator.Send(new DeleteImage.Command { Id = id});
+
+            return Ok();
+        }
     }
 }

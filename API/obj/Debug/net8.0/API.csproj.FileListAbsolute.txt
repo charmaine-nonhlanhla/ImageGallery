@@ -168,3 +168,5 @@ C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\refint\
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\API.pdb
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\ref\API.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
