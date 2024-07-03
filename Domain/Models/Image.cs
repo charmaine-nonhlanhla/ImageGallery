@@ -7,7 +7,7 @@ namespace Domain.Models
         public User User { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public string Name { get; set; }
+        public string ImageTitle { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
         public DateTime UploadDate { get; set; }

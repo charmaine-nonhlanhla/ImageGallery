@@ -22,7 +22,7 @@ namespace Application.Tags
             {
                 var tag = await _context.Tags.FindAsync(request.Tag.TagId);
 
-                tag.Name = request.Tag.Name ?? tag.Name;
+                tag.TagName = request.Tag.TagName ?? tag.TagName;
 
                 await _context.SaveChangesAsync();
             }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F80BCSRw26M=",
+  "dgSpecHash": "N3hWRMDyh84=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

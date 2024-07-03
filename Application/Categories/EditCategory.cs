@@ -22,7 +22,7 @@ namespace Application.Categories
             {
                 var category = await _context.Categories.FindAsync(request.Category.CategoryId);
 
-                category.Name = request.Category.Name ?? category.Name;
+                category.CategoryName = request.Category.CategoryName ?? category.CategoryName;
 
                 await _context.SaveChangesAsync();
             }

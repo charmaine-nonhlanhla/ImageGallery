@@ -48,15 +48,15 @@ namespace Persistence
             {
                 new Category
                 {
-                    Name = "Nature"
+                    CategoryName = "Nature"
                 },
                 new Category
                 {
-                    Name = "Urban"
+                    CategoryName = "Urban"
                 },
                 new Category
                 {
-                    Name = "Abstract"
+                    CategoryName = "Abstract"
                 }
             };
             await context.Categories.AddRangeAsync(categories);
@@ -67,15 +67,15 @@ namespace Persistence
             {
                 new Tag
                 {
-                    Name = "Summer"
+                    TagName = "Summer"
                 },
                 new Tag
                 {
-                    Name = "Vacation"
+                    TagName = "Vacation"
                 },
                 new Tag
                 {
-                    Name = "Beach"
+                    TagName = "Beach"
                 }
             };
             await context.Tags.AddRangeAsync(tags);
@@ -86,7 +86,7 @@ namespace Persistence
             {
                 new Image
                 {
-                    Name = "Vacation",
+                    ImageTitle = "Vacation",
                     Url = "https://www.example.com/image1.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
@@ -96,7 +96,7 @@ namespace Persistence
                 },
                 new Image
                 {
-                    Name = "Vacation 2",
+                    ImageTitle = "Vacation 2",
                     Url = "https://www.example.com/image2.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
@@ -106,7 +106,7 @@ namespace Persistence
                 },
                 new Image
                 {
-                    Name = "Vacation 3",
+                    ImageTitle = "Vacation 3",
                     Url = "https://www.example.com/image3.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
