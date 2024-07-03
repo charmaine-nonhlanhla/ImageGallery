@@ -10,8 +10,10 @@ namespace API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        public AccountController(UserManager<User> userManager)
+        private readonly TokenService _tokenService;
+        public AccountController(UserManager<User> userManager, TokenService tokenService)
         {
+            _tokenService = tokenService;
             _userManager = userManager;
 
         }
@@ -31,7 +33,7 @@ namespace API.Controllers
                 {
                     DisplayName = user.DisplayName,
                     Image = null,
-                    Token = "this will be a token",
+                    Token = _tokenService.CreateToken(user),
                     UserName = user.UserName
                 };
             }

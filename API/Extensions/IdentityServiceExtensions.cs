@@ -14,6 +14,7 @@ namespace API.Extensions
             .AddEntityFrameworkStores<ImageGalleryContext>();
 
             services.AddAuthentication();
+            services.AddScoped<TokenService>();
 
             return services;
         }
