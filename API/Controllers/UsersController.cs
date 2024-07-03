@@ -25,9 +25,9 @@ namespace API.Controllers
             return Ok();
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditUser(int id, User user)
+        public async Task<IActionResult> EditUser(string id, User user)
         {
-            user.UserId = id;
+            user.Id = id;
 
             await Mediator.Send(new EditUser.Command { User = user });
 

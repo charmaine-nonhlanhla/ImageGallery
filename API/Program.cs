@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using API.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Domain.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -30,8 +33,9 @@ var services=scope.ServiceProvider;
 try
 {
     var context = services.GetRequiredService<ImageGalleryContext>();
+    var userManager = services.GetRequiredService<UserManager<User>>();
     await context.Database.MigrateAsync();
-    await Seed.SeedData(context);
+    await Seed.SeedData(context, userManager);
 }
 catch (Exception ex)
 {

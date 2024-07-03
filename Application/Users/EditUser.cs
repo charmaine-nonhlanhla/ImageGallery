@@ -20,9 +20,9 @@ namespace Application.Users
             }
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await _context.Users.FindAsync(request.User.UserId);
+                var user = await _context.Users.FindAsync(request.User.Id);
 
-                user.Username = request.User.Username ?? user.Username;
+                user.UserName = request.User.UserName ?? user.UserName;
 
                 await _context.SaveChangesAsync();
             }

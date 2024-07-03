@@ -170,3 +170,9 @@ C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\API.gen
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\obj\Debug\net8.0\ref\API.dll
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

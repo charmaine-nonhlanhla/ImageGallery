@@ -1,16 +1,11 @@
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Domain.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public bool IsEmailVerified { get; set; }
+        public string DisplayName { get; set; }
+        public string Bio { get; set; }
         public ICollection<Comment> Comments { get; set;} = new List<Comment> ();
         public ICollection<Image> Images { get; set; } = new List<Image>();
         

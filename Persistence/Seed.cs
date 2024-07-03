@@ -1,47 +1,26 @@
 using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(ImageGalleryContext context)
+        public static async Task SeedData(ImageGalleryContext context, UserManager<User> userManager)
         {
             if (context.Images.Any()) return;
 
             // Seed Users
             var users = new List<User>
             {
-                new User
-                {
-                    Username = "user1",
-                    Email = "user1@example.com",
-                    PasswordHash = "hashedpassword1",
-                    CreatedAt = DateTime.Now,
-                    IsEmailVerified = true
-                },
-                new User
-                {
-                    Username = "user2",
-                    Email = "user2@example.com",
-                    PasswordHash = "hashedpassword2",
-                    CreatedAt = DateTime.Now,
-                    IsEmailVerified = true
-                },
-                new User
-                {
-                    Username = "user3",
-                    Email = "user3@example.com",
-                    PasswordHash = "hashedpassword3",
-                    CreatedAt = DateTime.Now,
-                    IsEmailVerified = true
-                }
+                new User{DisplayName = "Bob", UserName = "bob", Email = "bob@test.com"},
+                new User{DisplayName = "Tom", UserName = "tom", Email = "tom@test.com"},
+                new User{DisplayName = "Jane", UserName = "jane", Email = "jane@test.com"},
             };
-            await context.Users.AddRangeAsync(users);
-            await context.SaveChangesAsync();
+
+            foreach (var user in users)
+            {
+                await userManager.CreateAsync(user, "Pa$$w0rd");
+            }
 
             // Seed Categories
             var categories = new List<Category>
@@ -90,7 +69,7 @@ namespace Persistence
                     Url = "https://www.example.com/image1.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
-                    UserId = users[0].UserId,
+                    UserId = users[0].Id,
                     CategoryId = categories[0].CategoryId,
                     SecretEditCode = "secretcode1"
                 },
@@ -100,7 +79,7 @@ namespace Persistence
                     Url = "https://www.example.com/image2.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
-                    UserId = users[1].UserId,
+                    UserId = users[1].Id,
                     CategoryId = categories[1].CategoryId,
                     SecretEditCode = "secretcode2"
                 },
@@ -110,7 +89,7 @@ namespace Persistence
                     Url = "https://www.example.com/image3.jpg",
                     Description = "Lemon Meringue Pie",
                     UploadDate = DateTime.Now,
-                    UserId = users[2].UserId,
+                    UserId = users[2].Id,
                     CategoryId = categories[2].CategoryId,
                     SecretEditCode = "secretcode3"
                 }
@@ -124,21 +103,21 @@ namespace Persistence
                 new Comment
                 {
                     ImageId = images[0].ImageId,
-                    UserId = users[1].UserId,
+                    UserId = users[1].Id,
                     CommentText = "Great picture!",
                     CommentDate = DateTime.Now
                 },
                 new Comment
                 {
                     ImageId = images[1].ImageId,
-                    UserId = users[2].UserId,
+                    UserId = users[2].Id,
                     CommentText = "Amazing shot!",
                     CommentDate = DateTime.Now
                 },
                 new Comment
                 {
                     ImageId = images[2].ImageId,
-                    UserId = users[0].UserId,
+                    UserId = users[0].Id,
                     CommentText = "Beautiful scenery!",
                     CommentDate = DateTime.Now
                 }

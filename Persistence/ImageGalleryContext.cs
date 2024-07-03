@@ -1,16 +1,15 @@
 using Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class ImageGalleryContext : DbContext
+    public class ImageGalleryContext : IdentityDbContext<User>
     {
         public ImageGalleryContext(DbContextOptions<ImageGalleryContext> options)
             : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Tag> Tags { get; set; }
