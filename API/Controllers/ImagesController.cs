@@ -12,11 +12,13 @@ namespace API.Controllers
         {
             return await Mediator.Send(new ImageList.Query());
         }
+
         [HttpGet("{id}")] //api/images/imgimg
         public async Task<ActionResult<Image>> GetImage(int id)
         {
             return await Mediator.Send(new ImageDetails.Query{Id = id});
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateImage(Image image)
         {
@@ -24,6 +26,7 @@ namespace API.Controllers
 
             return Ok();
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> EditImage(int id, Image image)
         {
@@ -33,6 +36,7 @@ namespace API.Controllers
 
             return Ok();
         }
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteImage(int id)
         {
