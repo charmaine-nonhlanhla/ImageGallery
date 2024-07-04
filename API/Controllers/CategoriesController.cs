@@ -1,9 +1,11 @@
 using Application.Categories;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class CategoriesController : BaseApiController
     {
 

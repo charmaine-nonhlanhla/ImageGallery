@@ -1,9 +1,11 @@
 using Application.Images;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class ImagesController : BaseApiController
     {
 
