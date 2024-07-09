@@ -1,28 +1,24 @@
-import { Fragment, useEffect, useState } from 'react'
-import axios from 'axios';
-import { Container, Header, List } from 'semantic-ui-react';
-import { Image } from './models/image';
+import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
-import ImageDashboard from '../../features/images/dashboard/ImageDashboard';
+import { observer } from 'mobx-react-lite';
+import { Outlet, useLocation } from 'react-router-dom';
+import HomePage from '../../features/home/HomePage';
 
 function App() {
-  const [images, setImages] = useState<Image[]>([]);
-
-  useEffect(() => {
-    axios.get<Image[]>('http://localhost:5000/api/images').then(response => {
-      setImages(response.data)
-    })
-  }, [])
-
+  const location = useLocation();
+  
   return (
-    <Fragment>
+    <>
+    {location.pathname === '/' ? <HomePage /> : (
+      <>
       <NavBar />
-      <Container style={{marginTop: '7em'}}>
-      <ImageDashboard images={images} />
+      <Container style={{marginTop: '7em'}}>  
+      <Outlet />
       </Container>
-    </Fragment>
-  )
-
+     </>
+    )}
+    </>
+  );
 }
 
-export default App
+export default observer(App);

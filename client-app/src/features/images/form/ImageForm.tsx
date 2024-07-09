@@ -1,4 +1,3 @@
-import React from "react";
 import { Form, Segment } from "semantic-ui-react";
 
 export default function ImageForm() {

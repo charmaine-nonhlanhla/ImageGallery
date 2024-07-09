@@ -1,5 +1,9 @@
 import { Button, Container, Menu } from "semantic-ui-react";
+import { useStore } from "../stores/store";
 export default function NavBar() {
+
+    const {imageStore} = useStore();
+
     return (
         <Menu inverted fixed='top'>
             <Container>
@@ -9,7 +13,7 @@ export default function NavBar() {
                 </Menu.Item>
                 <Menu.Item name='Images' />
                 <Menu.Item>
-                    <Button positive content='Create Image' />
+                    <Button onClick={() => imageStore.openForm()}positive content='Create Image' />
                 </Menu.Item>
             </Container>
             </Menu>
