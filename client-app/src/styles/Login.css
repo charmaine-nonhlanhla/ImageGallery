@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+  }
+  
+  .background {
+    background-image: url('/assets/Background Image.jpg');
+    background-size: 1920px 1025px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure full viewport height coverage */
+  }
+  
+  .login-frame {
+    width: 722px;
+    height: 548px;
+    background-color: #FFFFFF;
+    border-radius: 4px 0px 0px 0px;
+    box-shadow: 0px 2px 4px 0px #0000001F;
+    opacity: 1;
+    padding: 20px;
+    position: absolute;
+    top: 50%; /* Move top edge of element to the vertical middle */
+    left: 50%; /* Move left edge of element to the horizontal middle */
+    transform: translate(-50%, -0%); /* Adjust for element's own dimensions */
+  }
+  
+  .header {
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: center;
+    /* background-color: #0F3C4C; */
+    
+    color: #0F3C4C;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+
+  .login-header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* .credentials-input {
+   
+  } */
+  
+  .input-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14.52px;
+    text-align: left;
+    color: #0F3C4C;
+    margin-bottom: 5px;
+  }
+  
+  .input-box {
+    border: 1px solid #0F3C4C;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .input-box input {
+   
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.52px;
+  }
+
+  .user-input {
+    margin-left: 20px;
+  }
+  
+  .input-icon {
+    position: absolute;
+    margin:0 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0F3C4C;
+  }
+
+  .forgot-password {
+    margin-left: auto;
+    margin-right: 10rem;
+    font-size: 10px;
+  }
+  
+  .login-button {
+    width: 100%;
+    background: #0F3C4C;
+    color: white;
+    height: 2.6rem;
+    border-radius: 5px;
+  }
+
+  .register-link a {
+    font-weight: 700;
+    color: #0F3C4C;
+  }
+
+  .register-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 12.1px;
+    text-align: center;
+    color: #0F3C4C;
+    padding-top: 25px;
+  }

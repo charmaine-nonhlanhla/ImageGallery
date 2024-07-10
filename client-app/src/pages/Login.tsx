@@ -1,6 +1,5 @@
-import { Container, Segment, Header, Grid, Button } from 'semantic-ui-react';
-import '../Login.css'
-import { Link } from 'react-router-dom';
+import { Container, Segment, Grid } from 'semantic-ui-react';
+import '../styles/Login.css'
 
 function Login() {
   return (
