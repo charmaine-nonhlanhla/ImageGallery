@@ -2,9 +2,9 @@ import React from 'react';
 import { Container, Segment, Grid, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Form, Formik } from 'formik';
-import MyTextInput from '../../app/common/form/MyTextInput';
+import MyTextInput from '../app/common/form/MyTextInput';
 import { Label } from 'semantic-ui-react';
-import { useStore } from '../../app/stores/store';
+import { useStore } from '../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import '../home/Login.css'
 
@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
         <Segment className="login-frame">
           <Grid verticalAlign="middle" centered>
             <Grid.Row>
-              <Grid.Column>
+              <Grid.Column width={16}>
                 <div>
                   <h1 className="header">Image Gallery App</h1>
                   <h1 className="header-2">Log in</h1>

@@ -1,7 +1,8 @@
 import { RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
 import HomePage from "../../features/home/HomePage";
-import LoginForm from "../../features/users/LoginForm";
+import LoginForm from "../../pages/LoginForm";
+import Register from "../../pages/Register";
 
 export const routes: RouteObject[] = [
     {
@@ -9,9 +10,8 @@ export const routes: RouteObject[] = [
         element: <App />,
         children: [
             {path: '', element: <HomePage />},
-            // {path: 'Login', element: <Login />},
             {path: 'login', element: <LoginForm />},
-            // {path: 'Register', element: <Register />},
+            {path: 'Register', element: <Register />},
         ]
     },
 ]
