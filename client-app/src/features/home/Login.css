@@ -4,14 +4,18 @@ body {
   
   .background {
     background-image: url('/assets/Background Image.jpg');
-    background-size: 1920px 1025px;
+    background-size: 1440px 1025px;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Ensure full viewport height coverage */
+    height: 1025px; 
+    width: 1440px; 
+    position: absolute;
+    gap: 0px;
+    opacity: 1;
   }
   
   .login-frame {
@@ -23,32 +27,44 @@ body {
     opacity: 1;
     padding: 20px;
     position: absolute;
-    top: 50%; /* Move top edge of element to the vertical middle */
-    left: 50%; /* Move left edge of element to the horizontal middle */
+    top: 50%; 
+    left: 50%; 
     transform: translate(-50%, -0%); /* Adjust for element's own dimensions */
   }
   
   .header {
     font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: center;
+    color: #0F3C4C;
+    padding: 10px;
+    margin-bottom: auto;
+  }
+
+  .header-2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: center;
+    color: #0F3C4C;
+    padding: 10px;
+    margin-bottom: auto;
+    
+  }
+
+  .login-header {
+    font-family: 'Poppins', sans-serif;
     font-size: 50px;
     font-weight: 600;
     line-height: 48px;
     text-align: center;
-    /* background-color: #0F3C4C; */
-    
     color: #0F3C4C;
-    padding: 10px 0;
-    margin-bottom: 20px;
-  }
+    margin-top: -15px;
 
-  .login-header {
-    display: flex;
-    flex-direction: column;
   }
-  
-  /* .credentials-input {
-   
-  } */
   
   .input-label {
     display: block;
@@ -74,7 +90,6 @@ body {
     outline: none;
     font-family: 'Inter', sans-serif;
     font-size: 12px;
-    font-weight: 400;
     line-height: 14.52px;
   }
 
@@ -85,20 +100,20 @@ body {
   .input-icon {
     position: absolute;
     margin:0 10px;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     color: #0F3C4C;
   }
 
   .forgot-password {
-    margin-left: auto;
-    margin-right: 10rem;
+    margin-left: 34rem;
     font-size: 10px;
+    margin-top: 10px;
   }
   
   .login-button {
     width: 100%;
-    background: #0F3C4C;
+    background: #2187AB;
     color: white;
     height: 2.6rem;
     border-radius: 5px;

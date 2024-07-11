@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { Image } from "../layout/models/image";
+import { User, UserFormValues } from "../layout/models/user";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -36,8 +37,15 @@ const Images = {
     delete: (id: string) => axios.delete<void>(`/images/${id}`)
 }
 
+const Account = {
+    current: () => requests.get<User>('/account'),
+    login: (user: UserFormValues) => requests.post<User>('/account/login', user),
+    register: (user: UserFormValues) => requests.post<User>('/account/register', user),
+}
+
 const agent = {
-    Images
+    Images,
+    Account
 }
 
 export default agent;
