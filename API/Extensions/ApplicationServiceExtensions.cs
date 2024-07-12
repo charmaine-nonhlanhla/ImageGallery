@@ -5,6 +5,8 @@ using Application.Images;
 using Application.ImageTags;
 using Application.Tags;
 using Application.Users;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -35,7 +37,9 @@ namespace API.Extensions
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(TagList.Handler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);   
-
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<CreateCategory>();
+            
             return services;
         }
     }

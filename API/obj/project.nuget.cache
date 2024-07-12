@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "a8F79IBfLZo=",
+  "dgSpecHash": "jl4g0yfYAy8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
