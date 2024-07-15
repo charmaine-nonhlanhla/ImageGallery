@@ -7,7 +7,7 @@ export default class ImageStore {
   selectedImage: Image | undefined = undefined;
   editMode = false;
   loading = false;
-  loadingInitial = true;
+  loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)

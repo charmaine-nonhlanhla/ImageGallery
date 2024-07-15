@@ -6,10 +6,6 @@ export default function ImageForm() {
             <Form>
                 <Form.Input placeholder='Title' />
                 <Form.Input placeholder='Description' />
-                <Form.Input placeholder='Title' />
-                <Form.Input placeholder='Title' />
-                <Form.Input placeholder='Title' />
-                <Form.Input placeholder='Title' />
             </Form>
         </Segment>
     )
