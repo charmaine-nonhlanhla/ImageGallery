@@ -11,7 +11,7 @@ export default function ImageDashboard() {
       imageStore.loadImages();
     }, [imageStore])
   
-    if (imageStore.loadingInitial) return <LoadingComponent content ='Loading app' />
+    if (imageStore.loadingInitial) return <LoadingComponent content ='Loading home page...' />
 
     return (
         <Grid>

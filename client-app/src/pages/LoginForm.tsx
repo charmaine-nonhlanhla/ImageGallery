@@ -31,7 +31,6 @@
 
 
 
-import React from 'react';
 import { Container, Segment, Grid, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Form, Formik } from 'formik';
@@ -42,7 +41,7 @@ import { observer } from 'mobx-react-lite';
 import '../styles/Login.css'
 
 
-const LoginForm: React.FC = () => {
+export default observer(function LoginForm() {
   const { userStore } = useStore();
 
   return (
@@ -131,6 +130,4 @@ const LoginForm: React.FC = () => {
       </Container>
     </div>
   );
-}
-
-export default observer(LoginForm);
+})

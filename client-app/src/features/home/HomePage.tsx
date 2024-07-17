@@ -84,27 +84,67 @@
 //         </div>
 //     );
 // }
-import React from 'react';
-import { Container, Segment, Icon } from 'semantic-ui-react';
+import { useState } from 'react';
+import { Container, Segment, Icon, MenuItem, Image, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react';
 import '../home/HomePage.css';
+import { useStore } from '../../app/stores/store';
+import { observer } from 'mobx-react-lite';
+import { Link } from 'react-router-dom';
 
-const LeftColumn: React.FC = () => {
+type ActiveElement = 'home' | 'image-upload' | '';
+
+export default observer(function HomePage() {
+  const { userStore: { user, logout } } = useStore();
+  const [activeElement, setActiveElement] = useState<ActiveElement>('');
+
+  const handleElementClick = (element: ActiveElement) => {
+    setActiveElement(element);
+  };
+
   return (
-    <div className="left-column">
-      <Container>
-        <Segment className="logo-container">
-          <span className="logo">Logo</span>
-        </Segment>
-        <div className="new-element">
-          <Icon name="home" className="home-icon" />
-          <span className="home-text">Home</span>
-        </div>
-      </Container>
+    <div className="page-container">
+      <div className="left-column">
+        <Container>
+          <Segment className="logo-container">
+            <span className="logo">Logo</span>
+          </Segment>
+          <div
+            className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
+            onClick={() => handleElementClick('home')}
+          >
+            <Icon name="home" className="home-icon" />
+            <span className="home-text">Home</span>
+          </div>
+          <div
+            className={`image-upload ${activeElement === 'image-upload' ? 'active' : ''}`}
+            onClick={() => handleElementClick('image-upload')}
+          >
+            <Icon name="image" className="home-icon" />
+            <span className="home-text">Image Upload</span>
+          </div>
+          <div className="logout-element">
+            <Icon name="sign-out" className="logout-icon" />
+            <span className="logout-text">Logout</span>
+          </div>
+        </Container>
+      </div>
+      <div className="right-menu">
+        <MenuItem position='right'>
+          <Image src={user?.image || '/assets/user.png'} avatar spaced='right' />
+          <Dropdown pointing='top left' text={user?.displayName}>
+            <DropdownMenu>
+              <DropdownItem as={Link} to={`profile/${user?.username}`} text='My Profile' icon='user' />
+              <DropdownItem onClick={logout} text='Logout' icon='power' />
+            </DropdownMenu>
+          </Dropdown>
+        </MenuItem>
+      </div>
     </div>
   );
-};
+})
 
-export default LeftColumn;
+
+
 
 
 

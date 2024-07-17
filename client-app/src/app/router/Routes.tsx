@@ -5,6 +5,7 @@ import LoginForm from "../../pages/LoginForm";
 import TestErrors from "../../features/Errors/TestError";
 import NotFound from "../../features/Errors/NotFound";
 import ServerError from "../../features/Errors/ServerError";
+import RegisterForm from "../../pages/RegisterForm";
 
 export const routes: RouteObject[] = [
     {
@@ -13,7 +14,7 @@ export const routes: RouteObject[] = [
         children: [
             {path: '', element: <HomePage />},
             {path: 'login', element: <LoginForm />},
-            // {path: 'Register', element: <Register />},
+            {path: 'Register', element: <RegisterForm />},
             {path: 'errors', element: <TestErrors />},
             {path: 'not-found', element: <NotFound />},
             {path: 'server-error', element: <ServerError />},
