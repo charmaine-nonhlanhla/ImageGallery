@@ -7,7 +7,7 @@ interface Props {
     label?: string;
     type?: string;
     rows: number;
-    className?: string;
+    classname?: string;
 }
 
 export default function MyTextArea(props: Props) {

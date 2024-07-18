@@ -1,0 +1,82 @@
+.register-background {
+    background-color: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  .form-image-container {
+    display: flex;
+    
+    
+  }
+  
+  .form-container {
+    background-color: #f0f0f0;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+    margin-right: 80rem;
+    margin-left: 10rem;
+  }
+  
+  .title-container {
+    margin-bottom: 20px;
+    margin-right: 70px;
+    background-color: #f0f0f0;
+  }
+  
+  .title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48px;
+    text-align: left;
+    color: #0F3C4C;
+  }
+  
+  .subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    color: #000000;
+  }
+  
+  .styled-button {
+    background-color: #2187AB !important;
+    color: #fff !important;
+    margin-top: 20px !important;
+    width: 400px !important;
+    height: 44px !important;
+    border-radius: 4px !important;
+  }
+  
+  .or-text {
+    margin: 20px 0;
+    font-size: 16px;
+  }
+  
+  .social-button {
+    width: 400px !important;
+    height: 44px !important;
+    margin-bottom: 10px !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #d4d4d5 !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .registration-image {
+    width: 917px;
+    height: 856px;
+    opacity: 1;
+    margin-left: -50rem;
+    border-radius: 4px;
+  }
+  

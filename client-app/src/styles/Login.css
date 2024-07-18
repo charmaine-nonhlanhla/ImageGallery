@@ -1,4 +1,4 @@
-.background {
+.login-background {
   background-image: url('/assets/Background.jpg');
   background-size: 1920px 1025px;
   background-position: center;
@@ -10,7 +10,6 @@
   min-height: 100vh;
   opacity: 1;
 }
-
 
 .login-frame {
   width: 722px;
@@ -43,11 +42,10 @@
   line-height: 48px;
   text-align: center;
   color: #0F3C4C;
-  margin-bottom: auto;
 }
 
 .input-label {
-  display: block;
+  display: flex;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -55,26 +53,33 @@
   text-align: left;
   color: #0F3C4C;
   margin: 5px;
+  margin-top: 20px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #0F3C4C;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .input-icon {
-  position: absolute;
-  margin: 0 10px;
-  transform: translateY(7px);
-  color: #0F3C4C;
+  margin-right: 10px;
+  color: #4B5558B2;
 }
+
+.user-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+}
+
 
 .forgot-password {
   margin-left: 34rem;
   font-size: 10px;
-}
-
-.login-button {
-  width: 100%;
-  background: #2187AB;
-  color: white;
-  height: 2.6rem;
-  border-radius: 5px;
 }
 
 .register-link a {
@@ -90,4 +95,8 @@
   text-align: center;
   color: #0F3C4C;
   padding-top: 25px;
+}
+
+.button-row {
+  margin-top: 20px;
 }

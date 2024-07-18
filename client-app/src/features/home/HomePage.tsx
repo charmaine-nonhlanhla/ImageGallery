@@ -90,6 +90,9 @@ import '../home/HomePage.css';
 import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
+import { GoHome } from "react-icons/go";
+import { TbCameraPlus } from "react-icons/tb";
+
 
 type ActiveElement = 'home' | 'image-upload' | '';
 
@@ -112,14 +115,15 @@ export default observer(function HomePage() {
             className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
             onClick={() => handleElementClick('home')}
           >
-            <Icon name="home" className="home-icon" />
+            <GoHome className="home-icon"/>
             <span className="home-text">Home</span>
           </div>
           <div
             className={`image-upload ${activeElement === 'image-upload' ? 'active' : ''}`}
             onClick={() => handleElementClick('image-upload')}
           >
-            <Icon name="image" className="home-icon" />
+            
+            <TbCameraPlus  className="home-icon"/>
             <span className="home-text">Image Upload</span>
           </div>
           <div className="logout-element">
