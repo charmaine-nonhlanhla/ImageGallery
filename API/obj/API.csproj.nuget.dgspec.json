@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {}
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
+        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
         "packagesPath": "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\obj\\",
+        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CMogotlane.SINGULAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -31,6 +31,9 @@
             "projectReferences": {
               "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Application\\Application.csproj": {
                 "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Application\\Application.csproj"
+              },
+              "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -225,6 +228,71 @@
               "version": "[8.0.6, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\CMogotlane.SINGULAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\Application\\Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",

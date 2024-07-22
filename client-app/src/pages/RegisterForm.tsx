@@ -1,4 +1,3 @@
-import React from 'react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import MyTextInput from '../../src/app/common/form/MyTextInput';
 import { Button, GridColumn, GridRow, Icon } from 'semantic-ui-react';
@@ -9,7 +8,7 @@ import ValidationErrors from '../features/Errors/ValidationErrors';
 import '../styles/Register.css';
 import registrationImage from '../pages/Background.jpg';
 
-const RegistrationPage = () => {
+const RegisterForm = () => {
   const { userStore } = useStore();
 
   return (
@@ -90,4 +89,5 @@ const RegistrationPage = () => {
   );
 };
 
-export default observer(RegistrationPage);
+export default observer(RegisterForm);
+
