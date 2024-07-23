@@ -20,17 +20,17 @@ const RegisterForm = () => {
             <p className="subtitle">Lorem ipsum dolor sit amet consectetur sit amet consectetur.</p>
           </div>
           <Formik
-            initialValues={{ displayName: '', email: '', password: '', error: null }}
+            initialValues={{ fullName: '', email: '', password: '', error: null }}
             onSubmit={(values, { setErrors }) =>
               userStore
                 .register(values)
                 .catch((error) => setErrors({ error }))
             }
             validationSchema={Yup.object({
-              displayName: Yup.string().required('Full Name is required'),
+              fullName: Yup.string().required('Full Name is required'),
               email: Yup.string().email('Invalid email address').required('Email is required'),
               password: Yup.string().required('Password is required'),
-              username: Yup.string().required('Confirm Password is required'),
+              confirmpassword: Yup.string().required('Confirm Password is required'),
             })}
           >
             {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (

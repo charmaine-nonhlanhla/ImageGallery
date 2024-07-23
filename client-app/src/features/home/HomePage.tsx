@@ -94,7 +94,7 @@ import { GoHome } from "react-icons/go";
 import { TbCameraPlus } from "react-icons/tb";
 
 
-type ActiveElement = 'home' | 'image-upload' | '';
+type ActiveElement = 'home' | 'image-upload' | 'logout' | '';
 
 export default observer(function HomePage() {
   const { userStore: { user, logout } } = useStore();
@@ -109,7 +109,8 @@ export default observer(function HomePage() {
       <div className="left-column">
         <Container>
           <Segment className="logo-container">
-            <span className="logo">Logo</span>
+            <img src="/assets/Image-Logo.jpg" alt="Logo" className="logo-image" />
+            <span className="logo-text">Image Gallery</span>
           </Segment>
           <div
             className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
@@ -119,26 +120,31 @@ export default observer(function HomePage() {
             <span className="home-text">Home</span>
           </div>
           <div
-            className={`image-upload ${activeElement === 'image-upload' ? 'active' : ''}`}
+            className={`imageupload-element ${activeElement === 'image-upload' ? 'active' : ''}`}
             onClick={() => handleElementClick('image-upload')}
           >
             
-            <TbCameraPlus  className="home-icon"/>
-            <span className="home-text">Image Upload</span>
+            <TbCameraPlus  className="image-icon"/>
+            <span className="image-text">Image Upload</span>
           </div>
-          <div className="logout-element">
+          <div className={`logout-element ${activeElement === 'logout' ? 'active' : ''}`}
+            onClick={() => { 
+              handleElementClick('logout');
+              logout();
+            }} >
+
             <Icon name="sign-out" className="logout-icon" />
             <span className="logout-text">Logout</span>
+            
           </div>
         </Container>
       </div>
       <div className="right-menu">
         <MenuItem position='right'>
           <Image src={user?.image || '/assets/user.png'} avatar spaced='right' />
-          <Dropdown pointing='top left' text={user?.displayName}>
+          <Dropdown pointing='top left' text={user?.fullName}>
             <DropdownMenu>
-              <DropdownItem as={Link} to={`profile/${user?.username}`} text='My Profile' icon='user' />
-              <DropdownItem onClick={logout} text='Logout' icon='power' />
+              <DropdownItem as={Link} to={`profile/${user?.fullName}`} text='My Profile' icon='user' />
             </DropdownMenu>
           </Dropdown>
         </MenuItem>

@@ -1,8 +1,6 @@
 using System.Security.Claims;
-using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SignalR;
 using Persistence;
 
 namespace Infrastructure.Security

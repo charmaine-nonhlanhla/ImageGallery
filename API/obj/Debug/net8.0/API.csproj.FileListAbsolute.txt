@@ -180,3 +180,5 @@ C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Microso
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Infrastructure.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Infrastructure.pdb

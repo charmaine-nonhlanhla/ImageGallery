@@ -12,9 +12,9 @@ namespace Persistence
             // Seed Users
             var users = new List<User>
             {
-                new User{DisplayName = "Bob", UserName = "bob", Email = "bob@test.com"},
-                new User{DisplayName = "Tom", UserName = "tom", Email = "tom@test.com"},
-                new User{DisplayName = "Jane", UserName = "jane", Email = "jane@test.com"},
+                new User{FullName = "Bob", UserName = "bob", Email = "bob@test.com"},
+                new User{FullName = "Tom", UserName = "tom", Email = "tom@test.com"},
+                new User{FullName = "Jane", UserName = "jane", Email = "jane@test.com"},
             };
 
             foreach (var user in users)

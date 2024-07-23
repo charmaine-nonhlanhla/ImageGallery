@@ -1,6 +1,6 @@
 .login-background {
   background-image: url('/assets/Background.jpg');
-  background-size: 1920px 1025px;
+  background-size: 2500px 1200px;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,8 +12,8 @@
 }
 
 .login-frame {
-  width: 722px;
-  height: 548px;
+  width: 1025px;
+  height: 750px;
   background-color: #FFFFFF;
   border-radius: 4px 0px 0px 0px;
   box-shadow: 0px 2px 4px 0px #0000001F;
