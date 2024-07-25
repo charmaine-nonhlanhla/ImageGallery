@@ -21,7 +21,7 @@ namespace API.Controllers
 
         }
 
-        
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
@@ -39,11 +39,11 @@ namespace API.Controllers
             return Unauthorized();
         }
 
-       
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await _userManager.Users.AnyAsync(x => x.UserName == registerDto.UserName))
+            if (await _userManager.Users.AnyAsync(x => x.FullName == registerDto.FullName))
             {
                 ModelState.AddModelError("username", "Username taken");
                 return ValidationProblem();
@@ -59,7 +59,7 @@ namespace API.Controllers
             {
                 FullName = registerDto.FullName,
                 Email = registerDto.Email,
-                UserName = registerDto.UserName
+                UserName = registerDto.UserName,
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);

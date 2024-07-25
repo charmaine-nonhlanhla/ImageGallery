@@ -1,12 +1,14 @@
 import { ErrorMessage, Form, Formik } from 'formik';
 import MyTextInput from '../../src/app/common/form/MyTextInput';
-import { Button, GridColumn, GridRow, Icon } from 'semantic-ui-react';
+import { Button, GridColumn, GridRow } from 'semantic-ui-react';
 import { useStore } from '../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
 import ValidationErrors from '../features/Errors/ValidationErrors';
 import '../styles/Register.css';
 import registrationImage from '../assets/Background.jpg';
+import { FcGoogle } from "react-icons/fc";
+import { SiFacebook } from "react-icons/si";
 
 const RegisterForm = () => {
   const { userStore } = useStore();
@@ -34,11 +36,11 @@ const RegisterForm = () => {
             })}
           >
             {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
-              <Form className=" " onSubmit={handleSubmit} autoComplete="off">
+              <Form className="error" onSubmit={handleSubmit} autoComplete="off">
                 <GridRow> 
                   <GridColumn> 
                     <label className="input-label">Full Name</label>
-                    <MyTextInput placeholder="Full Name" name="displayName" />
+                    <MyTextInput placeholder="Full Name" name="fullName" />
                   </GridColumn>
                 </GridRow>
                 <GridRow> 
@@ -56,7 +58,7 @@ const RegisterForm = () => {
                 <GridRow> 
                   <GridColumn> 
                     <label className="input-label">Confirm Password</label>
-                    <MyTextInput placeholder="Confirm Password" name="username" type="password" />
+                    <MyTextInput placeholder="Confirm Password" name="confirmpassword" type="password" />
                   </GridColumn>
                 </GridRow>
                 <ErrorMessage
@@ -73,12 +75,14 @@ const RegisterForm = () => {
                   className="styled-button"
                 />
                 <div className="or-text">or</div>
+                <div className="buttons">
                 <Button className="social-button">
-                  <Icon name="google" /> Sign in with Google
+                  <FcGoogle className='google-icon'/> Sign in with Google
                 </Button>
                 <Button className="social-button">
-                  <Icon name="facebook" /> Sign in with Facebook
+                  <SiFacebook className='facebook-icon' /> Sign in with Facebook
                 </Button>
+                </div>                
               </Form>
             )}
           </Formik>

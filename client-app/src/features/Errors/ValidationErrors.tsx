@@ -10,7 +10,7 @@ export default function ValidationErrors({errors}: Props) {
         <Message error>
            {errors && (
             <MessageList>
-                {errors.map((err: string, i: any) => (
+                {errors.map((err: any, i: any) => (
                     <Message.Item key={i}>{err}</Message.Item> 
                 ))}
             </MessageList>
