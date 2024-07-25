@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
 import ValidationErrors from '../features/Errors/ValidationErrors';
 import '../styles/Register.css';
-import registrationImage from '../pages/Background.jpg';
+import registrationImage from '../assets/Background.jpg';
 
 const RegisterForm = () => {
   const { userStore } = useStore();

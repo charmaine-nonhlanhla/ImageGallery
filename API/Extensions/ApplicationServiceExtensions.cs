@@ -3,10 +3,13 @@ using Application.Comments;
 using Application.Core;
 using Application.Images;
 using Application.ImageTags;
+using Application.Interfaces;
 using Application.Tags;
 using Application.Users;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Photos;
+using Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -36,9 +39,15 @@ namespace API.Extensions
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ImageTagList.Handler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(TagList.Handler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly);   
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly); 
+            services.AddHttpContextAccessor(); 
+            services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>(); 
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<CreateCategory>();
+            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+
+
             
             return services;
         }

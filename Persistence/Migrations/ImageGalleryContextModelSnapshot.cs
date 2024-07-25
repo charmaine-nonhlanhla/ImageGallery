@@ -128,6 +128,27 @@ namespace Persistence.Migrations
                     b.ToTable("ImageTags");
                 });
 
+            modelBuilder.Entity("Domain.Models.Photo", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("Domain.Models.Tag", b =>
                 {
                     b.Property<int>("TagId")
@@ -402,6 +423,13 @@ namespace Persistence.Migrations
                     b.Navigation("Tag");
                 });
 
+            modelBuilder.Entity("Domain.Models.Photo", b =>
+                {
+                    b.HasOne("Domain.Models.User", null)
+                        .WithMany("Photos")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -475,6 +503,8 @@ namespace Persistence.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Images");
+
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }
