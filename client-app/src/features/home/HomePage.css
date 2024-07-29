@@ -221,6 +221,27 @@
   
 }
 
+.card-header {
+  font-size: 4px; /* Adjust the font size as needed */
+ 
+  
+}
+
+.card-image-wrapper {
+  position: relative;
+}
+
+.card-content-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: small;
+}
+
 
 
 

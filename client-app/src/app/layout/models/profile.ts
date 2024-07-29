@@ -5,12 +5,20 @@ export interface Profile {
     fullName: string;
     image?: string;
     bio?: string;
+    photos?: Photo[]
 }
 
 export class Profile implements Profile {
     constructor(user: User) {
         this.username = user.username;
         this.fullName = user.fullName;
-        this.image = user.image
+        this.image = user.image;
     }
+}
+
+export interface Photo {
+    id: string;
+    url: string;
+    isMain: boolean;   
+    
 }

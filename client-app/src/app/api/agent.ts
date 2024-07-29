@@ -4,12 +4,13 @@ import { User, UserFormValues } from "../layout/models/user";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { store } from "../stores/store";
+import { Profile } from "../layout/models/profile";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
         setTimeout(resolve, delay)
-    })
-}
+    });
+};
 
 axios.defaults.baseURL= 'http://localhost:5000/api'
 
@@ -17,7 +18,7 @@ axios.interceptors.request.use(config => {
     const token = store.commonStore.token;
     if (token && config.headers) config.headers.Authorization = `Bearer ${token}`;
     return config;
-})
+});
 
 axios.interceptors.response.use(async response => {
 
@@ -57,7 +58,7 @@ axios.interceptors.response.use(async response => {
             break;
     }
     return Promise.reject(error);
-})
+});
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
@@ -66,7 +67,7 @@ const requests = {
     post: <T>(url: string, body: {}) => axios.post<T>(url, body).then( responseBody),
     put: <T>(url: string, body: {}) => axios.put<T>(url, body).then( responseBody),
     delete: <T>(url: string) => axios.delete<T>(url).then( responseBody),
-}
+};
 
 const Images = {
     list: () => requests.get<Image[]>('/images'),
@@ -74,17 +75,22 @@ const Images = {
     create: (image: Image) => axios.post('/images', image),
     update: (image: Image) => axios.put(`/images/${image.imageId}`, image),
     delete: (id: string) => axios.delete<void>(`/images/${id}`)
-}
+};
 
 const Account = {
     current: () => requests.get<User>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user),
-}
+};
+
+const Profiles = {
+    get: (username: string) => requests.get<Profile>(`/profiles/${username}`)
+};
 
 const agent = {
     Images,
-    Account
-}
+    Account,
+    Profiles
+};
 
 export default agent;
