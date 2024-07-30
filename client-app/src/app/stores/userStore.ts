@@ -22,19 +22,6 @@ export default class UserStore {
             router.navigate('/');
     }
 
-    register = async (creds: UserFormValues) => {
-        const user = await agent.Account.register(creds);
-        store.commonStore.setToken(user.token);
-        runInAction(() => this.user = user);
-        router.navigate('/');
-}
-
-    logout = () => {
-        store.commonStore.setToken(null);
-        this.user = null;
-        router.navigate('/');
-    }
-
     getUser = async () => {
         try {
         const user = await agent.Account.current();
@@ -43,4 +30,29 @@ export default class UserStore {
             console.log(error);  
         }
     }
+
+    register = async (creds: UserFormValues) => {
+        try {
+        const user = await agent.Account.register(creds);
+        store.commonStore.setToken(user.token);
+        runInAction(() => this.user = user);
+        router.navigate('/');
+        store.modalStore.closeModal();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    setImage = (image: string) => {
+        if (this.user) this.user.image = image;
+    }
+
+
+    logout = () => {
+        store.commonStore.setToken(null);
+        this.user = null;
+        router.navigate('/');
+    }
+
+
 }
