@@ -4,7 +4,7 @@
 }
 
 .left-column {
-  width: 378px;
+  width: 446px;
   height: 1140px;
   background: #2187AB;
   position: fixed;
@@ -13,41 +13,16 @@
   
 }
 
-.logo-container {
-  width: 377px;
-  height: 74px;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  background: none !important; /* Remove default background of Segment */
-}
-
-.logo-image {
-  max-width: 100%; /* Scale with container */
-  height: 50px; /* Maintain aspect ratio */
-  margin-right: auto;
-}
-
 .logo-text {
   width: 87px;
   height: 54px;
   color: white;
   font-family: 'Poppins', sans-serif;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: 600;
-  line-height: 30px;
-  margin-right: auto;
-}
-
-.logo {
-  width: 87px;
-  height: 54px;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 54px;
-  margin-right: auto;
+  line-height: 6rem;
+  margin-left: 1rem;
+  
 }
 
 .home-element {
@@ -55,7 +30,7 @@
   top: 162px;
   width: 360px;
   height: 80px;
-  font-size: large;
+  font-size: larger;
   font-weight: 100;
   position: absolute;
   left: 9px;
@@ -70,12 +45,12 @@
 .imageupload-element {
   color: white;
   top: 250px;
-  width: 360px;
+  width: 400px;
   height: 80px;
   font-weight: 600;
-  font-size: large;
+  font-size: larger;
   position: absolute;
-  left: 9px;
+  left: 10px;
   padding: 10px 0 0 0;
   gap: 10px;
   display: flex;
@@ -86,9 +61,10 @@
 .imageupload-element.active, 
 .logout-element.active {
   background-color: #E9F5F9;
-  width: 350px; 
+  width: 355px; 
   height: 90px; 
   margin-left: 5px; 
+  border-radius: 5px;
 }
 
 .home-element.active .home-icon,
@@ -131,44 +107,61 @@
   margin-left: 10px;
 }
 
-.right-menu {
-  position: fixed;
-  top: 20px;
-  right: 20rem;
-  display: flex;
+.profile-container {
+  position: absolute;
+  width: 140rem;
+  height: 74px;
+  display: flex !important;
   align-items: center;
-  
+  bottom: 1rem;
+}
+
+.home2 {
+  font-size: larger;
+  font-weight: 600;
+  color: #165A72;
+}
+
+.arrow-forward {
+  color: #165A72;
+  font-size: x-large;
 }
 
 .displayname {
   font-size: large;
 }
 
-.card-header {
-  font-size: 4px; /* Adjust the font size as needed */
- 
+.search-bar {
+  position: fixed;
+  left: 36rem;
+  top: 10rem;
+  font-weight: 600;
+  width: 30rem;
+  padding-left: 40px;
   
 }
 
-.card-image-wrapper {
-  position: relative;
-}
-
-.card-content-overlay {
+.search-icon {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: white;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: small;
+  top: 1rem;
+  left: 1rem;
 }
 
+.filter-button {
+position: absolute;
+left: 67rem;
+top: 10rem;
+width: 10rem;
+height: 40px;
+border-radius: 4px;
+background-color:#E9F5F9;
+border: none;
+font-size: medium;
+color: #165A72;
+font-weight: 600;
+}
 
-
-
-
-
-
-
+.card {
+left: 10rem;
+top: 20rem;  
+}
