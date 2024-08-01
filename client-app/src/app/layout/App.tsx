@@ -6,6 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { useStore } from '../stores/store';
 import { useEffect } from 'react';
 import LoadingComponent from './LoadingComponent';
+import { MainLayout } from '../router/MainLayout';
 
 
 
@@ -26,9 +27,9 @@ function App() {
   return (
     <>
     <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
-    {location.pathname === '/' ? <HomePage /> : (
+    {location.pathname === '/' ? <MainLayout /> : (
       <>
-      <Outlet />
+      
      </>
     )}
     </>

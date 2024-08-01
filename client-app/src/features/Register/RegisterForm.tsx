@@ -1,14 +1,14 @@
 import { ErrorMessage, Form, Formik } from 'formik';
-import MyTextInput from '../../src/app/common/form/MyTextInput';
+import MyTextInput from '../../app/common/form/MyTextInput';
 import { Button, GridColumn, GridRow } from 'semantic-ui-react';
-import { useStore } from '../app/stores/store';
+import { useStore } from '../../app/stores/store'
 import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
-import ValidationErrors from '../features/Errors/ValidationErrors';
-import '../styles/Register.css';
-import registrationImage from '../assets/Background.jpg';
+import ValidationErrors from "../Errors/ValidationErrors";
+import registrationImage from '../../../public/assets/Background.jpg';
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
+import '../Register/Register.css';
 
 const RegisterForm = () => {
   const { userStore } = useStore();

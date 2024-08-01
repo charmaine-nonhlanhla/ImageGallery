@@ -1,12 +1,12 @@
 import { Container, Segment, Grid, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { ErrorMessage, Form, Formik } from 'formik';
-import MyTextInput from '../app/common/form/MyTextInput';
-import { useStore } from '../app/stores/store';
+import MyTextInput from '../../app/common/form/MyTextInput';
+import { useStore } from '../../app/stores/store';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
-import '../styles/Login.css';
 import { FaUser, FaLock } from 'react-icons/fa';
+import '../../features/Login/Login.css';
 
 const CustomButton = styled.button`
   background-color: #2187AB;

@@ -1,8 +1,18 @@
-import React from 'react'
 import { Picture } from './Picture'
+import './Pictures.css'
 
 export const Pictures = () => {
   return (
-    <div><Picture/><Picture/></div>
+    <div className='pictures'>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      <Picture/>
+      </div>
   )
 }
