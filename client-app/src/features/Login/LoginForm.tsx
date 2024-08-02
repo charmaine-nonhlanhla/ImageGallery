@@ -98,7 +98,6 @@ export default observer(function LoginForm() {
                                             </CustomButton>
                                         </Grid.Column>
                                     </Grid.Row>
-
                                     <Grid.Row>
                                         <Grid.Column width={16} textAlign="center">
                                             <p className="register-link">New to this platform? <Link to="/register">Register Here</Link></p>
