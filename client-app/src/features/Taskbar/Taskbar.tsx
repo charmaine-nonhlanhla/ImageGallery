@@ -23,7 +23,7 @@ export const Taskbar = () => {
         {/* <img src="/assets/Image-Logo.jpg" alt="Logo" className="logo-image" /> */}
         <span className="logo-text">Logo</span>
       {/* </Segment> */}
-      <Link to='/home'>
+      <Link to='/'>
       <div
         className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
         onClick={() => handleElementClick('home')}
