@@ -20,4 +20,7 @@ export interface Photo {
     id: string;
     url: string;
     isMain: boolean;
+    categoryId: number;
+    photoDescription: string;
+    photoTitle: string;
 }

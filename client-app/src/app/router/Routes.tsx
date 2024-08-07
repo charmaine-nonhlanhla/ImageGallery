@@ -9,22 +9,25 @@ import RegisterForm from "../../features/Register/RegisterForm";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import { MainLayout } from '../router/MainLayout';
 import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
+import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
 
 export const routes: RouteObject[] = [
     {
         path: '/',
         element: <App />,
         children: [
-            // Define routes where MainLayout is used
+          
             {
                 path: '',
-                element: <MainLayout />,  // Use MainLayout here
+                element: <MainLayout />, 
                 children: [
-                    { path: '', element: <HomePage /> }, // Homepage
-                    { path: 'upload', element: <PhotoUpload /> }, // Photo upload page
+                    { path: '', element: <HomePage /> }, 
+                    { path: 'upload', element: <PhotoUpload /> }, 
+                    { path: 'library', element: <PhotoLibrary /> }, 
+
                 ]
             },
-            // Define routes without MainLayout
+          
             { path: 'login', element: <LoginForm /> },
             { path: 'register', element: <RegisterForm /> },
             { path: 'profiles/:username', element: <ProfilePage /> },

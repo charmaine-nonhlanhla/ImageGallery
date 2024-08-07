@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { store } from "../stores/store";
 import { Photo, Profile } from "../layout/models/profile";
+import { Category } from "../layout/models/category";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -85,9 +86,20 @@ const Account = {
 
 const Profiles = {
     get: (username: string) => requests.get<Profile>(`/profiles/${username}`),
-    uploadPhoto: (file: Blob) => {
+    uploadPhoto: (file: Blob, photoTitle?: string, categoryId?: number, photoDescription?: string) => {
         let formData = new FormData();
         formData.append('File', file);
+
+        // Conditionally append parameters if they are provided
+        if (photoTitle) {
+            formData.append('PhotoTitle', photoTitle);
+        }
+        if (categoryId !== undefined) {
+            formData.append('CategoryId', categoryId.toString());
+        }
+        if (photoDescription) {
+            formData.append('PhotoDescription', photoDescription);
+        }
         return axios.post<Photo>('photos', formData, {
             headers: {'Content-Type': 'multipart/form-data'}
         })
@@ -96,10 +108,16 @@ const Profiles = {
     deletePhoto: (id: string) => requests.delete(`/photos/${id}`)
 };
 
+// Add Categories API
+    const Categories = {
+    list: () => requests.get<Category[]>('/categories'),
+};
+
 const agent = {
     Images,
     Account,
-    Profiles
+    Profiles,
+    Categories
 };
 
 export default agent;

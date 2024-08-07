@@ -2,15 +2,19 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { Photo, Profile } from "../layout/models/profile";
 import agent from "../api/agent";
 import { store } from "./store";
+import { Category } from "../layout/models/category";
 
 export default class ProfileStore {
     profile: Profile | null = null;
     loadingProfile = false;
     uploading = false;
     loading = false;
+    categories: Category[] = [];
+    
 
     constructor() {
         makeAutoObservable(this);
+        this.loadCategories();
     }
 
     get isCurrentUser() {
@@ -34,10 +38,10 @@ export default class ProfileStore {
         }
     }
 
-    uploadPhoto = async (file: Blob) => {
+    uploadPhoto = async (file: Blob, photoTitle?: string, categoryId?: number, photoDescription?: string) => {
         this.uploading = true;
         try {
-            const response = await agent.Profiles.uploadPhoto(file);
+            const response = await agent.Profiles.uploadPhoto(file, photoTitle, categoryId, photoDescription);
             const photo = response.data;
             runInAction(() => {
                 if (this.profile) {
@@ -71,8 +75,18 @@ export default class ProfileStore {
             })
         } catch (error) {
             runInAction(() => this.loading = false);
-            console.log(error);
-            
+            console.log(error);        
+        }
+    }
+
+    loadCategories = async () => {
+        try {
+            const categories = await agent.Categories.list();
+            runInAction(() => {
+                this.categories = categories;
+            });
+        } catch (error) {
+            console.log('Error loading categories:', error);
         }
     }
 }

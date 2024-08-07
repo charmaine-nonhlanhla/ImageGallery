@@ -2,54 +2,64 @@ import { Container } from 'semantic-ui-react';
 import { GoHome } from "react-icons/go";
 import { TbCameraPlus } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
+import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { useStore } from '../../app/stores/store';
-import './Taskbar.css'
-import { useState } from 'react';
+import './Taskbar.css';
 import { Link } from 'react-router-dom';
 
-type ActiveElement = 'home' | 'image-upload' | 'logout' | '';
+type ActiveElement = 'home' | 'image-upload' | 'my-library' | 'logout' | '';
 
-export const Taskbar = () => {
-    const { userStore: { logout } } = useStore();
-    const [activeElement, setActiveElement] = useState<ActiveElement>('');
-  
-    const handleElementClick = (element: ActiveElement) => {
-      setActiveElement(element);
-    };
+interface TaskbarProps {
+  setActiveElement: (element: ActiveElement) => void;
+  activeElement: ActiveElement;
+}
+
+export const Taskbar = ({ setActiveElement, activeElement }: TaskbarProps) => {
+  const { userStore: { logout } } = useStore();
+
+  const handleElementClick = (element: ActiveElement) => {
+    setActiveElement(element);
+  };
+
   return (
     <div className="left-column">
-    <Container>
-      {/* <Segment className="logo-container"> */}
-        {/* <img src="/assets/Image-Logo.jpg" alt="Logo" className="logo-image" /> */}
-        <span className="logo-text">Logo</span>
-      {/* </Segment> */}
-      <Link to='/'>
-      <div
-        className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
-        onClick={() => handleElementClick('home')}
-      >
-        <GoHome className="home-icon"/>
-        <span className="home-text">Home</span>
-      </div>
+      <Container>
+        <Link to='/'>
+          <div
+            className={`home-element ${activeElement === 'home' ? 'active' : ''}`}
+            onClick={() => handleElementClick('home')}
+          >
+            <GoHome className="home-icon"/>
+            <span className="home-text">Home</span> {/* Updated to capitalized */}
+          </div>
         </Link>
         <Link to='/upload'>
-      <div
-        className={`imageupload-element ${activeElement === 'image-upload' ? 'active' : ''}`}
-        onClick={() => handleElementClick('image-upload')}
-      >
-        <TbCameraPlus className="image-icon"/>
-        <span className="image-text">Image Upload</span>
-      </div>
+          <div
+            className={`imageupload-element ${activeElement === 'image-upload' ? 'active' : ''}`}
+            onClick={() => handleElementClick('image-upload')}
+          >
+            <TbCameraPlus className="image-icon"/>
+            <span className="image-text">Image Upload</span> {/* Updated to capitalized */}
+          </div>
         </Link>
-      <div className={`logout-element ${activeElement === 'logout' ? 'active' : ''}`}
-        onClick={() => { 
-          handleElementClick('logout');
-          logout();
-        }} >
-        <FiLogOut className="logout-icon" />
-        <span className="logout-text">Logout</span>            
-      </div>
-    </Container>
-  </div>        
-  )
+        <Link to='/library'>
+          <div
+            className={`library-element ${activeElement === 'my-library' ? 'active' : ''}`}
+            onClick={() => handleElementClick('my-library')}
+          >
+            <MdOutlinePhotoLibrary className="library-icon"/>
+            <span className="library-text">My Library</span> {/* New active element */}
+          </div>
+        </Link>
+        <div className={`logout-element ${activeElement === 'logout' ? 'active' : ''}`}
+          onClick={() => { 
+            handleElementClick('logout');
+            logout();
+          }} >
+          <FiLogOut className="logout-icon" />
+          <span className="logout-text">Logout</span>
+        </div>
+      </Container>
+    </div>        
+  );
 }
