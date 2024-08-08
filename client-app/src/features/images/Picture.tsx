@@ -1,6 +1,5 @@
 import './Picture.css'
 import '../profiles/ProfileCard'
-
 export const Picture = () => {
   return (
     <div className='picture'>

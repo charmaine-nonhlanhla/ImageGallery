@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { Image } from "../layout/models/image";
 import { User, UserFormValues } from "../layout/models/user";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
@@ -70,14 +69,6 @@ const requests = {
     delete: <T>(url: string) => axios.delete<T>(url).then( responseBody),
 };
 
-const Images = {
-    list: () => requests.get<Image[]>('/images'),
-    details: (id: string) => requests.get<Image>(`/images/${id}`),
-    create: (image: Image) => axios.post('/images', image),
-    update: (image: Image) => axios.put(`/images/${image.imageId}`, image),
-    delete: (id: string) => axios.delete<void>(`/images/${id}`)
-};
-
 const Account = {
     current: () => requests.get<User>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
@@ -89,8 +80,7 @@ const Profiles = {
     uploadPhoto: (file: Blob, photoTitle?: string, categoryId?: number, photoDescription?: string) => {
         let formData = new FormData();
         formData.append('File', file);
-
-        // Conditionally append parameters if they are provided
+        
         if (photoTitle) {
             formData.append('PhotoTitle', photoTitle);
         }
@@ -105,16 +95,15 @@ const Profiles = {
         })
     },
     setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
-    deletePhoto: (id: string) => requests.delete(`/photos/${id}`)
+    deletePhoto: (id: string) => requests.delete(`/photos/${id}`),
+    listPhotos: () => requests.get<Photo[]>(`/photos`)
 };
 
-// Add Categories API
     const Categories = {
     list: () => requests.get<Category[]>('/categories'),
 };
 
 const agent = {
-    Images,
     Account,
     Profiles,
     Categories

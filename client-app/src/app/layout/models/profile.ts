@@ -1,8 +1,8 @@
 import { User } from "./user";
 
 export interface Profile {
-    username: string;
-    fullName: string;
+    username?: string;
+    fullName?: string;
     image?: string;
     bio?: string;
     photos?: Photo[]

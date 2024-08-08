@@ -1,6 +1,7 @@
 import React from 'react';
 import { useField } from 'formik';
 import { Dropdown, DropdownProps, FormField, Label } from 'semantic-ui-react';
+import './MyDropdownInput.css'; // Import the CSS file
 
 interface Props {
   placeholder: string;
@@ -10,7 +11,7 @@ interface Props {
   options: DropdownProps['options'];
 }
 
-const MyDropdownInput: React.FC<Props> = ({ label, options, ...props }) => {
+const MyDropdownInput: React.FC<Props> = ({ label, options, className, ...props }) => {
   const [field, meta, helpers] = useField(props.name);
 
   return (
@@ -24,7 +25,7 @@ const MyDropdownInput: React.FC<Props> = ({ label, options, ...props }) => {
         onChange={(e, { value }) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
-        className={props.className}
+        className={`custom-dropdown ${className}`}
       />
       {meta.touched && meta.error ? (
         <Label basic color="red">

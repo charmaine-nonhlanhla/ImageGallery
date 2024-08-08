@@ -10,6 +10,7 @@ export default class ProfileStore {
     uploading = false;
     loading = false;
     categories: Category[] = [];
+    photos: Photo[] = [];
     
 
     constructor() {
@@ -87,6 +88,20 @@ export default class ProfileStore {
             });
         } catch (error) {
             console.log('Error loading categories:', error);
+        }
+    }
+
+    loadPhotos = async () => {
+        this.loading = true;
+        try {
+            const photos = await agent.Profiles.listPhotos(); 
+            runInAction(() => {
+                this.photos = photos;
+                this.loading = false;
+            });
+        } catch (error) {
+            console.log("Error loading photos:", error);
+            runInAction(() => this.loading = false);
         }
     }
 }

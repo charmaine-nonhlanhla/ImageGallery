@@ -2,7 +2,7 @@ import '../home/HomePage.css';
 import { observer } from 'mobx-react-lite';
 import { IoSearchOutline } from "react-icons/io5";
 import { IoFilterSharp } from "react-icons/io5";
-import { Pictures } from '../images/Pictures';
+import Pictures from '../images/Pictures';
 
 export default observer(function HomePage() {
 

@@ -1,0 +1,34 @@
+ .img-preview {
+    height: 200px;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  
+  .cloud {
+    font-size: 15rem; 
+    margin-left: 33rem;
+    padding-top: 2rem;
+    height: 14rem;
+    color: #2187AB;
+    width: 200px;
+    margin-right: 1rem;
+  }
+
+  .drop-text {
+    text-align: center;
+    color: #165A72;
+    padding-top: 10rem;
+  }
+  
+  
+  .click-close {
+    margin-top: 10px;
+  }
+
+  .cropper {
+   
+   
+  }
+
+  

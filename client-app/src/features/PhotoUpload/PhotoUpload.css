@@ -19,11 +19,12 @@
     margin-bottom: 3rem;
   }
 
-  .text-input {
+  .title-input {
     width: 80rem;
     height: 3rem;
     border-radius: 4px;
     padding-left: 1rem;
+    background: none;
     border: 0.5px solid #0F3C4C;
   }
 
@@ -32,10 +33,8 @@
     height: 6rem;
     border-radius: 4px;
     padding-left: 1rem;
-    border: 0.5px solid #0F3C4C;
-  }
-
-  .category-input {
+    padding-top: 1rem;
+    font-size: medium;
     border: 0.5px solid #0F3C4C;
   }
 
@@ -57,6 +56,7 @@
     border: 1px;
     margin-left: 12rem;
     border-radius: 4px;
+    background: none;
   }
   
   .input-field {
@@ -77,25 +77,6 @@
     border-radius: 4px;
   }
 
-  /* .upload-icon-container {
-    width: 40rem;
-    height: 10rem;
-    margin-left: 20rem;
-    margin-top: 20rem;
-    text-align: center;
-    background-color: #0F3C4C;
-  } */
-
-  .cloud {
-    color: #2187AB;
-  }
-
-  .drop-text {
-    text-align: center;
-    color: #165A72;
-    padding-top: 10rem;
-  }
-  
   .upload-button {
     background-color: #2187AB;
     color: white;
@@ -113,4 +94,15 @@
     }
     
   }
+
+  /* .img-preview {
+    margin-left: 10rem;
+    margin-bottom: -16rem;
+    
+
+  }
+
+  .click-close {
+    padding-top: 50rem;
+  } */
   

@@ -22,5 +22,12 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new SetMain.Command{Id = id}));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await Mediator.Send(new AllPhotos.Query());
+            return HandleResult(result);
+        }
     }
 }

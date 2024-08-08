@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import MyDropdownInput from '../../app/common/form/MyDropdownInput';
 import { useStore } from '../../app/stores/store';
 import './PhotoUpload.css';
-import React, { useState } from 'react';
-import PhotoDropzone from '../PhotoUpload/PhotoDropZone';
-import { RiUploadCloud2Line } from 'react-icons/ri';
+import React, { useState, useEffect } from 'react';
+import PhotoDropZone from './PhotoDropZone'; // Adjust the import path if necessary
+import agent from '../../app/api/agent';
 
 const initialValues = {
   phototitle: '',
@@ -20,15 +20,13 @@ const validationSchema = Yup.object({
   photodescription: Yup.string().required('Description is required'),
 });
 
-const handleSubmit = (values: { phototitle: string; categoryId: string; photodescription: string }) => {
-  console.log('Submitted Values:', values);
-};
-
 export const PhotoUpload: React.FC = () => {
   const { profileStore } = useStore();
-  const [, setFiles] = useState<File[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [, setAddPhotoMode] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (profileStore.categories.length === 0) {
       profileStore.loadCategories();
     }
@@ -39,6 +37,31 @@ export const PhotoUpload: React.FC = () => {
     text: category.categoryName,
     value: category.categoryId
   }));
+
+  const handlePhotoUpload = async (file: Blob, photoTitle: string, categoryId: string, photoDescription: string) => {
+    setLoading(true);
+    try {
+        await agent.Profiles.uploadPhoto(file, photoTitle, parseInt(categoryId), photoDescription);
+        setAddPhotoMode(false);
+    } catch (error) {
+        console.error("Error uploading photo", error);
+        // You can add more error handling logic here
+    } finally {
+        setLoading(false);
+    }
+  };
+
+  const handleFileSelected = (file: Blob) => {
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = async (values: { phototitle: string; categoryId: string; photodescription: string }) => {
+    if (!selectedFile) {
+      console.error("No file selected");
+      return;
+    }
+    await handlePhotoUpload(selectedFile, values.phototitle, values.categoryId, values.photodescription);
+  };
 
   return (
     <Container>
@@ -53,7 +76,7 @@ export const PhotoUpload: React.FC = () => {
             <Form>
               <div className="form-field">
                 <label className="input-field">Image Title</label>
-                <Field className="text-input"
+                <Field className="title-input"
                   placeholder=""
                   name="phototitle"
                 />
@@ -62,11 +85,12 @@ export const PhotoUpload: React.FC = () => {
 
               <div className="form-field">
                 <label className="input-field">Image Category</label>
-                <Field as={MyDropdownInput}
+                <Field className="category-input" as={MyDropdownInput}
                   placeholder="Select category"
                   name="categoryId"
                   options={categoryOptions}
                 />
+                <ErrorMessage name="categoryId" component="div" className="error-message" />
               </div>
 
               <div className="form-field">
@@ -79,15 +103,12 @@ export const PhotoUpload: React.FC = () => {
               </div>
 
               <div className="button-div">
-                <PhotoDropzone setFiles={setFiles} />
-                <div className='upload-icon-container'>
-                  <RiUploadCloud2Line className='cloud' />
-                </div>
+                <PhotoDropZone loading={loading} uploadPhoto={handleFileSelected} />
                 <span className="drop-text">
-                  <p className="">Drag and Drop Files</p>
+                  <p>Drag and Drop Files</p>
                   <p>or</p>
                 </span>
-                <button className="upload-button" type="submit" disabled={isSubmitting}>
+                <button className="upload-button" type="submit" disabled={isSubmitting || !selectedFile}>
                   {isSubmitting ? 'Uploading...' : 'Upload'}
                 </button>
               </div>
