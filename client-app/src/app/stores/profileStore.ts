@@ -10,12 +10,14 @@ export default class ProfileStore {
     uploading = false;
     loading = false;
     categories: Category[] = [];
+    selectedCategory: Category | null = null;
     photos: Photo[] = [];
-    
+    filteredPhotos: Photo[] = [];
 
     constructor() {
         makeAutoObservable(this);
         this.loadCategories();
+        this.loadPhotos();
     }
 
     get isCurrentUser() {
@@ -80,6 +82,22 @@ export default class ProfileStore {
         }
     }
 
+    deletePhoto = async (photo: Photo) => {
+        this.loading = true;
+        try {
+            await agent.Profiles.deletePhoto(photo.id);
+            runInAction(() => {
+                if (this.profile) {
+                    this.profile.photos?.filter(p => p.id !== photo.id);
+                    this.loading = false; 
+                }
+            })
+        } catch (error) {
+            runInAction(() => this.loading = false);
+            console.log(error)
+        }
+    }
+
     loadCategories = async () => {
         try {
             const categories = await agent.Categories.list();
@@ -91,12 +109,23 @@ export default class ProfileStore {
         }
     }
 
+    setCategory = (category: Category | null) => {
+        this.selectedCategory = category;
+        this.filteredPhotos = this.filterPhotos();
+    }
+
+    filterPhotos = () => {
+        if (!this.selectedCategory) return this.photos;
+        return this.photos.filter(photo => photo.categoryId === this.selectedCategory?.categoryId);
+    }
+
     loadPhotos = async () => {
         this.loading = true;
         try {
-            const photos = await agent.Profiles.listPhotos(); 
+            const photos = await agent.Photos.list(); 
             runInAction(() => {
                 this.photos = photos;
+                this.filteredPhotos = this.filterPhotos();
                 this.loading = false;
             });
         } catch (error) {
@@ -104,4 +133,23 @@ export default class ProfileStore {
             runInAction(() => this.loading = false);
         }
     }
+
+    loadUserPhotos = async () => {
+        this.loading = true;
+        try {
+          if (store.userStore.user?.username) { 
+            const username = store.userStore.user.username;
+            const profile = await agent.Profiles.get(username);
+            runInAction(() => {
+              this.profile = profile;
+              this.photos = profile.photos || [];
+              this.filteredPhotos = this.filterPhotos();
+              this.loading = false;
+            });
+          }
+        } catch (error) {
+          console.log("Error loading user photos:", error);
+          runInAction(() => this.loading = false);
+        }
+      }      
 }

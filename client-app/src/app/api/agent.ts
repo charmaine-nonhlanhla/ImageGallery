@@ -99,12 +99,19 @@ const Profiles = {
     listPhotos: () => requests.get<Photo[]>(`/photos`)
 };
 
+const Photos = {
+    list: () => requests.get<Photo[]>('/photos'), 
+    listByUser: (username: string) => requests.get<Photo[]>(`/photos/user/${username}`),
+    get: (id: string) => requests.get<Photo>(`/photos/${id}`) 
+};
+
     const Categories = {
     list: () => requests.get<Category[]>('/categories'),
 };
 
 const agent = {
     Account,
+    Photos,
     Profiles,
     Categories
 };

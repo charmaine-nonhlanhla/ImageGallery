@@ -6,8 +6,8 @@ namespace Domain.Models
         public string Url { get; set; }
         public bool IsMain { get; set; }
 
-        public int CategoryId { get; set; } // Foreign key property
-        public Category Category { get; set; } // Navigation property
+        public int CategoryId { get; set; } 
+        public Category Category { get; set; } 
 
         public string PhotoDescription { get; set; }
         public string PhotoTitle { get; set; }
