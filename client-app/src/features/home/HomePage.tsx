@@ -5,22 +5,28 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useEffect, useState } from 'react';
 import { useStore } from '../../app/stores/store';
 import { Category } from '../../app/layout/models/category';
+import Comments from '../Comments/Comments';
 
-export default observer(function HomePage() {
+interface Props {
+    photoId: string;
+}
+
+export default observer(function HomePage({photoId}: Props) {
     const { profileStore } = useStore();
-    const { filteredPhotos, categories, loading, loadPhotos, loadCategories, setCategory } = profileStore;
+    const { filteredPhotos, categories, loading, loadPhotos, loadCategories, setCategory, clearSelectedPhoto } = profileStore;
     const [filterVisible, setFilterVisible] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const [selectedCategory, setSelectedCategory ] = useState<Category | null>(null);
 
     useEffect(() => {
         loadCategories();
         loadPhotos();
-    }, [loadPhotos, loadCategories]);
+        return () => clearSelectedPhoto();
+    }, [loadPhotos, loadCategories, clearSelectedPhoto]);
 
     const handleCategorySelect = (category: Category | null) => {
         setSelectedCategory(category);
-        setCategory(category); // Pass the selected category
-        setFilterVisible(false); // Hide dropdown after selection
+        setCategory(category); 
+        setFilterVisible(false); 
     };
 
     if (loading) return <div>Loading...</div>;
@@ -34,7 +40,7 @@ export default observer(function HomePage() {
                         value={selectedCategory ? selectedCategory.categoryName : ''}
                         placeholder='Search for...'
                         className='search-bar'
-                        readOnly // Making the input read-only
+                        readOnly 
                     />
                 </div>
                 <button
@@ -76,6 +82,9 @@ export default observer(function HomePage() {
                 ) : (
                     <p>No photos available</p>
                 )}
+
+                <Comments photoId={photoId} />
+
             </div>
         </div>
     );

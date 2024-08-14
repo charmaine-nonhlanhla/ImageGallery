@@ -6,4 +6,4 @@ namespace Domain.Models
     public string CategoryName { get; set; }
     public ICollection<Photo> Photos { get; set; } = new List<Photo>();
     }
-}
+}  

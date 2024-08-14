@@ -1,4 +1,6 @@
-using Domain.Models;
+using Application.Core;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -7,19 +9,31 @@ namespace Application.Comments
 {
     public class CommentList
     {
-        public class Query : IRequest<List<Comment>> {}
+        public class Query : IRequest<Result<List<CommentDto>>>
+        {
+            public Guid PhotoId { get; set; }
+        }
 
-        public class Handler : IRequestHandler<Query, List<Comment>>
+        public class Handler : IRequestHandler<Query, Result<List<CommentDto>>>
         {
         private readonly ImageGalleryContext _context;
-            public Handler(ImageGalleryContext context)
+        private readonly IMapper _mapper;
+            public Handler(ImageGalleryContext context, IMapper mapper)
             {
+            _mapper = mapper;
             _context = context;
-                
+
             }
-            public async Task<List<Comment>> Handle(Query request, CancellationToken cancellationToken)
+            
+            public async Task<Result<List<CommentDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Comments.ToListAsync();
+                var comments = await _context.Comments
+                .Where(x => x.Photo.Id == request.PhotoId.ToString())
+                .OrderByDescending(x => x.CreatedAt)
+                .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+
+                return Result<List<CommentDto>>.Success(comments);
             }
         }
     }

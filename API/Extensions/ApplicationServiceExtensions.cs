@@ -1,10 +1,7 @@
 using Application.Categories;
 using Application.Comments;
 using Application.Core;
-using Application.Images;
-using Application.ImageTags;
 using Application.Interfaces;
-using Application.Tags;
 using Application.Users;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -29,16 +26,18 @@ namespace API.Extensions
             services.AddCors(opt => {
             opt.AddPolicy("CorsPolicy", policy =>
             {
-                policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("http://localhost:3000");
                 });
             });
 
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ImageList.Handler).Assembly));
+          
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryList.Handler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CommentList.Handler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ImageTagList.Handler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(TagList.Handler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
+            services.AddSignalR();
             services.AddAutoMapper(typeof(MappingProfiles).Assembly); 
             services.AddHttpContextAccessor(); 
             services.AddScoped<IUserAccessor, UserAccessor>();

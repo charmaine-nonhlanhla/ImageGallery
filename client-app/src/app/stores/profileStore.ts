@@ -12,6 +12,7 @@ export default class ProfileStore {
     categories: Category[] = [];
     selectedCategory: Category | null = null;
     photos: Photo[] = [];
+    selectedPhoto: Photo | null = null;
     filteredPhotos: Photo[] = [];
 
     constructor() {
@@ -151,5 +152,9 @@ export default class ProfileStore {
           console.log("Error loading user photos:", error);
           runInAction(() => this.loading = false);
         }
-      }      
+      } 
+      
+      clearSelectedPhoto = () => {
+        this.selectedPhoto = undefined; 
+      }
 }
