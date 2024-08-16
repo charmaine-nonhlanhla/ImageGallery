@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -18,15 +19,20 @@ namespace Application.Profiles
         {
         private readonly ImageGalleryContext _context;
         private readonly IMapper _mapper;
-            public Handler(ImageGalleryContext context, IMapper mapper)
+        private readonly IUserAccessor _userAccessor;
+            public Handler(ImageGalleryContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+            _userAccessor = userAccessor;
             _mapper = mapper;
             _context = context;
 
             }
             public async Task<Result<Profile>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await _context.Users.ProjectTo<Profile>(_mapper.ConfigurationProvider).SingleOrDefaultAsync(x => x.Username == request.Username);
+                var user = await _context.Users
+                .ProjectTo<Profile>(_mapper.ConfigurationProvider, 
+                new {currentUsername = _userAccessor.GetUsername()})
+                .SingleOrDefaultAsync(x => x.Username == request.Username);
 
                 if (user == null) return null;
 
