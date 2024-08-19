@@ -85,6 +85,7 @@ namespace API.Controllers
         {
             return new UserDto
             {
+                UserId = user.Id,
                 FullName = user.FullName,
                 Image = user?.Photos?.FirstOrDefault(x => x.IsMain)?.Url,
                 Token = _tokenService.CreateToken(user),

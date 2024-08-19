@@ -29,5 +29,12 @@ namespace API.Controllers
             var result = await Mediator.Send(new AllPhotos.Query());
             return HandleResult(result);
         }
+
+        [HttpGet("{username}")]
+        public async Task<IActionResult> GetUserPhotos(string username)
+        {
+            var result = await Mediator.Send(new UserPhotos.Query { Username = username });
+            return HandleResult(result);
+        }
     }
 }

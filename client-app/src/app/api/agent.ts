@@ -3,8 +3,10 @@ import { User, UserFormValues } from "../layout/models/user";
 import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { store } from "../stores/store";
-import { Photo, Profile } from "../layout/models/profile";
+import { Profile } from "../layout/models/profile";
+
 import { Category } from "../layout/models/category";
+import { Photo } from "../layout/models/photo";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -100,13 +102,11 @@ const Profiles = {
     updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
     listFollowings: (username: string, predicate: string) => 
         requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`),
-    listPhotos: () => requests.get<Photo[]>(`/photos`)
 };
 
 const Photos = {
-    list: () => requests.get<Photo[]>('/photos'), 
-    listByUser: (username: string) => requests.get<Photo[]>(`/photos/user/${username}`),
-    get: (id: string) => requests.get<Photo>(`/photos/${id}`) 
+    listByUser: (username: string) => requests.get<Photo[]>(`/photos/${username}`),
+    list: () => requests.get<Photo[]>(`/photos`), 
 };
 
     const Categories = {

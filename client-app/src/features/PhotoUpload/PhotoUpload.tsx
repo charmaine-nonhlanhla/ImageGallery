@@ -5,7 +5,7 @@ import MyDropdownInput from '../../app/common/form/MyDropdownInput';
 import { useStore } from '../../app/stores/store';
 import './PhotoUpload.css';
 import React, { useState, useEffect } from 'react';
-import PhotoDropZone from './PhotoDropZone'; // Adjust the import path if necessary
+import PhotoDropZone from './PhotoDropZone';
 import agent from '../../app/api/agent';
 
 const initialValues = {
@@ -21,18 +21,18 @@ const validationSchema = Yup.object({
 });
 
 export const PhotoUpload: React.FC = () => {
-  const { profileStore } = useStore();
+  const { profileStore, photoStore } = useStore();
   const [loading, setLoading] = useState(false);
   const [, setAddPhotoMode] = useState(false);
   const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
 
   useEffect(() => {
-    if (profileStore.categories.length === 0) {
-      profileStore.loadCategories();
+    if (photoStore.categories.length === 0) {
+      photoStore.loadCategories();
     }
   }, [profileStore]);
 
-  const categoryOptions = profileStore.categories.map(category => ({
+  const categoryOptions = photoStore.categories.map(category => ({
     key: category.categoryId,
     text: category.categoryName,
     value: category.categoryId

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {}
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
         "packagesPath": "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\obj\\",
+        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CMogotlane.SINGULAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -177,7 +177,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -244,7 +244,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -315,7 +315,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -390,7 +390,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

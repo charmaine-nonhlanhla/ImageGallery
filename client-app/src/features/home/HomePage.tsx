@@ -11,22 +11,22 @@ interface Props {
     photoId: string;
 }
 
-export default observer(function HomePage({photoId}: Props) {
-    const { profileStore } = useStore();
-    const { filteredPhotos, categories, loading, loadPhotos, loadCategories, setCategory, clearSelectedPhoto } = profileStore;
+export default observer(function HomePage({ photoId }: Props) {
+    const { photoStore } = useStore();
+    const { categories, loading, filteredPhotos, loadCategories, loadPhotos, setCategory, clearSelectedPhoto } = photoStore;
     const [filterVisible, setFilterVisible] = useState(false);
-    const [selectedCategory, setSelectedCategory ] = useState<Category | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
 
     useEffect(() => {
         loadCategories();
-        loadPhotos();
+        loadPhotos(); // Load photos when the component mounts
         return () => clearSelectedPhoto();
-    }, [loadPhotos, loadCategories, clearSelectedPhoto]);
+    }, [loadCategories, loadPhotos, clearSelectedPhoto]);
 
     const handleCategorySelect = (category: Category | null) => {
         setSelectedCategory(category);
-        setCategory(category); 
-        setFilterVisible(false); 
+        setCategory(category);
+        setFilterVisible(false);
     };
 
     if (loading) return <div>Loading...</div>;
@@ -40,7 +40,7 @@ export default observer(function HomePage({photoId}: Props) {
                         value={selectedCategory ? selectedCategory.categoryName : ''}
                         placeholder='Search for...'
                         className='search-bar'
-                        readOnly 
+                        readOnly
                     />
                 </div>
                 <button
@@ -84,7 +84,6 @@ export default observer(function HomePage({photoId}: Props) {
                 )}
 
                 <Comments photoId={photoId} />
-
             </div>
         </div>
     );
