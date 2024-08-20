@@ -4,6 +4,11 @@
   margin-left: 446px;
 }
 
+.pictures-container {
+  display: block;
+  
+}
+
 .search-bar {
   left: 40rem;
   text-decoration: none;

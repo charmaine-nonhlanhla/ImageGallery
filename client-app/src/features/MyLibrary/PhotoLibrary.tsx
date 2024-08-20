@@ -1,44 +1,58 @@
-import { Container, Loader, Card, Image } from "semantic-ui-react";
+import { Container, Loader, Image } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { Photo } from "../../app/layout/models/photo";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import './PhotoLibrary.css'; // Ensure to create and include appropriate CSS
 
 export const PhotoLibrary = observer(() => {
     const { photoStore, userStore } = useStore();
-    let username = userStore.user?.userName;
-    const { loadingPhotos, filterUserPhotos, loadUserPhotos } = photoStore;
+    const [filterVisible, setFilterVisible] = useState(false);
+    const username = userStore.user?.userName;
+    const { loadingPhotos, loadUserPhotos, photos } = photoStore;
 
     useEffect(() => {
-        userStore.getUser().finally(() => {
-            username = userStore.user?.userName;
-            if (username) {
-                loadUserPhotos(username);
-            }
-        });
+        if (username) {
+            loadUserPhotos(username);
+        }
     }, [username, loadUserPhotos]);
 
     if (loadingPhotos) return <Loader active inline="centered" />;
 
-    const photos = filterUserPhotos(); 
-
     return (
         <Container>
-            <Card.Group>
+            <div className='search-options'>
+                <button
+                    className='filter-button'
+                    onClick={() => setFilterVisible(!filterVisible)}
+                >
+                    Filters
+                </button>
+            </div>
+            {filterVisible && (
+                <div className="category-dropdown">
+                    {/* Implement category filtering here if needed */}
+                    <div className="category-item" onClick={() => {/* handle category */}}>
+                        All
+                    </div>
+                    {/* Render other categories here if needed */}
+                </div>
+            )}
+            <div className="pictures-container">
                 {photos.length > 0 ? (
                     photos.map((photo: Photo) => (
-                        <Card key={photo.id}>
+                        <div key={photo.id} className="picture-item">
                             <Image src={photo.url} wrapped ui={false} />
-                            <Card.Content>
-                                <Card.Header>{photo.photoTitle}</Card.Header>
-                                <Card.Description>{photo.photoDescription}</Card.Description>
-                            </Card.Content>
-                        </Card>
+                            <div className="photo-details">
+                                <p>{photo.photoTitle}</p>
+                                <p>{photo.photoDescription}</p>
+                            </div>
+                        </div>
                     ))
                 ) : (
-                    <div>No photos available</div>
+                    <p>No photos available</p>
                 )}
-            </Card.Group>
+            </div>
         </Container>
     );
 });

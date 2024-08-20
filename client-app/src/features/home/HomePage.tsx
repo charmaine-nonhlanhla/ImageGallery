@@ -19,7 +19,7 @@ export default observer(function HomePage({ photoId }: Props) {
 
     useEffect(() => {
         loadCategories();
-        loadPhotos(); // Load photos when the component mounts
+        loadPhotos();
         return () => clearSelectedPhoto();
     }, [loadCategories, loadPhotos, clearSelectedPhoto]);
 

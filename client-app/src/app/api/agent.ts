@@ -105,6 +105,7 @@ const Profiles = {
 };
 
 const Photos = {
+    
     listByUser: (username: string) => requests.get<Photo[]>(`/photos/${username}`),
     list: () => requests.get<Photo[]>(`/photos`), 
 };

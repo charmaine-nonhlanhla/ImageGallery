@@ -38,13 +38,11 @@ export default class PhotoStore {
     }
 
     loadUserPhotos = async (username: string) => {
-        console.log("Hello")
         this.loadingPhotos = true;
         try {
             const response = await agent.Photos.listByUser(username);
             runInAction(() => {
                 this.photos = response;
-                this.filteredPhotos = this.filterUserPhotos(); // Apply user-specific filtering
                 this.loadingPhotos = false;
             });
         } catch (error) {
@@ -57,13 +55,6 @@ export default class PhotoStore {
     filterPhotos = () => {
         if (!this.selectedCategory) return this.photos;
         return this.photos.filter(photo => photo.categoryId === this.selectedCategory?.categoryId);
-    }
-
-    filterUserPhotos = () => {
-        const currentUser = store.userStore.user;
-        if (!currentUser) return [];
-
-        return this.photos.filter(photo => photo.username === currentUser.userName);
     }
 
     uploadPhoto = async (file: Blob, photoTitle?: string, categoryId?: number, photoDescription?: string) => {

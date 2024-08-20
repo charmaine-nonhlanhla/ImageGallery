@@ -1,6 +1,5 @@
 using Application.Core;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
+using Domain.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -9,30 +8,29 @@ namespace Application.Photos
 {
     public class UserPhotos
     {
-        public class Query : IRequest<Result<List<PhotoDto>>>
+        public class Query : IRequest<Result<List<Photo>>>
         {
             public string Username { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<List<PhotoDto>>>
+        public class Handler : IRequestHandler<Query, Result<List<Photo>>>
         {
             private readonly ImageGalleryContext _context;
-            private readonly IMapper _mapper;
 
-            public Handler(ImageGalleryContext context, IMapper mapper)
+            public Handler(ImageGalleryContext context)
             {
                 _context = context;
-                _mapper = mapper;
             }
 
-            public async Task<Result<List<PhotoDto>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<Photo>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var photos = await _context.Photos
-                    .Where(p => false)
-                    .ProjectTo<PhotoDto>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                var user = await _context.Users
+                    .Include(p => p.Photos)
+                    .SingleOrDefaultAsync(x => x.UserName == request.Username);
 
-                return Result<List<PhotoDto>>.Success(photos);
+                if (user == null) return null; // Or handle user not found
+
+                return Result<List<Photo>>.Success(user.Photos.ToList());
             }
         }
     }
