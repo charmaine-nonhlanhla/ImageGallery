@@ -8,9 +8,12 @@ namespace Application.Photos
 {
     public class AllPhotos
     {
-        public class Query : IRequest<Result<List<Photo>>> {}
+        public class Query : IRequest<Result<PagedList<Photo>>> 
+        {
+            public PagingParams Params { get; set; }
+        }
 
-        public class Handler : IRequestHandler<Query, Result<List<Photo>>>
+        public class Handler : IRequestHandler<Query, Result<PagedList<Photo>>>
         {
             private readonly ImageGalleryContext _context;
 
@@ -19,10 +22,16 @@ namespace Application.Photos
                 _context = context;
             }
 
-            public async Task<Result<List<Photo>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PagedList<Photo>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var photos = await _context.Photos.ToListAsync();
-                return Result<List<Photo>>.Success(photos);
+                
+                var query = _context.Photos
+                .OrderBy(d => d.UploadDate)
+                .AsQueryable();
+                
+                return Result<PagedList<Photo>>.Success(
+                    await PagedList<Photo>.CreateAsync(query, request.Params.PageNumber, request.Params.PageSize)
+                );
             }
         }
     }

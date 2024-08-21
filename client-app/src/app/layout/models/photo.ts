@@ -8,6 +8,7 @@ export interface Photo {
     photoTitle: string;
     categoryId: number;
     username: string;
+    uploadDate: Date;
 }
 
 export class Photo implements Photo {

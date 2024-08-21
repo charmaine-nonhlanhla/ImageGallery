@@ -1,3 +1,4 @@
+using Application.Core;
 using Application.Photos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,10 +25,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]PagingParams param)
         {
-            var result = await Mediator.Send(new AllPhotos.Query());
-            return HandleResult(result);
+             return HandlePagedResult(await Mediator.Send(new AllPhotos.Query{Params = param }));
+           
         }
 
         [HttpGet("{username}")]

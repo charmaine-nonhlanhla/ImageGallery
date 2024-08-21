@@ -4,6 +4,7 @@ import agent from "../api/agent";
 import { Category } from "../layout/models/category";
 import { store } from "./store";
 import { Photo } from "../layout/models/photo";
+import { Pagination, PagingParams } from "../layout/models/pagination";
 
 export default class PhotoStore {
     profile: Profile | null = null;
@@ -15,6 +16,8 @@ export default class PhotoStore {
     categories: Category[] = [];
     selectedCategory: Category | null = null;
     filteredPhotos: Photo[] = [];
+    pagination: Pagination | null = null;
+    pagingParams = new PagingParams();
 
     constructor() {
         makeAutoObservable(this);
@@ -22,19 +25,35 @@ export default class PhotoStore {
         this.loadPhotos();
     }
 
+    setPagingParams = (pagingParams: PagingParams) => {
+        this.pagingParams = pagingParams;
+    }
+
+    get axiosParams() {
+        const params = new URLSearchParams();
+        params.append('pageNumber', this.pagingParams.pageNumber.toString());
+        params.append('pageSize', this.pagingParams.pageSize.toString());
+        return params;
+    }
+
     loadPhotos = async () => {
         this.loading = true;
         try {
-            const photos = await agent.Photos.list();
+            const result = await agent.Photos.list(this.axiosParams);
             runInAction(() => {
-                this.photos = photos;
+                this.photos = result.data;
                 this.filteredPhotos = this.filterPhotos();
                 this.loading = false;
             });
+            this.setPagination(result.pagination);
         } catch (error) {
             console.log("Error loading photos:", error);
             runInAction(() => this.loading = false);
         }
+    }
+
+    setPagination = (pagination: Pagination) => {
+        this.pagination = pagination;
     }
 
     loadUserPhotos = async (username: string) => {

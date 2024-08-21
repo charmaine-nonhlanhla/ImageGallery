@@ -3,19 +3,29 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { Photo } from "../../app/layout/models/photo";
 import { useEffect, useState } from "react";
-import './PhotoLibrary.css'; // Ensure to create and include appropriate CSS
+import './PhotoLibrary.css';
+import { Category } from "../../app/layout/models/category";
 
 export const PhotoLibrary = observer(() => {
     const { photoStore, userStore } = useStore();
     const [filterVisible, setFilterVisible] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
     const username = userStore.user?.userName;
-    const { loadingPhotos, loadUserPhotos, photos } = photoStore;
+    const { loadingPhotos, loadUserPhotos, photos, categories, setCategory } = photoStore;
 
     useEffect(() => {
         if (username) {
             loadUserPhotos(username);
         }
     }, [username, loadUserPhotos]);
+
+    useEffect(() => {
+        if (selectedCategory) {
+            setCategory(selectedCategory);
+        } else {
+            setCategory(null);
+        }
+    }, [selectedCategory, setCategory]);
 
     if (loadingPhotos) return <Loader active inline="centered" />;
 
@@ -31,11 +41,18 @@ export const PhotoLibrary = observer(() => {
             </div>
             {filterVisible && (
                 <div className="category-dropdown">
-                    {/* Implement category filtering here if needed */}
-                    <div className="category-item" onClick={() => {/* handle category */}}>
+                    <div className="category-item" onClick={() => setSelectedCategory(null)}>
                         All
                     </div>
-                    {/* Render other categories here if needed */}
+                    {categories.map(category => (
+                        <div
+                            key={category.categoryId}
+                            className="category-item"
+                            onClick={() => setSelectedCategory(category)}
+                        >
+                            {category.categoryName}
+                        </div>
+                    ))}
                 </div>
             )}
             <div className="pictures-container">

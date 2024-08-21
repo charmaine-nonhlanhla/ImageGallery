@@ -7,6 +7,7 @@ import { Profile } from "../layout/models/profile";
 
 import { Category } from "../layout/models/category";
 import { Photo } from "../layout/models/photo";
+import { PaginatedResult } from "../layout/models/pagination";
 
 const sleep = (delay: number) => {
     return new Promise((resolve) => {
@@ -25,6 +26,11 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(async response => {
 
         await sleep(1000);
+        const pagination = response.headers['pagination'];
+        if (pagination) {
+            response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+            return response as AxiosResponse<PaginatedResult<any>>
+        }
         return response;
 }, (error: AxiosError) => { 
     const {data, status, config} = error.response as AxiosResponse;
@@ -107,7 +113,7 @@ const Profiles = {
 const Photos = {
     
     listByUser: (username: string) => requests.get<Photo[]>(`/photos/${username}`),
-    list: () => requests.get<Photo[]>(`/photos`), 
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Photo[]>>(`/photos`, {params}).then(responseBody), 
 };
 
     const Categories = {

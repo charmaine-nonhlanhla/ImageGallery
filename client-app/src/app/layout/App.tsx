@@ -20,8 +20,7 @@ function App() {
 
   if (!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />;
 
-  // Redirect to login if not authenticated and trying to access protected routes
-  if (!commonStore.token && location.pathname !== '/login') {
+  if (!commonStore.token && location.pathname !== '/login' && location.pathname !== '/register' ) {
     return <Navigate to='/login' />;
   }
 

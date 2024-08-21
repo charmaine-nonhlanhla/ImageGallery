@@ -1,0 +1,103 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 446px;
+  }
+  
+  .pictures-container {
+    display: block;
+  }
+  
+  .search-bar {
+    left: 40rem;
+    text-decoration: none;
+    font-weight: 600;
+    height: 2.5rem;
+    padding-left: 15px;
+    border: none;
+    width: 27rem;
+    outline: none;
+    background: none;
+  }
+  
+  .search-tab {
+    display: flex; 
+    width: 29rem;
+    height: 2.7rem;
+    margin-top: 5rem;
+    margin-left: 7rem;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+  
+  .search-icon {
+    margin-top: 0.8rem;
+    margin-left: 1rem;
+  }
+  
+  .search-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .filter-button {
+    position: absolute;
+    margin-left: 38rem;
+    margin-top: 5rem;
+    width: 10rem;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #E9F5F9;
+    border: none;
+    font-size: 1.2rem;
+    color: #165A72;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .filter-icon {
+    font-size: 1.2rem;
+  }
+  
+  .category-dropdown {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  .category-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .category-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .picture-item {
+    margin: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .picture-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .photo-details {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .photo-details p {
+    margin: 0;
+  }
+  

@@ -11,5 +11,6 @@ namespace Domain.Models
         public string PhotoTitle { get; set; }
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
         public string UserId { get; set; }
+        public DateTime UploadDate { get; set; }
     }
 }

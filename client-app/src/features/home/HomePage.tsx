@@ -1,21 +1,26 @@
-import '../home/HomePage.css';
-import { observer } from 'mobx-react-lite';
-import { IoSearchOutline } from "react-icons/io5";
-import { IoFilterSharp } from "react-icons/io5";
-import { useEffect, useState } from 'react';
-import { useStore } from '../../app/stores/store';
-import { Category } from '../../app/layout/models/category';
-import Comments from '../Comments/Comments';
+import { observer } from "mobx-react-lite";
+import InfiniteScroll from "react-infinite-scroller";
+import { GridColumn, Loader } from "semantic-ui-react";
+import { useStore } from "../../app/stores/store";
+import { useEffect, useState } from "react";
+import { Category } from "../../app/layout/models/category";
+import { PagingParams } from "../../app/layout/models/pagination";
+import { IoFilterSharp, IoSearchOutline } from "react-icons/io5";
 
-interface Props {
-    photoId: string;
-}
-
-export default observer(function HomePage({ photoId }: Props) {
+export default observer(function HomePage() {
     const { photoStore } = useStore();
-    const { categories, loading, filteredPhotos, loadCategories, loadPhotos, setCategory, clearSelectedPhoto } = photoStore;
+    const { categories, loading, filteredPhotos, loadCategories, loadPhotos, setCategory, clearSelectedPhoto, setPagingParams, pagination } = photoStore;
+    const [loadingNext, setLoadingNext] = useState(false);
     const [filterVisible, setFilterVisible] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+    function handleGetNext() {
+        setLoadingNext(true);
+        if (pagination) {
+            setPagingParams(new PagingParams(pagination.currentPage + 1));
+            loadPhotos().then(() => setLoadingNext(false));
+        }
+    }
 
     useEffect(() => {
         loadCategories();
@@ -29,7 +34,7 @@ export default observer(function HomePage({ photoId }: Props) {
         setFilterVisible(false);
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading && !loadingNext) return <div>Loading...</div>;
 
     return (
         <div className="page-container">
@@ -82,9 +87,17 @@ export default observer(function HomePage({ photoId }: Props) {
                 ) : (
                     <p>No photos available</p>
                 )}
-
-                <Comments photoId={photoId} />
             </div>
+            <InfiniteScroll
+                pageStart={0}
+                loadMore={handleGetNext}
+                hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages}
+                initialLoad={false}
+            >
+            </InfiniteScroll>
+            <GridColumn width={10}>
+                <Loader active={loadingNext} />
+            </GridColumn>
         </div>
     );
 });
