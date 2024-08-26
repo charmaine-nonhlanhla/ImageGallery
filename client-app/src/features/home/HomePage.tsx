@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Category } from "../../app/layout/models/category";
 import { PagingParams } from "../../app/layout/models/pagination";
 import { IoFilterSharp, IoSearchOutline } from "react-icons/io5";
+import './HomePage.css'
 
 export default observer(function HomePage() {
     const { photoStore } = useStore();
@@ -79,7 +80,7 @@ export default observer(function HomePage() {
                 {filteredPhotos.length > 0 ? (
                     filteredPhotos.map(photo => (
                         <div key={photo.id} className="picture-item">
-                            <img src={photo.url} alt={photo.photoTitle} />
+                            <img width={500} src={photo.url} alt={photo.photoTitle} />
                             <p>{photo.photoTitle}</p>
                             <p>{photo.photoDescription}</p>
                         </div>
@@ -88,16 +89,16 @@ export default observer(function HomePage() {
                     <p>No photos available</p>
                 )}
             </div>
-            <InfiniteScroll
+            { <InfiniteScroll
                 pageStart={0}
                 loadMore={handleGetNext}
                 hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages}
                 initialLoad={false}
             >
-            </InfiniteScroll>
-            <GridColumn width={10}>
+            </InfiniteScroll> }
+            { <GridColumn width={10}>
                 <Loader active={loadingNext} />
-            </GridColumn>
+            </GridColumn> }
         </div>
     );
 });

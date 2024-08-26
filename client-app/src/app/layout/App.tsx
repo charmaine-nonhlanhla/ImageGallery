@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Outlet, useLocation, Navigate } from 'react-router-dom';
+import { Outlet, useLocation, Navigate, ScrollRestoration } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'semantic-ui-css/semantic.min.css';
 import { useStore } from '../stores/store';
@@ -26,6 +26,7 @@ function App() {
 
   return (
     <>
+      <ScrollRestoration />
       <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
       <Outlet />
     </>

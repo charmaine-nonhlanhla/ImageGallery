@@ -11,7 +11,6 @@ export default class ProfileStore {
     uploading = false;
     loading = false;
     photos: Photo[] = [];
-    selectedPhoto: Photo | null | undefined = null;
     filteredPhotos: Photo[] = [];
     followings: Profile[] = [];
     loadingFollowings: boolean = false;
