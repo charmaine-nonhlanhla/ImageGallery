@@ -1,5 +1,4 @@
 import { createContext, useContext } from "react";
-import ImageStore from "./imagestore";
 import UserStore from "./userStore";
 import CommonStore from "./commonStore";
 import ModalStore from "./modalStore";
@@ -8,7 +7,6 @@ import CommentStore from "./commentStore";
 import PhotoStore from "./photoStore";
 
 interface Store {
-    imageStore: ImageStore;
     userStore: UserStore;
     commonStore: CommonStore;
     modalStore: ModalStore;
@@ -19,7 +17,6 @@ interface Store {
 }
 
 export const store: Store = {
-    imageStore: new ImageStore(),
     userStore: new UserStore(),
     commonStore: new CommonStore(),
     modalStore: new ModalStore(),

@@ -16,7 +16,6 @@ export default observer(function Comments({ photoId }: Props) {
 
     useEffect(() => {
         if (photoId) {
-            console.log('Received photoId:', photoId);
             commentStore.createHubConnection(photoId);
         }
         return () => {

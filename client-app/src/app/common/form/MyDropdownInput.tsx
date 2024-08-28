@@ -22,7 +22,7 @@ const MyDropdownInput: React.FC<Props> = ({ label, options, className, ...props 
         selection
         options={options}
         placeholder={props.placeholder}
-        onChange={(e, { value }) => helpers.setValue(value)}
+        onChange={(_, { value }) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
         className={`custom-dropdown ${className}`}

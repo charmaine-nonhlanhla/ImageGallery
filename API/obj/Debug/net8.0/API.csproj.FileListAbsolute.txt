@@ -184,3 +184,4 @@ C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Infrast
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Infrastructure.pdb
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\CMogotlane.SINGULAR\IMGALLERY\ImageGallery\api\bin\Debug\net8.0\API.staticwebassets.runtime.json

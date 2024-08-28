@@ -1,4 +1,4 @@
-import { Button, Divider, Grid, GridColumn, Header, Item, ItemContent, ItemGroup, ItemImage, Reveal, RevealContent, Segment, Statistic, StatisticGroup } from "semantic-ui-react";
+import { Divider, Grid, GridColumn, Header, Item, ItemContent, ItemGroup, ItemImage, Reveal, RevealContent, Segment, Statistic, StatisticGroup } from "semantic-ui-react";
 import { Profile } from "../../app/layout/models/profile";
 import { observer } from "mobx-react-lite";
 import FollowButton from "./FollowButton";

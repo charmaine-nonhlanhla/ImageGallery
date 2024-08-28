@@ -9,7 +9,7 @@ import { Pagination, PagingParams } from "../layout/models/pagination";
 export default class PhotoStore {
     profile: Profile | null = null;
     photos: Photo[] = [];
-    selectedPhoto: Photo | null = null;
+    selectedPhoto: Photo | undefined = undefined;
     loading = false;
     uploading = false;
     loadingPhotos = false;
@@ -68,6 +68,14 @@ export default class PhotoStore {
             console.log("Error loading user photos:", error);
             runInAction(() => this.loadingPhotos = false);
         }
+    }
+
+    selectPhoto = (id: string) => {
+        this.selectedPhoto = this.photos.find(a => a.id === id);
+    }
+
+    cancelSelectedPhoto = () => {
+        this.selectedPhoto = undefined;
     }
     
 
@@ -149,6 +157,6 @@ export default class PhotoStore {
     }
 
     clearSelectedPhoto = () => {
-        this.selectedPhoto = null;
+        this.selectedPhoto = undefined;
     }
 }

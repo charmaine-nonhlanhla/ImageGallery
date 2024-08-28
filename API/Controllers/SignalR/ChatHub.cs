@@ -23,7 +23,7 @@ namespace API.Controllers.SignalR
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
-            var photoId = httpContext.Request.Query["photoId"];
+            var photoId = httpContext.Request.Query["PhotoId"];
             await Groups.AddToGroupAsync(Context.ConnectionId, photoId);
             var result = await _mediator.Send(new CommentList.Query{PhotoId = Guid.Parse(photoId)});
             await Clients.Caller.SendAsync("LoadComments", result.Value);

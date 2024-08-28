@@ -27,8 +27,8 @@ namespace API.Extensions
             opt.AddPolicy("CorsPolicy", policy =>
             {
                 policy
-                .AllowAnyHeader()
                 .AllowAnyMethod()
+                .AllowAnyHeader()
                 .AllowCredentials()
                 .WithOrigins("http://localhost:3000");
                 });
@@ -37,7 +37,6 @@ namespace API.Extensions
           
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryList.Handler).Assembly));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
-            services.AddSignalR();
             services.AddAutoMapper(typeof(MappingProfiles).Assembly); 
             services.AddHttpContextAccessor(); 
             services.AddScoped<IUserAccessor, UserAccessor>();
@@ -45,6 +44,7 @@ namespace API.Extensions
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<CreateCategory>();
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+            services.AddSignalR();
 
 
             
