@@ -6,6 +6,7 @@ import { router } from "../router/Routes";
 
 export default class UserStore {
     user: User | null = null;
+    fbLoading = false;
     
     constructor() {
         makeAutoObservable(this)
@@ -52,6 +53,22 @@ export default class UserStore {
         store.commonStore.setToken(null);
         this.user = null;
         router.navigate('/');
+    }
+
+    facebookLogin = async (accessToken: string) => {
+        try {
+            this.fbLoading = true;
+            const user = await agent.Account.fbLogin(accessToken);
+            store.commonStore.setToken(user.token);
+            runInAction(() => {
+                this.user = user;
+                this.fbLoading = false;
+            })
+            router.navigate('/home');
+        } catch (error) {
+            console.log(error);
+            runInAction(() => this.fbLoading = false);
+        }
     }
 
 

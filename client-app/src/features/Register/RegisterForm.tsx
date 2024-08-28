@@ -5,10 +5,11 @@ import { useStore } from '../../app/stores/store'
 import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
 import ValidationErrors from "../Errors/ValidationErrors";
-import registrationImage from '../../../public/assets/Background.jpg';
+import registrationImage from '../../assets/Background Image.jpg';
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import '../Register/Register.css';
+import FacebookLogin, { FailResponse, SuccessResponse } from '@greatsumini/react-facebook-login';
 
 const RegisterForm = () => {
   const { userStore } = useStore();
@@ -82,6 +83,17 @@ const RegisterForm = () => {
                 <Button className="social-button">
                   <SiFacebook className='facebook-icon' /> Sign in with Facebook
                 </Button>
+                <FacebookLogin 
+                    appId='756613573093924'
+                    onSuccess={(response: SuccessResponse) => {
+                        userStore.facebookLogin(response.accessToken);
+                        console.log('Login Success!', response)
+                    }}
+                    onFail={(response: FailResponse) => {
+                      console.log('Login Failed!', response)
+                    }}
+                    className={`ui button facebook huge inverted ${userStore.fbLoading && 'loading'}`}
+                />
                 </div>                
               </Form>
             )}
