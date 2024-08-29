@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 import { store } from "../stores/store";
 import { Profile } from "../layout/models/profile";
-
 import { Category } from "../layout/models/category";
 import { Photo } from "../layout/models/photo";
 import { PaginatedResult } from "../layout/models/pagination";
@@ -33,7 +32,7 @@ axios.interceptors.response.use(async response => {
         }
         return response;
 }, (error: AxiosError) => { 
-    const {data, status, config} = error.response as AxiosResponse;
+    const {data, status, config, headers} = error.response as AxiosResponse;
     switch (status) {
         case 400:
             if (config.method == 'get' && data.errors.hasOwnProperty('id')) {
@@ -52,7 +51,12 @@ axios.interceptors.response.use(async response => {
                 }
             break;
         case 401:
-            toast.error('unauthorized')
+            if (status === 401 && headers['www-authenticate']?.startsWith('Bearer error="invalid_token')) {
+                store.userStore.logout();
+                toast.error('Session expired - please login again');
+            } else {
+                toast.error('unauthorized');
+            }
             break;
         case 403:
             toast.error('forbidden')
@@ -81,6 +85,7 @@ const Account = {
     current: () => requests.get<User>('/account'),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user),
+    refreshToken: () => requests.post<User>('/account/refreshToken', {}),
     fbLogin: (accessToken: string) => requests.post<User>(`/account/fbLogin?accessToken=${accessToken}`, {})
 };
 
@@ -114,7 +119,7 @@ const Profiles = {
 const Photos = {
     
     listByUser: (username: string) => requests.get<Photo[]>(`/photos/${username}`),
-    list: (params: URLSearchParams) => axios.get<PaginatedResult<Photo[]>>(`/photos`, {params}).then(responseBody), 
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Photo[]>>(`photos`, {params}).then(responseBody), 
 };
 
     const Categories = {
