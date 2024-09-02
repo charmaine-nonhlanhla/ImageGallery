@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {}
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj": {
+    "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+        "projectPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
         "packagesPath": "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\obj\\",
+        "outputPath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CMogotlane.SINGULAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -297,6 +297,14 @@
             "CloudinaryDotNet": {
               "target": "Package",
               "version": "[1.26.2, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.7.1.1, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

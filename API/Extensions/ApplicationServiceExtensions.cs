@@ -5,6 +5,7 @@ using Application.Interfaces;
 using Application.Users;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Email;
 using Infrastructure.Photos;
 using Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,7 @@ namespace API.Extensions
             services.AddHttpContextAccessor(); 
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>(); 
+            services.AddScoped<EmailSender>();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<CreateCategory>();
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
