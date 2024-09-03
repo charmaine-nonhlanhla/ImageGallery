@@ -10,6 +10,8 @@ import ProfilePage from "../../features/profiles/ProfilePage";
 import { MainLayout } from '../router/MainLayout';
 import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
 import { PhotosLibrary } from "../../features/MyLibrary/PhotosLibrary";
+import RegisterSuccess from "../../features/Register/RegisterSuccess";
+import ConfirmEmail from "../../features/Register/ConfirmEmail";
 
 export const routes: RouteObject[] = [
     {
@@ -30,6 +32,8 @@ export const routes: RouteObject[] = [
           
             { path: 'login', element: <LoginForm /> },
             { path: 'register', element: <RegisterForm /> },
+            { path: 'account/registerSuccess', element: <RegisterSuccess /> },
+            { path: 'account/verifyEmail', element: <ConfirmEmail /> },
             { path: 'profiles/:username', element: <ProfilePage /> },
             { path: 'errors', element: <TestErrors /> },
             { path: 'not-found', element: <NotFound /> },

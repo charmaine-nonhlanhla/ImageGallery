@@ -9,13 +9,13 @@ namespace API.Controllers
     public class CategoriesController : BaseApiController
     {
 
-        [HttpGet] //api/categories
+        [HttpGet] 
         public async Task<IActionResult> GetCategories()
         {
             return HandleResult(await Mediator.Send(new CategoryList.Query()));
         }
 
-        [HttpGet("{id}")] //api/categories/catcat
+        [HttpGet("{id}")] 
         public async Task<IActionResult> GetCategory(int id)
         {
          return HandleResult(await Mediator.Send(new CategoryDetails.Query{Id = id}));
