@@ -12,21 +12,24 @@ namespace API.Controllers.SignalR
             _mediator = mediator;
         }
 
-        public async Task SendComment(CreateComment.Command command)
-        {
-            var comment = await _mediator.Send(command);
-
-            await Clients.Group(command.PhotoId.ToString())
-                .SendAsync("ReceiveComment", comment.Value);
-        }
-
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
-            var photoId = httpContext.Request.Query["PhotoId"];
-            await Groups.AddToGroupAsync(Context.ConnectionId, photoId);
-            var result = await _mediator.Send(new CommentList.Query{PhotoId = Guid.Parse(photoId)});
-            await Clients.Caller.SendAsync("LoadComments", result.Value);
+            var photoIdString = httpContext.Request.Query["photoId"].ToString();
+
+            if (Guid.TryParse(photoIdString, out Guid photoId))
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, photoId.ToString());
+
+                var result = await _mediator.Send(new CommentList.Query { PhotoId = photoId });
+                await Clients.Caller.SendAsync("LoadComments", result.Value);
+            }
+            else
+            {
+                // Handle invalid photoId format, e.g., log an error or abort the connection
+                Console.WriteLine($"Invalid photoId format: {photoIdString}");
+                Context.Abort(); // Optionally abort the connection
+            }
         }
     }
 } 

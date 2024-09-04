@@ -71,7 +71,8 @@ export default class PhotoStore {
     }
 
     selectPhoto = (id: string) => {
-        this.selectedPhoto = this.photos.find(a => a.id === id);
+        this.selectedPhoto = this.photos.find(photo => photo.id === id);
+        console.log('Selected Photo:', this.selectedPhoto);
     }
 
     cancelSelectedPhoto = () => {

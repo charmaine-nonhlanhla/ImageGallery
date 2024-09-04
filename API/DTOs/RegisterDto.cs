@@ -19,6 +19,7 @@ namespace API.DTOs
         [Required]
         public string FullName { get; set; }
 
+        [Required]
         public string UserName { get; set; }
     }
 }

@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default observer(function Comments({ photoId }: Props) {
-    const { commentStore } = useStore();
+    const { commentStore} = useStore();
 
     useEffect(() => {
         if (photoId) {
@@ -21,7 +21,7 @@ export default observer(function Comments({ photoId }: Props) {
         return () => {
             commentStore.clearComments();
         }
-    }, [commentStore, photoId]);
+    }, [photoId, commentStore]);
 
     return (
         <>
@@ -38,7 +38,7 @@ export default observer(function Comments({ photoId }: Props) {
                 <Formik 
                     onSubmit={(values, { resetForm }) => {
                         if (photoId) {
-                            const commentData = { ...values, photoId };
+                            const commentData = {  CommentText: values.commentText, PhotoId: photoId };
                             console.log('Form submitted with values:', commentData);
                             commentStore.addComment(commentData).then(() => resetForm());
                         } else {

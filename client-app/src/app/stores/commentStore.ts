@@ -13,16 +13,18 @@ export default class CommentStore {
 
     createHubConnection = (photoId: string) => {
         if (store.photoStore.selectedPhoto) {
-            this.hubConnection = new HubConnectionBuilder()
+             this.hubConnection = new HubConnectionBuilder()
                 .withUrl(import.meta.env.VITE_CHAT_URL + '?photoId=' + photoId, {
-                    accessTokenFactory: () => store.userStore.user?.token!
+                    
+                    accessTokenFactory: () => store.userStore.user?.token as string
                 })
                 .withAutomaticReconnect()
                 .configureLogging(LogLevel.Information)
                 .build();
 
-            this.hubConnection.start()
-                .catch(error => console.log('Error establishing the connection:', error));
+            this.hubConnection
+                .start()
+                .catch(error => console.error('Error establishing the connection:', error));
 
             this.hubConnection.on('LoadComments', (comments: ChatComment[]) => {
                 runInAction(() => {
@@ -30,20 +32,26 @@ export default class CommentStore {
                         comment.createdAt = new Date(comment.createdAt + 'Z');
                     });
                     this.comments = comments;
+                    console.log('Comments loaded:', comments);
                 });
             });
 
             this.hubConnection.on('ReceiveComment', (comment: ChatComment) => {
-                runInAction(() => this.comments.push(comment));
-            })
+                runInAction(() => {
+                    comment.createdAt = new Date(comment.createdAt + 'Z'); 
+                    this.comments.push(comment);
+                    console.log('Comment received:', comment);
+                });
+            });
 
+        } else {
         }
     }
-    
 
     stopHubConnection = () => {
         this.hubConnection?.stop()
-            .catch(error => console.log('Error stopping connection:', error));
+            .then(() => console.log('SignalR connection stopped'))
+            .catch(error => console.error('Error stopping connection:', error));
     }
 
     clearComments = () => {
@@ -52,12 +60,11 @@ export default class CommentStore {
     }
 
     addComment = async (values: any) => {
-        console.log('Adding comment with values:', values);
+        values.activityId = store.photoStore.selectedPhoto?.id;
         try {
             await this.hubConnection?.invoke('SendComment', values);
-            console.log('Comment sent successfully');
         } catch (error) {
-            console.log('Error adding comment:', error);
+            console.log(error);
         }
     }
 }

@@ -9,9 +9,10 @@ import RegisterForm from "../../features/Register/RegisterForm";
 import ProfilePage from "../../features/profiles/ProfilePage";
 import { MainLayout } from '../router/MainLayout';
 import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
-import { PhotosLibrary } from "../../features/MyLibrary/PhotosLibrary";
 import RegisterSuccess from "../../features/Register/RegisterSuccess";
 import ConfirmEmail from "../../features/Register/ConfirmEmail";
+import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
+import PhotoDetails from "../../features/MyLibrary/PhotoDetails";
 
 export const routes: RouteObject[] = [
     {
@@ -25,7 +26,8 @@ export const routes: RouteObject[] = [
                 children: [
                     { path: '', element: <HomePage /> }, 
                     { path: 'upload', element: <PhotoUpload /> }, 
-                    { path: 'library', element: <PhotosLibrary /> }, 
+                    { path: 'library', element: <PhotoLibrary /> }, 
+                    { path: 'details', element: <PhotoDetails /> }, 
 
                 ]
             },
