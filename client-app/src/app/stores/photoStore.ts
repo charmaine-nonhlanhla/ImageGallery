@@ -11,7 +11,7 @@ export default class PhotoStore {
     photos: Photo[] = [];
     selectedPhoto: Photo | undefined = undefined;
     loading = false;
-    uploading = false;
+    uploading = false;  
     loadingPhotos = false;
     categories: Category[] = [];
     selectedCategory: Category | null = null;

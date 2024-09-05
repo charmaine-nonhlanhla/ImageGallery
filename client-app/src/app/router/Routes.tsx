@@ -13,6 +13,7 @@ import RegisterSuccess from "../../features/Register/RegisterSuccess";
 import ConfirmEmail from "../../features/Register/ConfirmEmail";
 import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
 import PhotoDetails from "../../features/MyLibrary/PhotoDetails";
+import Logout from "../../features/Logout/Logout";
 
 export const routes: RouteObject[] = [
     {
@@ -28,7 +29,6 @@ export const routes: RouteObject[] = [
                     { path: 'upload', element: <PhotoUpload /> }, 
                     { path: 'library', element: <PhotoLibrary /> }, 
                     { path: 'details', element: <PhotoDetails /> }, 
-
                 ]
             },
           
@@ -40,6 +40,7 @@ export const routes: RouteObject[] = [
             { path: 'errors', element: <TestErrors /> },
             { path: 'not-found', element: <NotFound /> },
             { path: 'server-error', element: <ServerError /> },
+            { path: 'logout', element: <Logout /> }, 
             { path: '*', element: <Navigate replace to='/not-found' /> },
         ]
     },

@@ -5,11 +5,27 @@
 }
 
 .pictures-container {
-  display: block;
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  
 }
 
+.picture-item {
+  margin: 3rem 0.5rem 1px 2rem;
+  
+}
 
+.photo {
+  border-radius: 4px;
+}
+
+.photo-title {
+  margin-top: -2rem;
+  color: #ffffff;
+  font-size: large;
+}
 
 .search-bar {
   left: 40rem;
@@ -68,6 +84,8 @@ gap: 8px;
 
 .category-dropdown {
   position: absolute;
+  right: 68rem;
+  top: 15rem;
   background-color: white;
   border: 1px solid #ccc;
   width: 200px;

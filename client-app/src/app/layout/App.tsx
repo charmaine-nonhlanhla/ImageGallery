@@ -20,7 +20,11 @@ function App() {
 
   if (!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />;
 
-  if (!commonStore.token && location.pathname !== '/login' && location.pathname !== '/register' && '/account/registerSuccess' ) {
+  if (!commonStore.token && 
+      location.pathname !== '/login' && 
+      location.pathname !== '/register' && 
+      '/account/registerSuccess' &&
+      location.pathname !== '/logout') {
     return <Navigate to='/login' />;
   }
 

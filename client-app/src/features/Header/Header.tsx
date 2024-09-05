@@ -11,7 +11,7 @@ interface HeaderProps {
 export const Header = ({ activeElement }: HeaderProps) => {
   const { userStore: { user } } = useStore();
 
-  const displayText = activeElement.charAt(0).toUpperCase() + activeElement.slice(1).replace('-', ' ') || 'Home'; // Capitalize and replace dash with space
+  const displayText = activeElement.charAt(0).toUpperCase() + activeElement.slice(1).replace('-', ' ') || 'Home'; 
 
   return (
     <div className='profile-container'> 

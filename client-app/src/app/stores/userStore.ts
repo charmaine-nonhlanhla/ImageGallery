@@ -40,8 +40,10 @@ export default class UserStore {
         await agent.Account.register(creds);
         router.navigate(`/account/registerSuccesss?email=${creds.email}`);
         store.modalStore.closeModal();
-        } catch (error) {
-            throw error;
+        } catch (error: any) {
+            if (error?.response?.status === 400) throw error;
+            store.modalStore.closeModal();
+            console.log(500);
         }
     }
 
