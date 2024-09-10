@@ -85,7 +85,7 @@ export default observer(function LoginForm() {
 
                                     <Grid.Row>
                                         <Grid.Column>
-                                            <Link to="" className="forgot-password">
+                                            <Link to="/recover" className="forgot-password">
                                                 Forgot Password?
                                             </Link>
                                         </Grid.Column>

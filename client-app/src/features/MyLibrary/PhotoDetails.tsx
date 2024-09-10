@@ -11,7 +11,7 @@ const PhotoDetails: React.FC = observer(() => {
     }, [photoStore.selectedPhoto]);
 
     if (!selectedPhoto) {
-        return <div>Select a photo to view details.</div>;
+        return;
     }
 
     return (

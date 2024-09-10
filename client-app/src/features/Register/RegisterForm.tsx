@@ -82,7 +82,7 @@ const RegisterForm = () => {
         fluid
         className="styled-button"
       />
-      <div className="or-text">or</div>
+      {/* <div className="or-text">or</div>
       <div className="buttons">
         <Button className="social-button">
           <FcGoogle className='google-icon' /> Sign in with Google
@@ -90,7 +90,7 @@ const RegisterForm = () => {
         <Button className="social-button">
           <SiFacebook className='facebook-icon' /> Sign in with Facebook
         </Button>
-        {/* <FacebookLogin
+        <FacebookLogin
           appId='756613573093924'
           onSuccess={(response: SuccessResponse) => {
             userStore.facebookLogin(response.accessToken);
@@ -100,8 +100,8 @@ const RegisterForm = () => {
             console.log('Login Failed!', response)
           }}
           className={ui button facebook huge inverted ${userStore.fbLoading && 'loading'}}
-        /> */}
-      </div>
+        />
+      </div> */}
     </Form>
   )}
 </Formik>

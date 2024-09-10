@@ -15,6 +15,7 @@ namespace API.Extensions
             {
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.SignIn.RequireConfirmedEmail = true;
+                opt.Password.RequiredUniqueChars = 3;
                 
             })
             .AddEntityFrameworkStores<ImageGalleryContext>()

@@ -35,12 +35,12 @@ export const PhotoLibrary = observer(() => {
                             className={`image-item ${photo.id === selectedPhoto?.id ? 'selected' : ''}`}
                             onClick={() => handlePhotoClick(photo.id)}
                         >
-                            <img width={297} src={photo.url} alt={photo.photoTitle} />
-                            <p className="image-details-text">{photo.photoTitle}</p>
-                            <div>
+                            <img width={500} src={photo.url} alt={photo.photoTitle} />
+                            <p className="image-title">{photo.photoTitle}</p>
+                            {/* <div>
                                 <VscComment />
                                 <Comments photoId={photo.id} />
-                            </div>
+                            </div> */}
                         </div>
                     ))
                 ) : (

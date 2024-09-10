@@ -22,8 +22,9 @@ function App() {
 
   if (!commonStore.token && 
       location.pathname !== '/login' && 
+      location.pathname !== '/recover' && 
       location.pathname !== '/register' && 
-      '/account/registerSuccess' &&
+      location.pathname !=='/account/registerSuccess' &&
       location.pathname !== '/logout') {
     return <Navigate to='/login' />;
   }

@@ -14,6 +14,7 @@ import ConfirmEmail from "../../features/Register/ConfirmEmail";
 import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
 import PhotoDetails from "../../features/MyLibrary/PhotoDetails";
 import Logout from "../../features/Logout/Logout";
+import RecoverPassword from "../../features/RecoverPassword/RecoverPassword";
 
 export const routes: RouteObject[] = [
     {
@@ -33,6 +34,7 @@ export const routes: RouteObject[] = [
             },
           
             { path: 'login', element: <LoginForm /> },
+            { path: 'recover', element: <RecoverPassword /> },
             { path: 'register', element: <RegisterForm /> },
             { path: 'account/registerSuccess', element: <RegisterSuccess /> },
             { path: 'account/verifyEmail', element: <ConfirmEmail /> },

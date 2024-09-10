@@ -83,6 +83,8 @@ const requests = {
 
 const Account = {
     current: () => requests.get<User>('/account'),
+    forgotPassword: (user: UserFormValues) => requests.post<User>('/account/forgotPassword', user),
+    resetPassword: (user: UserFormValues) => requests.post<User>('/account/resetPassword', user),
     login: (user: UserFormValues) => requests.post<User>('/account/login', user),
     register: (user: UserFormValues) => requests.post<User>('/account/register', user),
     refreshToken: () => requests.post<User>('/account/refreshToken', {}),

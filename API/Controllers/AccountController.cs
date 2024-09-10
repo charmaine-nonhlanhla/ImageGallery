@@ -246,5 +246,42 @@ namespace API.Controllers
                 UserName = user.UserName
             };
         }
+
+        [AllowAnonymous]
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if (user == null) return BadRequest("Invalid email address");
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+
+            var origin = Request.Headers["origin"];
+            var resetUrl = $"{origin}/account/resetPassword?token={token}&email={user.Email}";
+
+            var message = $"<p>Please click the link below to reset your password:</p><p><a href='{resetUrl}'>Click to reset password</a></p>";
+
+            await _emailSender.SendEmailAsync(user.Email, "Reset Password", message);
+
+            return Ok("Password reset link sent. Please check your email.");
+        }
+
+        [AllowAnonymous]
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user == null) return BadRequest("Invalid request");
+
+            var decodedTokenBytes = WebEncoders.Base64UrlDecode(resetPasswordDto.Token);
+            var decodedToken = Encoding.UTF8.GetString(decodedTokenBytes);
+
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, resetPasswordDto.Password);
+
+            if (!result.Succeeded) return BadRequest("Error resetting password");
+
+            return Ok("Password has been reset successfully");
+        }
     }
 }

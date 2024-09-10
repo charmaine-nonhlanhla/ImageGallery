@@ -47,6 +47,16 @@ export default class UserStore {
         }
     }
 
+    forgotPassword = async (creds: UserFormValues) => {
+        try {
+        await agent.Account.forgotPassword(creds);
+        } catch (error: any) {
+            if (error?.response?.status === 400) throw error;
+            store.modalStore.closeModal();
+            console.log(500);
+        }
+    }
+
     setImage = (image: string) => {
         if (this.user) this.user.image = image;
     }

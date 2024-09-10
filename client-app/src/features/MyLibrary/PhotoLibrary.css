@@ -1,139 +1,25 @@
-.page-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: 446px;
-  }
-  
-  .images-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: 35rem;
-    background: rgb(206, 204, 204);
-    }
-    
-    .image {
-      width: 36rem;
-      height: 32rem;
-      position: relative;
-      }
-      
-    .image-item {  
-    margin: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .image-details {
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    margin: 0;
-  }
-
-  .image-details-text {
-      display: block;
-      position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    color: white;
-    font-size: 1.2rem;
-  }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-    
-    .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    max-width: 90%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .comment-icon {
-    font-size: 24px;
-    cursor: pointer;
-    }
-    
-    button {
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 4px;
-    margin-top: 20px;
-    }
-
-    .comments-container {
-      position: absolute;
-      bottom: -30px; /* Adjust this value as needed */
-      left: 0;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px;
-      display: flex;
-      align-items: center;
-  }
-  
-  .comments-container svg {
-      color: white;
-  }
-
-  .large-image-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.photo-library {
+  display: flex;
+  flex-direction: column;
+  margin-left: 446px;
 }
 
-.large-image {
-  position: relative;
+.images-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 2rem;
 }
 
-.large-image img {
-  max-width: 80vw;
-  max-height: 80vh;
+.image-item {
+  margin: 3rem 0.5rem 1px 2rem;
 }
 
-.large-image-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
+.image-title {
+  margin-top: -2rem;
+  color: #ffffff;
+  font-size: large;
 }
 
-.large-image-comments {
-  position: absolute;
-  bottom: -30px; /* Adjust this value as needed */
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-}
+
     
