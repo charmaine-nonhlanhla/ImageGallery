@@ -6,10 +6,7 @@ import { observer } from 'mobx-react-lite';
 import * as Yup from 'yup';
 import ValidationErrors from "../Errors/ValidationErrors";
 import registrationImage from '../../assets/Background Image.jpg';
-import { FcGoogle } from "react-icons/fc";
-import { SiFacebook } from "react-icons/si";
 import '../Register/Register.css';
-import FacebookLogin, { FailResponse, SuccessResponse } from '@greatsumini/react-facebook-login';
 
 const RegisterForm = () => {
   const { userStore } = useStore();

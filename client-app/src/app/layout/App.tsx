@@ -21,11 +21,14 @@ function App() {
   if (!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />;
 
   if (!commonStore.token && 
-      location.pathname !== '/login' && 
-      location.pathname !== '/recover' && 
-      location.pathname !== '/register' && 
-      location.pathname !=='/account/registerSuccess' &&
-      location.pathname !== '/logout') {
+    location.pathname !== '/login' && 
+    location.pathname !== '/logout' &&
+    location.pathname !== '/reset' && 
+    location.pathname !== '/recover' && 
+    location.pathname !== '/register' && 
+    location.pathname !== '/changepassword' && 
+    location.pathname !== '/recover-success' && 
+    location.pathname !=='/account/registerSuccess') {
     return <Navigate to='/login' />;
   }
 

@@ -14,7 +14,10 @@ import ConfirmEmail from "../../features/Register/ConfirmEmail";
 import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
 import PhotoDetails from "../../features/MyLibrary/PhotoDetails";
 import Logout from "../../features/Logout/Logout";
-import RecoverPassword from "../../features/RecoverPassword/RecoverPassword";
+import RecoverPassword from "../../features/Password/RecoverPassword";
+import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
+import ResetPassword from "../../features/Password/ResetPassword";
+import PasswordChanged from "../../features/Password/PasswordChanged";
 
 export const routes: RouteObject[] = [
     {
@@ -33,17 +36,20 @@ export const routes: RouteObject[] = [
                 ]
             },
           
+            { path: 'logout', element: <Logout /> }, 
             { path: 'login', element: <LoginForm /> },
-            { path: 'recover', element: <RecoverPassword /> },
-            { path: 'register', element: <RegisterForm /> },
-            { path: 'account/registerSuccess', element: <RegisterSuccess /> },
-            { path: 'account/verifyEmail', element: <ConfirmEmail /> },
-            { path: 'profiles/:username', element: <ProfilePage /> },
             { path: 'errors', element: <TestErrors /> },
             { path: 'not-found', element: <NotFound /> },
+            { path: 'reset', element: <ResetPassword /> },
+            { path: 'register', element: <RegisterForm /> },
+            { path: 'recover', element: <RecoverPassword /> },
             { path: 'server-error', element: <ServerError /> },
-            { path: 'logout', element: <Logout /> }, 
+            { path: 'profiles/:username', element: <ProfilePage /> },
+            { path: 'changepassword', element: <PasswordChanged /> },
+            { path: 'account/verifyEmail', element: <ConfirmEmail /> },
             { path: '*', element: <Navigate replace to='/not-found' /> },
+            { path: 'recover-success', element: <RecoverPasswordSuccess /> },
+            { path: 'account/registerSuccess', element: <RegisterSuccess /> },
         ]
     },
 ];

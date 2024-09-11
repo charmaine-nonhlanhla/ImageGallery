@@ -55,11 +55,11 @@ export default observer(function LoginForm() {
                                     <Grid.Row>
                                         <Grid.Column>
                                             <div className="">
-                                                <label className="input-label">Username</label>
+                                                <label className="input-label">Email</label>
                                                 <div className="">
                                                     <MyTextInput
                                                         name="email"
-                                                        placeholder="Enter Username"
+                                                        placeholder="Enter Email"
                                                         icon={FaUser}
                                                     />
                                                 </div>
