@@ -7,6 +7,7 @@ export interface User {
 }
 
 export interface UserFormValues {
+    token?: string;
     email?: string;
     password?: string;
     fullName?: string;

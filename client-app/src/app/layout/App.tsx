@@ -28,6 +28,8 @@ function App() {
     location.pathname !== '/register' && 
     location.pathname !== '/changepassword' && 
     location.pathname !== '/recover-success' && 
+    location.pathname !== '/account/verifyEmail' && 
+    location.pathname !== '/account/resetPassword' && 
     location.pathname !=='/account/registerSuccess') {
     return <Navigate to='/login' />;
   }

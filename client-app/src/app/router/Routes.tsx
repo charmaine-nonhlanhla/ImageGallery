@@ -47,6 +47,7 @@ export const routes: RouteObject[] = [
             { path: 'profiles/:username', element: <ProfilePage /> },
             { path: 'changepassword', element: <PasswordChanged /> },
             { path: 'account/verifyEmail', element: <ConfirmEmail /> },
+            { path: 'account/resetPassword', element: <ResetPassword /> },
             { path: '*', element: <Navigate replace to='/not-found' /> },
             { path: 'recover-success', element: <RecoverPasswordSuccess /> },
             { path: 'account/registerSuccess', element: <RegisterSuccess /> },

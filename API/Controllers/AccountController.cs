@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using System.Text;
 using API.DTOs;
+using Application.Profiles;
 using Domain.Models;
 using Infrastructure.Email;
 using Microsoft.AspNetCore.Authorization;
@@ -85,6 +86,22 @@ namespace API.Controllers
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest("Problem registering user");
+
+            var profile = new Profile
+            {
+                Username = user.UserName,
+                FullName = user.FullName,
+                Bio = "", 
+                Image = "", 
+                Following = false,
+                FollowersCount = 0,
+                FollowingCount = 0,
+                Photos = new List<Photo>() 
+            };
+
+    //          _context.Profiles.Add(profile);
+    // await _context.SaveChangesAsync();
+
 
             var origin = Request.Headers["origin"];
 

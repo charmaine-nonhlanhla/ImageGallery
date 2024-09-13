@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Domain.Models
 {
     public class Photo
@@ -10,6 +12,9 @@ namespace Domain.Models
         public string PhotoDescription { get; set; }
         public string PhotoTitle { get; set; }
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        
+        [JsonIgnore]
+        public User User { get; set; }
         public string UserId { get; set; }
         public DateTime UploadDate { get; set; }
     }

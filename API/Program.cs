@@ -8,11 +8,22 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using API.Middleware;
 using API.Controllers.SignalR;
 using System.Net;
+using System.Text.Json.Serialization;
 
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure JSON serialization options
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.MaxDepth = 64;
+
+    });
+
+    
 // Add services to the container.
 
 builder.Services.AddControllers(opt => 

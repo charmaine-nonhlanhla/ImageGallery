@@ -3,9 +3,10 @@ import useQuery from "../../app/utilities/hooks";
 import { toast } from "react-toastify";
 import agent from "../../app/api/agent";
 import { Button, Header, Icon, Segment, SegmentInline } from "semantic-ui-react";
-import LoginForm from "../Login/LoginForm";
+import { useNavigate } from 'react-router-dom';
 
 export default function ConfirmEmail() {
+    const navigate = useNavigate();
     const email = useQuery().get('email') as string;
     const token = useQuery().get('token') as string;
 
@@ -25,11 +26,11 @@ export default function ConfirmEmail() {
 
     useEffect(() => {
         agent.Account.verifyEmail(token, email).then(() => {
-            setStatus(Status.Success)
+            setStatus(Status.Success);
         }).catch(() => {
-            setStatus(Status.Failed)
-        })
-    }, [Status.Failed, Status.Success, token, email])
+            setStatus(Status.Failed);
+        });
+    }, [token, email]);
 
     function getBody() {
         switch (status) {
@@ -46,11 +47,12 @@ export default function ConfirmEmail() {
                 return (
                     <div>
                         <p>Email has been verified - you can now login</p>
-                        <Button primary onClick={() => LoginForm} size='huge' content="Login" />
+                        <Button primary onClick={() => navigate('/login')} size='huge' content="Login" />
                     </div>
                 );
         }
     }
+
     return (
         <Segment placeholder textAlign="center">
             <Header icon>
@@ -58,10 +60,8 @@ export default function ConfirmEmail() {
                 Email verification
             </Header>
             <SegmentInline>
-                {getBody ()}
+                {getBody()}
             </SegmentInline>
         </Segment>
-    )
-
-
+    );
 }

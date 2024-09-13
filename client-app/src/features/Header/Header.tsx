@@ -18,13 +18,13 @@ export const Header = ({ activeElement }: HeaderProps) => {
       <Container fluid className="content">
         <Menu secondary className="top-menu">
           <Menu.Item>
-            <span className='home2'>{displayText}</span> {/* Display capitalized text */}
+            <span className='home2'>{displayText}</span> 
             <IoIosArrowForward className='arrow-forward' />
           </Menu.Item>
           <Menu.Menu position='right'>
             <MenuItem position='right'>
               <Image 
-                src={user?.image || '/assets/user.png'} 
+                src={user?.image || './client-app/src/assets/user.png'} 
                 avatar 
                 spaced='right' 
                 style={{ width: '40px', height: '40px' }}
@@ -35,7 +35,8 @@ export const Header = ({ activeElement }: HeaderProps) => {
                 icon={<IoIosArrowDown className='arrow-down' />}
               >
                 <DropdownMenu>
-                  <DropdownItem as={Link} to={`profiles/${user?.fullName}`} text='My Profile' icon='user' />
+                  <DropdownItem as={Link} to={`profiles/${user?.userName}`} text='My Profile' icon='user' />
+                 
                 </DropdownMenu>
               </Dropdown>
             </MenuItem>

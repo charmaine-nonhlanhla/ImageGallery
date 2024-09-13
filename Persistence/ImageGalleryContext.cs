@@ -13,6 +13,8 @@ namespace Persistence
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Photo> Photos { get; set; }
+
+         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<UserFollowing> UserFollowings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,7 +26,13 @@ namespace Persistence
                 .WithMany(c => c.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
 
-             modelBuilder.Entity<UserFollowing>(b => {
+            modelBuilder.Entity<Photo>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Photos)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserFollowing>(b => {
                 b.HasKey(k => new { k.FollowerId, k.FollowedId });
 
                 b.HasOne(o => o.Follower)
@@ -35,7 +43,13 @@ namespace Persistence
                 b.HasOne(o => o.Followed)
                     .WithMany(f => f.Followers)
                     .HasForeignKey(o => o.FollowedId)
-                    .OnDelete(DeleteBehavior.NoAction);           
+                    .OnDelete(DeleteBehavior.NoAction);  
+
+            modelBuilder.Entity<RefreshToken>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.RefreshTokens)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);         
              });
         }
     }
