@@ -5,15 +5,14 @@
   position: fixed;
 }
 
-.logo-text {
-  width: 87px;
-  height: 54px;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 35px;
-  font-weight: 600;
-  line-height: 6rem;
-  margin-left: 1rem;
+.logo-container {
+  text-align: center; 
+}
+
+.logo-image {
+  width: 31.6rem; 
+  height: 18rem; 
+  margin-top: -4rem;
 }
 
 .home-element {

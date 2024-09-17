@@ -6,6 +6,7 @@ import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { useStore } from '../../app/stores/store';
 import './Taskbar.css';
 import { Link, useNavigate } from 'react-router-dom';  
+import Logo from '../../assets/GalleryLogo.png'
 
 type ActiveElement = 'home' | 'image-upload' | 'my-library' | 'logout' | '';
 
@@ -31,6 +32,9 @@ export const Taskbar = ({ setActiveElement, activeElement }: TaskbarProps) => {
   return (
     <div className="left-column">
       <Container>
+        <div className="logo-container">
+          <img src={Logo} alt="Logo" className="logo-image" />
+        </div>
         <Link to='/'>
           <div
             className={`home-element ${activeElement === 'home' ? 'active' : ''}`}

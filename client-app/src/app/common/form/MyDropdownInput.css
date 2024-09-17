@@ -1,13 +1,18 @@
-   .custom-dropdown {
-    background-color: white !important;
-    background-color: yellowgreen;
-  }
+.custom-dropdown-container label {
+  display: block;
+  margin-bottom: 0.5rem;
   
-  .custom-dropdown .menu {
-    background-color: white !important;
-  }
-  
-  .custom-dropdown .item {
-    background-color: white !important;
-  }
+}
+
+.custom-dropdown {
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: medium;
+  width: 60rem;
+  margin-left: 10rem;
+  height: 3rem;
+  border: 0.5px solid #0F3C4C;
+  cursor: pointer;
+}
+
   

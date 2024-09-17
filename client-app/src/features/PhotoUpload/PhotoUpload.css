@@ -1,13 +1,13 @@
 .photo-upload-frame {
     display: flex;
     flex-direction: column;
-    width: 100rem;
+    width: 80rem;
     height: 880px;
-    margin-left: 110px;
+    margin-left: 18rem;
     margin-top: 5px;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(149, 145, 145, 0.3);
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
   
   .header-text {
@@ -16,27 +16,31 @@
     text-align: center;
     font-family: 'Poppins' sans-serif;
     color: #165A72;
-    margin-bottom: 3rem;
   }
 
   .title-input {
-    width: 80rem;
+    width: 60rem;
     height: 3rem;
+    margin-left: 10rem;
     border-radius: 4px;
-    padding-left: 1rem;
     background: none;
     border: 0.5px solid #0F3C4C;
   }
 
   .text-area {
-    width: 80rem;
-    height: 6rem;
+    width: 60rem;
+    height: 4rem;
+    margin-left: 10rem;
     border-radius: 4px;
-    padding-left: 1rem;
-    padding-top: 1rem;
     font-size: medium;
     border: 0.5px solid #0F3C4C;
   }
+
+  .ui.fluid.dropdown {
+    display: block;
+    width: 60rem;
+    margin-left: 10rem;
+}
 
   .error-message {
     border: 1px solid red;
@@ -44,36 +48,33 @@
     font-size: 0.875em;
     padding-top: 0.3rem;
     padding-left: 1rem;
+    margin-left: 10rem;
     width: 11rem;
     height: 2rem;
     border-radius: 4px;
-  }
-  
-  
-  .form-field {
-    margin-bottom: 2rem;
-    width: 80rem;
-    border: 1px;
-    margin-left: 12rem;
-    border-radius: 4px;
-    background: none;
   }
   
   .input-field {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
+    margin-left: 10rem;
     display: block;
     color: #0F3C4C;
   }
 
+  .form-field {
+    margin-bottom: -1rem;
+  }
+
   .button-div {
     background-color: #E9F5F9;
-    border: 3px dashed #0F3C4C;
-    width: 80rem;
-    height: 28rem;
-    margin-left: 12rem;
-    padding-top: 1.5rem;  
+    border: 2px dashed #0F3C4C;
+    width: 60rem;
+    height: 24rem;
+    margin-left: 10rem;
+    padding-top: 1rem; 
+    margin-top: 3rem; 
     border-radius: 4px;
   }
 
@@ -84,8 +85,8 @@
     border-radius: 4px;
     cursor: pointer;
     height: 3rem;
-    margin-top: 1rem;
-    margin-left: 30rem;
+    margin-left: 20rem;
+    margin-top: 1.5rem;
     font-size: 16px;
     width: 20rem;
   
@@ -94,15 +95,4 @@
     }
     
   }
-
-  /* .img-preview {
-    margin-left: 10rem;
-    margin-bottom: -16rem;
-    
-
-  }
-
-  .click-close {
-    padding-top: 50rem;
-  } */
   

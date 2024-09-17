@@ -1,34 +1,60 @@
- .img-preview {
-    height: 200px;
-    width: 100%;
-    margin-top: 10px;
-    overflow: hidden;
-  }
+.photo-dropzone {
+  justify-content: center;
+  align-items: center;
   
-  .cloud {
+}
+
+.cropper-container {
+  width: 2rem;
+  margin-left: 9rem;
+  position: relative;
+} 
+ 
+.button-group {
+  margin-left: 15rem;
+  display: flex;
+}
+  .cloud-icon {
     font-size: 15rem; 
-    margin-left: 33rem;
-    padding-top: 2rem;
-    height: 14rem;
+    margin-left: 23rem;
+    height: 10rem;
     color: #2187AB;
     width: 200px;
     margin-right: 1rem;
+    cursor: pointer;
   }
 
   .drop-text {
     text-align: center;
     color: #165A72;
-    padding-top: 10rem;
-  }
-  
-  
-  .click-close {
-    margin-top: 10px;
   }
 
   .cropper {
-   
+   margin-left: 5rem;
+   margin-top: 2rem;
    
   }
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 4rem;
+}
+
+.button-positive {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button-negative {
+  background-color: #f44336;
+  color: white;
+}
+
+
+
+
 
   

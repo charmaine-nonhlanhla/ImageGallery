@@ -2,9 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
-import { Button, ButtonGroup, Grid, GridColumn, Header } from 'semantic-ui-react';
 import { RiUploadCloud2Line } from 'react-icons/ri';
-import './PhotoDropZone.css'; // Import the CSS file
+import './PhotoDropZone.css'; 
 
 interface Props {
   loading: boolean;
@@ -40,38 +39,50 @@ const PhotoDropZone: React.FC<Props> = ({ loading, uploadPhoto }) => {
   }, [files]);
 
   return (
-    <Grid>
-      <GridColumn width={4}>
-        <Header sub color="teal" content="" />
-        {files && files.length > 0 ? (
-          <>
-            <Cropper
-              className='cropper'
-              src={files[0].preview}
-              aspectRatio={NaN}  
-              preview=".img-preview"
-              guides={false}
-              viewMode={2}        
-              autoCropArea={1}    
-              background={false}
-              responsive={true}   
-              onInitialized={(cropper) => setCropper(cropper)}
-            />
-            <div className="img-preview" />
-            <ButtonGroup className="click-close" widths={2}>
-              <Button loading={loading} onClick={onCrop} positive icon="check" />
-              <Button disabled={loading} onClick={() => setFiles([])} icon="close" />
-            </ButtonGroup>
-          </>
-        ) : (
-          <div {...getRootProps()} className={isDragActive ? 'dropzone dropzone-active' : 'dropzone'}>
-            <input {...getInputProps()} />
-            <RiUploadCloud2Line name="upload" className="cloud" />
-            <Header content="" />
+    <div className="photo-dropzone">
+      {files && files.length > 0 ? (
+        <div className="cropper-container">
+          <Cropper
+            className='cropper'
+            src={files[0].preview}
+            aspectRatio={NaN}  
+            preview=".img-preview"
+            guides={false}
+            viewMode={2}        
+            autoCropArea={1}    
+            background={false}
+            responsive={true}   
+            onInitialized={(cropper) => setCropper(cropper)}
+          />
+          <div className="img-preview" />
+          <div className="button-group">
+            <button 
+              className="button button-positive"
+              disabled={loading}
+              onClick={onCrop}
+            >
+              {loading ? 'Processing...' : 'Crop'}
+            </button>
+            <button 
+              className="button button-negative"
+              disabled={loading}
+              onClick={() => setFiles([])}
+            >
+              Cancel
+            </button>
           </div>
-        )}
-      </GridColumn>
-    </Grid>
+        </div>
+      ) : (
+        <div {...getRootProps()} className={isDragActive ? 'dropzone dropzone-active' : 'dropzone'}>
+          <input {...getInputProps()} />
+          <RiUploadCloud2Line className="cloud-icon" />
+            <span className="drop-text">
+                  <p className='drag-text'>Drag and Drop Files</p>
+                  <p>or</p>
+                </span>
+        </div>
+      )}
+    </div>
   );
 };
 

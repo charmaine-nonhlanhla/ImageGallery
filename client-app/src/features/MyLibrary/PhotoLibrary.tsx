@@ -3,10 +3,8 @@ import { Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
 import { Photo } from '../../app/layout/models/photo';
-import { VscComment } from 'react-icons/vsc';
 import './PhotoLibrary.css';
 import PhotoDetails from './PhotoDetails';
-import Comments from '../Comments/Comments';
 
 export const PhotoLibrary = observer(() => {
     const { photoStore, userStore } = useStore();

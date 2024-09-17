@@ -1,7 +1,6 @@
-// HomePage.tsx
 import { observer } from "mobx-react-lite";
 import InfiniteScroll from "react-infinite-scroller";
-import { GridColumn, Loader } from "semantic-ui-react";
+import { Loader } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
 import { useEffect, useState } from "react";
 import { Category } from "../../app/layout/models/category";
@@ -102,16 +101,14 @@ export default observer(function HomePage() {
           <p>No photos available</p>
         )}
       </div>
-      { <InfiniteScroll
+      <InfiniteScroll
         pageStart={0}
         loadMore={handleGetNext}
         hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages}
         initialLoad={false}
       >
-      </InfiniteScroll> }
-      { <GridColumn width={10}>
         <Loader active={loadingNext} />
-      </GridColumn> }
+      </InfiniteScroll>
       {isModalOpen && modalPhoto && (
         <PhotoModal
           src={modalPhoto.src}

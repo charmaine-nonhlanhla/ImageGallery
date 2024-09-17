@@ -1,38 +1,36 @@
 import React from 'react';
 import { useField } from 'formik';
-import { Dropdown, DropdownProps, FormField, Label } from 'semantic-ui-react';
-import './MyDropdownInput.css'; // Import the CSS file
-
+import './MyDropdownInput.css'; 
 interface Props {
   placeholder: string;
   name: string;
   label?: string;
   className?: string;
-  options: DropdownProps['options'];
+  options: { key: string | number; text: string; value: string | number }[];
 }
 
 const MyDropdownInput: React.FC<Props> = ({ label, options, className, ...props }) => {
-  const [field, meta, helpers] = useField(props.name);
+  const [field, , helpers] = useField(props.name);
 
   return (
-    <FormField error={meta.touched && !!meta.error}>
+    <div className={`custom-dropdown-container ${className}`}>
       {label && <label>{label}</label>}
-      <Dropdown
-        fluid
-        selection
-        options={options}
-        placeholder={props.placeholder}
-        onChange={(_, { value }) => helpers.setValue(value)}
+      <select
+        {...field}
+        {...props}
+        onChange={(e) => helpers.setValue(e.target.value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
-        className={`custom-dropdown ${className}`}
-      />
-      {meta.touched && meta.error ? (
-        <Label basic color="red">
-          {meta.error}
-        </Label>
-      ) : null}
-    </FormField>
+        className="custom-dropdown"
+      >
+        <option value="" disabled>{props.placeholder}</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.text}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

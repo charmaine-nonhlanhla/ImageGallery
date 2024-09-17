@@ -27,7 +27,7 @@ const RegisterForm = () => {
               userStore
                 .register(values)
                 .then(() => {
-                  navigate('account/registerSuccess'); 
+                  navigate('account/registerSuccess?email=${values.email}'); 
                 })
                 .catch((error) => setErrors({ error }))
             }

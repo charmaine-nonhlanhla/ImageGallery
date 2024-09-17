@@ -45,7 +45,7 @@ export const PhotoUpload: React.FC = () => {
         setAddPhotoMode(false);
     } catch (error) {
         console.error("Error uploading photo", error);
-        // You can add more error handling logic here
+        
     } finally {
         setLoading(false);
     }
@@ -95,8 +95,7 @@ export const PhotoUpload: React.FC = () => {
 
               <div className="form-field">
                 <label className="input-field">Image Description</label>
-                <Field as="textarea" className="text-area"
-                  placeholder=""
+                <Field  className="text-area"
                   name="photodescription"
                 />
                 <ErrorMessage name="photodescription" component="div" className="error-message" />
@@ -104,10 +103,7 @@ export const PhotoUpload: React.FC = () => {
 
               <div className="button-div">
                 <PhotoDropZone loading={loading} uploadPhoto={handleFileSelected} />
-                <span className="drop-text">
-                  <p>Drag and Drop Files</p>
-                  <p>or</p>
-                </span>
+                
                 <button className="upload-button" type="submit" disabled={isSubmitting || !selectedFile}>
                   {isSubmitting ? 'Uploading...' : 'Upload'}
                 </button>

@@ -36,7 +36,10 @@ export const Header = ({ activeElement }: HeaderProps) => {
               >
                 <DropdownMenu>
                   <DropdownItem as={Link} to={`profiles/${user?.userName}`} text='My Profile' icon='user' />
-                 
+                  <DropdownItem as={Link} to='/reset' text='Reset Password' icon='lock' />
+                   {user?.email && (
+                    <DropdownItem text={`Email: ${user.email}`} icon='mail' />
+                  )}
                 </DropdownMenu>
               </Dropdown>
             </MenuItem>

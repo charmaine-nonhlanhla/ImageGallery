@@ -1,12 +1,12 @@
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
-import HomePage from "../../features/home/HomePage";
+import HomePage from "../../features/Home/HomePage";
 import LoginForm from "../../features/Login/LoginForm";
 import TestErrors from "../../features/Errors/TestError";
 import NotFound from "../../features/Errors/NotFound";
 import ServerError from "../../features/Errors/ServerError";
 import RegisterForm from "../../features/Register/RegisterForm";
-import ProfilePage from "../../features/profiles/ProfilePage";
+import ProfilePage from "../../features/Profiles/ProfilePage";
 import { MainLayout } from '../router/MainLayout';
 import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
 import RegisterSuccess from "../../features/Register/RegisterSuccess";

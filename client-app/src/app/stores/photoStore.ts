@@ -144,6 +144,7 @@ export default class PhotoStore {
     loadCategories = async () => {
         try {
             const categories = await agent.Categories.list();
+            console.log('Categories fetched:', categories);
             runInAction(() => {
                 this.categories = categories;
             });

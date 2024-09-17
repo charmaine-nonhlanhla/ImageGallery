@@ -5,6 +5,8 @@ import { Button, Header, Icon, Segment } from "semantic-ui-react";
 
 export default function RegisterSuccess() {
     const email = useQuery().get('email') as string;
+    console.log('Email:', email);
+
     
 
     function handleConfirmEmailResend() {

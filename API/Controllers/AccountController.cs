@@ -63,7 +63,6 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            
             if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
             {
                 ModelState.AddModelError("email", "Email taken");
@@ -87,36 +86,28 @@ namespace API.Controllers
 
             if (!result.Succeeded) return BadRequest("Problem registering user");
 
-            var profile = new Profile
-            {
-                Username = user.UserName,
-                FullName = user.FullName,
-                Bio = "", 
-                Image = "", 
-                Following = false,
-                FollowersCount = 0,
-                FollowingCount = 0,
-                Photos = new List<Photo>() 
-            };
-
-    //          _context.Profiles.Add(profile);
-    // await _context.SaveChangesAsync();
-
-
             var origin = Request.Headers["origin"];
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
             token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-
             var verifyUrl = $"{origin}/account/verifyEmail?token={token}&email={user.Email}";
 
-            var message = $"<p>Please click the link below to verify your email address:</p><p><a href='{verifyUrl}'>Click to verify email</a></p>";
+            var logoUrl = $"{Request.Scheme}://{Request.Host}/assets/GalleryLogo.png";
 
-            await _emailSender.SendEmailAsync(user.Email, "Please verify email", message);
+            var message = $@"
+                <p>Hi {registerDto.FullName},</p>
+                <p>Welcome to <strong>Image App Gallery</strong>!</p>
+                <p>To complete your registration, please verify your email address by clicking the button below:</p>
+                <p><a href='{verifyUrl}' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;'>Verify Your Email</a></p>
+                <p>If you didn't create this account, you can safely ignore this email. If you need any assistance, feel free to reach out to us at <a href='mailto:support@imageappgallery.com'>support@imageappgallery.com</a>.</p>
+                <p>Best regards,<br>The Image App Gallery Team</p>
+            ";
 
-            return Ok("Registration success - please verify email");
+            await _emailSender.SendEmailAsync(user.Email, "Please verify your email", message);
+
+            return Ok("Registration success - please verify your email");
         }
+
 
         [AllowAnonymous]
         [HttpPost("verifyEmail")]
@@ -135,25 +126,29 @@ namespace API.Controllers
 
 
         [AllowAnonymous]
-        [HttpGet("resendEmailConfirmationLink")]
-
+        [HttpPost("resendEmailConfirmationLink")]
         public async Task<IActionResult> ResendEmailConfirmationLink(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
-
             if (user == null) return Unauthorized();
 
             var origin = Request.Headers["origin"];
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-
             token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-
             var verifyUrl = $"{origin}/account/verifyEmail?token={token}&email={user.Email}";
 
-            var message = $"<p>Please click the link below to verify your email address:</p><p><a href='{verifyUrl}'>Click to verify email</a></p>";
+            var logoUrl = $"{Request.Scheme}://{Request.Host}/assets/GalleryLogo.png";
 
-            await _emailSender.SendEmailAsync(user.Email, "Please verify email", message);
+            var message = $@"
+                <p>Hi {user.FullName},</p>
+                <p>We noticed that you haven't verified your email address yet. To complete your registration, please click the button below:</p>
+                <p><a href='{verifyUrl}' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;'>Verify Your Email</a></p>
+                <p>If you did not request this, you can ignore this email. If you need assistance, feel free to contact us at <a href='mailto:support@imageappgallery.com'>support@imageappgallery.com</a>.</p>
+                <p>Best regards,<br>The Image App Gallery Team</p>
+            ";
+
+            await _emailSender.SendEmailAsync(user.Email, "Please verify your email", message);
 
             return Ok("Email verification link resent");
         }
@@ -277,12 +272,19 @@ namespace API.Controllers
             var origin = Request.Headers["origin"];
             var resetUrl = $"{origin}/account/resetPassword?token={token}&email={user.Email}";
 
-            var message = $"<p>Please click the link below to reset your password:</p><p><a href='{resetUrl}'>Click to reset password</a></p>";
+            var message = $@"
+                <p>Hi {user.FullName},</p>
+                <p>We received a request to reset your password. To complete the process, please click the button below:</p>
+                <p><a href='{resetUrl}' style='display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; background-color: #007bff; text-decoration: none; border-radius: 5px;'>Reset Your Password</a></p>
+                <p>If you did not request this, you can ignore this email. If you need help, please contact us at <a href='mailto:support@imageappgallery.com'>support@imageappgallery.com</a>.</p>
+                <p>Best regards,<br>The Image App Gallery Team</p>
+            ";
 
             await _emailSender.SendEmailAsync(user.Email, "Reset Password", message);
 
             return Ok("Password reset link sent. Please check your email.");
         }
+
 
         [AllowAnonymous]
         [HttpPost("resetPassword")]
