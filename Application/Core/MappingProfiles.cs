@@ -1,5 +1,4 @@
 using Application.Comments;
-using Application.Photos;
 using AutoMapper;
 using Domain.Models;
 
@@ -17,7 +16,7 @@ namespace Application.Core
             .ForMember(d => d.Following, o => o.MapFrom(s => s.Followers.Any(x => x.Follower.UserName == currentUsername)));          
             CreateMap<Comment, CommentDto>()
             .ForMember(f => f.FullName, o => o.MapFrom(u => u.Author.FullName))
-            .ForMember(f => f.UserName, o => o.MapFrom(u => u.Author.UserName))
+            .ForMember(f => f.Username, o => o.MapFrom(u => u.Author.UserName))
             .ForMember(f => f.Image, o => o.MapFrom(u => u.Author.Photos.FirstOrDefault(x => x.IsMain).Url));
        }
     }

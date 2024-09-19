@@ -11,7 +11,7 @@ namespace Application.Comments
     {
         public class Query : IRequest<Result<List<CommentDto>>>
         {
-            public Guid PhotoId { get; set; }
+            public string PhotoId { get; set; }
         }
 
         public class Handler : IRequestHandler<Query, Result<List<CommentDto>>>
@@ -28,7 +28,7 @@ namespace Application.Comments
             public async Task<Result<List<CommentDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var comments = await _context.Comments
-                .Where(x => x.Photo.Id == request.PhotoId.ToString())
+                .Where(x => x.Photo.Id == request.PhotoId)
                 .OrderByDescending(x => x.CreatedAt)
                 .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();

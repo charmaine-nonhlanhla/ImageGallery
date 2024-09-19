@@ -1,18 +1,18 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 import { useEffect } from "react";
-import { Header, Segment, Comment, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, FieldProps } from "formik";
 import * as Yup from 'yup';
 import { formatDistanceToNow } from "date-fns";
+import './Comments.css';
 
 interface Props {
     photoId: string;
 }
 
 export default observer(function Comments({ photoId }: Props) {
-    const { commentStore} = useStore();
+    const { commentStore } = useStore();
 
     useEffect(() => {
         if (photoId) {
@@ -20,25 +20,24 @@ export default observer(function Comments({ photoId }: Props) {
         }
         return () => {
             commentStore.clearComments();
-        }
-    }, [photoId, commentStore]);
+        };
+    }, [commentStore, photoId]);
+
+      useEffect(() => {
+        console.log('Comments:', commentStore.comments);
+    }, [commentStore.comments]);
 
     return (
-        <>
-            <Segment
-                textAlign="center"
-                attached="top"
-                inverted
-                color="teal"
-                style={{ border: 'none' }}
-            >
-                <Header>Comment on this photo</Header>
-            </Segment>
-            <Segment attached clearing>
-                <Formik 
+        <div className="comments-container">
+            <div className="comments-header">
+                <h2>Comment on this photo</h2>
+            </div>
+
+            <div className="comments-form">
+                <Formik
                     onSubmit={(values, { resetForm }) => {
                         if (photoId) {
-                            const commentData = {  CommentText: values.commentText, PhotoId: photoId };
+                            const commentData = { CommentText: values.commentText, PhotoId: photoId };
                             console.log('Form submitted with values:', commentData);
                             commentStore.addComment(commentData).then(() => resetForm());
                         } else {
@@ -51,12 +50,13 @@ export default observer(function Comments({ photoId }: Props) {
                     })}
                 >
                     {({ isValid, isSubmitting, handleSubmit }) => (
-                        <Form className="ui form">
+                        <Form>
                             <Field name="commentText">
                                 {(props: FieldProps) => (
-                                    <div style={{ position: 'relative' }}>
-                                        <Loader active={isSubmitting} /> 
-                                        <textarea 
+                                    <div>
+                                        {isSubmitting && <div className="loading-spinner" />}
+                                        <textarea
+                                            className="comment-textarea"
                                             placeholder="Enter your comment (Enter to submit, SHIFT + enter for new line)"
                                             rows={2}
                                             {...props.field}
@@ -73,25 +73,35 @@ export default observer(function Comments({ photoId }: Props) {
                         </Form>
                     )}
                 </Formik>
-                <Comment.Group>
-                    {commentStore.comments.map(comment => (
-                        <Comment key={comment.commentId}>
-                            <Comment.Avatar src={comment.image || '/assets/user.png'} />
-                            <Comment.Content>
-                                <Comment.Author as={Link} to={`/profiles/${comment.username}`}>
+            </div>
+
+            <div className="comments-list">
+                {commentStore.comments.length === 0 ? (
+                    
+                    <div className="loading-comments">Loading comments...</div>
+                ) : (
+                    commentStore.comments.map(comment => (
+                        <div className="comment-item" key={comment.commentId}>
+                            <img
+                                className="comment-avatar"
+                                src={comment.image || '/assets/user.png'}
+                                alt="User avatar"
+                            />
+                            <div className="comment-content">
+                                <Link className="comment-author" to={`/profiles/${comment.username}`}>
                                     {comment.fullName}
-                                </Comment.Author>
-                                <Comment.Metadata>
-                                    <div>{formatDistanceToNow(comment.createdAt)} ago</div>
-                                </Comment.Metadata>
-                                <Comment.Text style={{ whiteSpace: 'pre-wrap' }}>
+                                </Link>
+                                <span className="comment-time">
+                                    {formatDistanceToNow(comment.createdAt)} ago
+                                </span>
+                                <p className="comment-text">
                                     {comment.commentText}
-                                </Comment.Text>
-                            </Comment.Content>                    
-                        </Comment> 
-                    ))}                
-                </Comment.Group>
-            </Segment>
-        </>
-    )
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
 });

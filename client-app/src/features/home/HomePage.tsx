@@ -1,13 +1,14 @@
-import { observer } from "mobx-react-lite";
-import InfiniteScroll from "react-infinite-scroller";
-import { Loader } from "semantic-ui-react";
-import { useStore } from "../../app/stores/store";
-import { useEffect, useState } from "react";
-import { Category } from "../../app/layout/models/category";
-import { PagingParams } from "../../app/layout/models/pagination";
-import { IoFilterSharp, IoSearchOutline } from "react-icons/io5";
 import './HomePage.css';
-import { PhotoModal } from "./PhotoModal";
+import '../ImageModal/ImageModal.css'
+import { Loader } from "semantic-ui-react";
+import { observer } from "mobx-react-lite";
+import { useEffect, useState } from "react";
+import { useStore } from "../../app/stores/store";
+import InfiniteScroll from "react-infinite-scroller";
+import { Category } from "../../app/layout/models/category";
+import { IoFilterSharp, IoSearchOutline } from "react-icons/io5";
+import { PagingParams } from "../../app/layout/models/pagination";
+import ImageModal from '../ImageModal/ImageModal';
 
 export default observer(function HomePage() {
   const { photoStore } = useStore();
@@ -110,11 +111,7 @@ export default observer(function HomePage() {
         <Loader active={loadingNext} />
       </InfiniteScroll>
       {isModalOpen && modalPhoto && (
-        <PhotoModal
-          src={modalPhoto.src}
-          description={modalPhoto.description}
-          onClose={handleModalClose}
-        />
+        <ImageModal />
       )}
     </div>
   );

@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '../../app/stores/store';
 import { Photo } from '../../app/layout/models/photo';
 import './PhotoLibrary.css';
-import PhotoDetails from './PhotoDetails';
+import ImageModal from '../ImageModal/ImageModal'
 
 export const PhotoLibrary = observer(() => {
-    const { photoStore, userStore } = useStore();
+    const { photoStore, userStore, modalStore } = useStore();
     const username = userStore.user?.userName;
     const { loadingPhotos, loadUserPhotos, photos, selectPhoto, selectedPhoto } = photoStore;
 
@@ -19,33 +19,37 @@ export const PhotoLibrary = observer(() => {
 
     if (loadingPhotos) return <Loader active />;
 
-    const handlePhotoClick = (photoId: string) => {
-        selectPhoto(photoId); 
+    const handlePhotoClick = (photo: Photo) => {
+        selectPhoto(photo.id); 
+        modalStore.openModal(
+            <div className="modal-image-content">
+                <img  src={photo.url} alt={photo.photoTitle} />
+                <h3>{photo.photoTitle}</h3>
+                <p>{photo.photoDescription}</p>
+            </div>
+        );
     };
 
     return (
         <div className="photo-library">
+             <h2 className="library-title">My Library</h2>
             <div className="images-container">
                 {photos.length > 0 ? (
                     photos.map((photo: Photo) => (
                         <div 
                             key={photo.id} 
                             className={`image-item ${photo.id === selectedPhoto?.id ? 'selected' : ''}`}
-                            onClick={() => handlePhotoClick(photo.id)}
+                            onClick={() => handlePhotoClick(photo)}
                         >
-                            <img width={500} src={photo.url} alt={photo.photoTitle} />
+                            <img className="image-display" src={photo.url} alt={photo.photoTitle} />
                             <p className="image-title">{photo.photoTitle}</p>
-                            {/* <div>
-                                <VscComment />
-                                <Comments photoId={photo.id} />
-                            </div> */}
                         </div>
                     ))
                 ) : (
                     <p>No photos available</p>
                 )}
             </div>
-            <PhotoDetails />
+            <ImageModal /> 
         </div>
     );
 });

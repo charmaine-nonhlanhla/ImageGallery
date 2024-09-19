@@ -1,23 +1,24 @@
 import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
+import { MainLayout } from '../router/MainLayout';
+import Logout from "../../features/Logout/Logout";
 import HomePage from "../../features/Home/HomePage";
+import NotFound from "../../features/Errors/NotFound";
 import LoginForm from "../../features/Login/LoginForm";
 import TestErrors from "../../features/Errors/TestError";
-import NotFound from "../../features/Errors/NotFound";
 import ServerError from "../../features/Errors/ServerError";
-import RegisterForm from "../../features/Register/RegisterForm";
+import ImageModal from "../../features/ImageModal/ImageModal";
 import ProfilePage from "../../features/Profiles/ProfilePage";
-import { MainLayout } from '../router/MainLayout';
-import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
-import RegisterSuccess from "../../features/Register/RegisterSuccess";
+import RegisterForm from "../../features/Register/RegisterForm";
 import ConfirmEmail from "../../features/Register/ConfirmEmail";
-import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
-import PhotoDetails from "../../features/MyLibrary/PhotoDetails";
-import Logout from "../../features/Logout/Logout";
-import RecoverPassword from "../../features/Password/RecoverPassword";
-import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
 import ResetPassword from "../../features/Password/ResetPassword";
+import { PhotoUpload } from "../../features/PhotoUpload/PhotoUpload";
+import { PhotoLibrary } from "../../features/MyLibrary/PhotoLibrary";
+import RegisterSuccess from "../../features/Register/RegisterSuccess";
+import RecoverPassword from "../../features/Password/RecoverPassword";
 import PasswordChanged from "../../features/Password/PasswordChanged";
+import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
+import Comments from "../../features/Comments/Comments";
 
 export const routes: RouteObject[] = [
     {
@@ -30,9 +31,10 @@ export const routes: RouteObject[] = [
                 element: <MainLayout />, 
                 children: [
                     { path: '', element: <HomePage /> }, 
+                    { path: 'modal', element: <ImageModal /> }, 
                     { path: 'upload', element: <PhotoUpload /> }, 
                     { path: 'library', element: <PhotoLibrary /> }, 
-                    { path: 'details', element: <PhotoDetails /> }, 
+             
                 ]
             },
           
@@ -47,10 +49,11 @@ export const routes: RouteObject[] = [
             { path: 'profiles/:username', element: <ProfilePage /> },
             { path: 'changepassword', element: <PasswordChanged /> },
             { path: 'account/verifyEmail', element: <ConfirmEmail /> },
-            { path: 'account/resetPassword', element: <ResetPassword /> },
             { path: '*', element: <Navigate replace to='/not-found' /> },
+            { path: 'account/resetPassword', element: <ResetPassword /> },
             { path: 'recover-success', element: <RecoverPasswordSuccess /> },
             { path: 'account/registerSuccess', element: <RegisterSuccess /> },
+            { path: 'comment', element: <Comments photoId="" /> }, 
         ]
     },
 ];

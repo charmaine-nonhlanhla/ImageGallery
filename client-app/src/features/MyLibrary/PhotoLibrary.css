@@ -1,22 +1,32 @@
 .photo-library {
-  display: flex;
   flex-direction: column;
-  margin-left: 446px;
+  margin-left: 35rem;
+}
+
+.library-title {
+  padding-top: 6rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  color: #165A72;
 }
 
 .images-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 2rem;
 }
 
-.image-item {
-  margin: 3rem 0.5rem 1px 2rem;
+.image-display {
+  margin-left: 4rem;
+  width: 52rem;
+  height: 40rem;
 }
 
 .image-title {
-  margin-top: -2rem;
+  margin-left: 5rem;
+  margin-top: -4rem;
   color: #ffffff;
   font-size: large;
 }

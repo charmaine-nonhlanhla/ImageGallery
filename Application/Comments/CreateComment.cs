@@ -14,7 +14,7 @@ namespace Application.Comments
         public class Command : IRequest<Result<CommentDto>>
         {
             public string CommentText { get; set; }
-            public Guid PhotoId { get; set; }
+            public string PhotoId { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -41,42 +41,31 @@ namespace Application.Comments
 
             public async Task<Result<CommentDto>> Handle(Command request, CancellationToken cancellationToken)
             {
-                // Check if the photo exists
-                var photo = await _context.Photos.FindAsync(request.PhotoId);
-                if (photo == null) 
-                {
-                    return Result<CommentDto>.Failure("Photo not found.");
-                }
+                var photo = await _context.Photos
+                .Include(x => x.Comments)
+                    .ThenInclude(x => x.Author)
+                    .ThenInclude(x => x.Photos)
+                    .FirstOrDefaultAsync(x => x.Id == request.PhotoId);
 
-                // Check if the user exists
-                var username = _userAccessor.GetUsername();
+
+                if (photo == null) return null;
+
                 var user = await _context.Users
-                    .SingleOrDefaultAsync(x => x.UserName == username);
+                    .SingleOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
 
-                if (user == null) 
-                {
-                    return Result<CommentDto>.Failure("User not found.");
-                }
-
-                // Create and add the comment
                 var comment = new Comment
                 {
                     Author = user,
                     Photo = photo,
-                    CreatedAt = DateTime.UtcNow,
                     CommentText = request.CommentText                  
                 };
 
                 photo.Comments.Add(comment);
 
-                // Save changes to the database
                 var success = await _context.SaveChangesAsync() > 0;
 
-                if (success) 
-                {
-                    return Result<CommentDto>.Success(_mapper.Map<CommentDto>(comment));
-                }
-
+                if (success) return Result<CommentDto>.Success(_mapper.Map<CommentDto>(comment));
+                
                 return Result<CommentDto>.Failure("Failed to add comment.");
             }
         }
