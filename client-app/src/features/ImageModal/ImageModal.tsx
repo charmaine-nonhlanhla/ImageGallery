@@ -3,7 +3,12 @@ import { useStore } from '../../app/stores/store';
 import './ImageModal.css'; 
 import Comments from '../Comments/Comments';
 
-const ImageModal = observer(() => {
+interface Props {
+    photoId: string;
+}
+
+
+const ImageModal = observer(({photoId}: Props) => {
     const { modalStore } = useStore();
 
     if (!modalStore.modal.open) return null; 
@@ -13,7 +18,7 @@ const ImageModal = observer(() => {
             <div className="image-modal-content">
                 <span className="close-button" onClick={modalStore.closeModal}>×</span>
                 {modalStore.modal.body}
-                <Comments photoId='photoid' />
+                <Comments photoId={photoId} />
             </div>
         </div>
     );

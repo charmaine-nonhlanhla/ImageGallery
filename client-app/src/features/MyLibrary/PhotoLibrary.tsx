@@ -49,7 +49,7 @@ export const PhotoLibrary = observer(() => {
                     <p>No photos available</p>
                 )}
             </div>
-            <ImageModal /> 
+            <ImageModal photoId={selectedPhoto?.id!}/> 
         </div>
     );
 });

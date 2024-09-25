@@ -8,7 +8,7 @@ namespace Domain.Models
         public string CommentText { get; set; }
         public User Author { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public Photo Photo { get; set; } 
+        public Photo Photo { get; set; }  
         
     }
 }

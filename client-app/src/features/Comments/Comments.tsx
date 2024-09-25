@@ -15,6 +15,7 @@ export default observer(function Comments({ photoId }: Props) {
     const { commentStore } = useStore();
 
     useEffect(() => {
+        console.log(`Comments Component Mounted with photoId: ${photoId}`);
         if (photoId) {
             commentStore.createHubConnection(photoId);
         }
@@ -23,7 +24,7 @@ export default observer(function Comments({ photoId }: Props) {
         };
     }, [commentStore, photoId]);
 
-      useEffect(() => {
+    useEffect(() => {
         console.log('Comments:', commentStore.comments);
     }, [commentStore.comments]);
 
@@ -31,8 +32,7 @@ export default observer(function Comments({ photoId }: Props) {
         <div className="comments-container">
             <div className="comments-header">
                 <h2>Comment on this photo</h2>
-            </div>
-
+                </div>
             <div className="comments-form">
                 <Formik
                     onSubmit={(values, { resetForm }) => {
@@ -51,57 +51,58 @@ export default observer(function Comments({ photoId }: Props) {
                 >
                     {({ isValid, isSubmitting, handleSubmit }) => (
                         <Form>
-                            <Field name="commentText">
-                                {(props: FieldProps) => (
-                                    <div>
-                                        {isSubmitting && <div className="loading-spinner" />}
-                                        <textarea
-                                            className="comment-textarea"
-                                            placeholder="Enter your comment (Enter to submit, SHIFT + enter for new line)"
-                                            rows={2}
-                                            {...props.field}
-                                            onKeyDown={e => {
-                                                if (e.key === 'Enter' && !e.shiftKey) {
-                                                    e.preventDefault();
-                                                    isValid && handleSubmit();
-                                                }
-                                            }}
-                                        />
-                                    </div>
+                            <div className="comments-field">
+                                <Field name="commentText">
+                                    {(props: FieldProps) => (
+                                        <div>
+                                            {isSubmitting && <div className="loading-spinner" />}
+                                            <textarea
+                                                className="comment-textarea"
+                                                placeholder="Enter your comment (Enter to submit, SHIFT + enter for new line)"
+                                                rows={2}
+                                                {...props.field}
+                                                onKeyDown={e => {
+                                                    if (e.key === 'Enter' && !e.shiftKey) {
+                                                        e.preventDefault();
+                                                        isValid && handleSubmit();
+                                                    }
+                                                }}
+                                            />
+                            <div className="comments-list">
+                                {commentStore.comments.length === 0 ? (
+                                    <div className="loading-comments">Loading comments...</div>
+                                ) : (
+                                    commentStore.comments.map(comment => (
+                                        <div className="comment-item" key={comment.commentId}>
+                                            <img
+                                                className="comment-avatar"
+                                                src={comment.image || '/assets/user.png'}
+                                                alt="User avatar"
+                                            />
+                                            <div className="comment-content">
+                                                <Link className="comment-author" to={`/profiles/${comment.username}`}>
+                                                    {comment.fullName}
+                                                </Link>
+                                                <span className="comment-time">
+                                                    {formatDistanceToNow(comment.createdAt)} ago
+                                                </span>
+                                                <p className="comment-text">
+                                                    {comment.commentText}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))
                                 )}
-                            </Field>
+                            </div>
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
                         </Form>
                     )}
                 </Formik>
             </div>
 
-            <div className="comments-list">
-                {commentStore.comments.length === 0 ? (
-                    
-                    <div className="loading-comments">Loading comments...</div>
-                ) : (
-                    commentStore.comments.map(comment => (
-                        <div className="comment-item" key={comment.commentId}>
-                            <img
-                                className="comment-avatar"
-                                src={comment.image || '/assets/user.png'}
-                                alt="User avatar"
-                            />
-                            <div className="comment-content">
-                                <Link className="comment-author" to={`/profiles/${comment.username}`}>
-                                    {comment.fullName}
-                                </Link>
-                                <span className="comment-time">
-                                    {formatDistanceToNow(comment.createdAt)} ago
-                                </span>
-                                <p className="comment-text">
-                                    {comment.commentText}
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                )}
-            </div>
         </div>
     );
 });
