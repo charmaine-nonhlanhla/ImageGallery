@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import { Card, CardContent, CardDescription, CardHeader, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
+import userImage from '../../assets/user.png'
 
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 export default observer(function ProfileCard({profile}: Props) {
     return (
         <Card as={Link} t0={`/profiles/${profile.username}`}>
-            <Image src={profile.image || '/assets/user.png'} />
+            <Image src={profile.image || userImage } />
             <CardContent>
             <CardHeader>{profile.fullName}</CardHeader>
             <CardDescription> Bio goes here </CardDescription>

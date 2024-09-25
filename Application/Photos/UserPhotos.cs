@@ -8,12 +8,13 @@ namespace Application.Photos
 {
     public class UserPhotos
     {
-        public class Query : IRequest<Result<List<Photo>>>
+        public class Query : IRequest<Result<PagedList<Photo>>>
         {
             public string Username { get; set; }
+            public PagingParams Params { get; set; } 
         }
 
-        public class Handler : IRequestHandler<Query, Result<List<Photo>>>
+        public class Handler : IRequestHandler<Query, Result<PagedList<Photo>>>
         {
             private readonly ImageGalleryContext _context;
 
@@ -22,7 +23,7 @@ namespace Application.Photos
                 _context = context;
             }
 
-            public async Task<Result<List<Photo>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PagedList<Photo>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users
                     .Include(p => p.Photos)
@@ -30,7 +31,13 @@ namespace Application.Photos
 
                 if (user == null) return null; // Or handle user not found
 
-                return Result<List<Photo>>.Success(user.Photos.ToList());
+                // Apply pagination
+                var query = user.Photos.AsQueryable()
+                    .OrderBy(d => d.UploadDate); // You can adjust the order as needed
+
+                var pagedList = await PagedList<Photo>.CreateAsync(query, request.Params.PageNumber, request.Params.PageSize);
+
+                return Result<PagedList<Photo>>.Success(pagedList);
             }
         }
     }

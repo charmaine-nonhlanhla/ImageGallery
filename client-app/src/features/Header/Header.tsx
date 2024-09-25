@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, MenuItem, Image, Dropdown, DropdownItem, DropdownMenu, Menu } from 'semantic-ui-react';
 import { useStore } from '../../app/stores/store';
 import './Header.css';
+import userImage from '../../assets/user.png'
 
 interface HeaderProps {
   activeElement: 'home' | 'image-upload' | 'my-library' | 'logout' | '';
@@ -24,7 +25,7 @@ export const Header = ({ activeElement }: HeaderProps) => {
           <Menu.Menu position='right'>
             <MenuItem position='right'>
               <Image 
-                src={user?.image || './client-app/src/assets/user.png'} 
+                src={user?.image || userImage} 
                 avatar 
                 spaced='right' 
                 style={{ width: '40px', height: '40px' }}

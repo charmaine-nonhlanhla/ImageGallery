@@ -1,7 +1,6 @@
 using Application.Core;
 using Domain.Models;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Photos

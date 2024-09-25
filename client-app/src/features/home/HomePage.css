@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 446px;
+  
 }
 
 .pictures-container {
@@ -9,12 +10,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-left: 2rem;
+
   
 }
 
 .picture-item {
   margin: 3rem 0.5rem 1px 2rem;
-  
 }
 
 .photo {
@@ -22,7 +23,8 @@
 }
 
 .photo-title {
-  margin-top: -2rem;
+  margin-top: -4rem;
+  margin-left: 1rem;
   color: #ffffff;
   font-size: large;
 }

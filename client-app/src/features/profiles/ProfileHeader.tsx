@@ -2,6 +2,7 @@ import { Divider, Grid, GridColumn, Header, Item, ItemContent, ItemGroup, ItemIm
 import { Profile } from "../../app/layout/models/profile";
 import { observer } from "mobx-react-lite";
 import FollowButton from "./FollowButton";
+import userImage from '../../assets/user.png';
 
 
 interface Props {
@@ -15,7 +16,7 @@ export default observer(function ProfileHeader({profile}: Props) {
                 <GridColumn width={12}>
                     <ItemGroup>
                         <Item>
-                            <ItemImage avatar size ='small' src={profile.image || '/assets/user.png'} />
+                            <ItemImage avatar size ='small' src={profile.image || userImage} />
                             <ItemContent verticalAlign='middle'>
                                 <Header as ='h1' content={profile.fullName} />
                             </ItemContent>
