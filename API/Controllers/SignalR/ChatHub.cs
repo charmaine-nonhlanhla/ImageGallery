@@ -20,6 +20,16 @@ namespace API.Controllers.SignalR
                 .SendAsync("ReceiveComment", comment.Value);
         }
 
+         public async Task DeleteComment(int commentId, string photoId)
+        {
+            var result = await _mediator.Send(new DeleteComment.Command { CommentId = commentId, PhotoId = photoId });
+
+            if (result.IsSuccess)
+            {
+                await Clients.Group(photoId).SendAsync("CommentDeleted", commentId);
+            }
+        }
+
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();

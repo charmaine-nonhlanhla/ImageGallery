@@ -104,3 +104,10 @@ gap: 8px;
 .category-item:hover {
   background-color: #f1f1f1;
 }
+
+.home-chat-icon {
+  cursor: pointer;
+  color: #165A72;
+  margin-top: -1rem;
+  margin-bottom: -2rem;
+}

@@ -1,4 +1,5 @@
 .photo-library {
+  position: relative;
   flex-direction: column;
   margin-left: 35rem;
 }
@@ -20,7 +21,7 @@
 
 .image-display {
   margin: 3rem 0.5rem 1px 2rem;
-  width: 34rem;
+  width: 30rem;
 }
 
 .image-title {
@@ -28,6 +29,31 @@
   margin-top: -4rem;
   color: #ffffff;
   font-size: large;
+}
+
+.pagination-controls {
+  margin-top: 5rem;
+  padding-bottom: 5rem;
+  margin-left: 50rem;
+}
+
+.pagination-button {
+  border: none;
+  background: none;
+  color: #165A72;
+  cursor: pointer;
+}
+
+.pagenumber {
+  color: #165A72;
+}
+
+.chat-icon {
+  cursor: pointer;
+  color: #165A72;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: -2rem;
 }
 
 

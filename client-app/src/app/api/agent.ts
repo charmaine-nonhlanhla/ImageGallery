@@ -112,17 +112,16 @@ const Profiles = {
             headers: {'Content-Type': 'multipart/form-data'}
         })
     },
-    setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
     deletePhoto: (id: string) => requests.delete(`/photos/${id}`),
-    updateProfile: (profile: Partial<Profile>) => requests.put(`profiles`, profile),
+    setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
     updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
-    listFollowings: (username: string, predicate: string) => 
-        requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`),
+    updateProfile: (profile: Partial<Profile>) => requests.put(`profiles`, profile),
+    listFollowings: (username: string, predicate: string) => requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`),
 };
 
 const Photos = {
     
-    listByUser: (username: string) => requests.get<Photo[]>(`/photos/${username}`),
+    listByUser: (username: string, params: URLSearchParams) => axios.get<PaginatedResult<Photo[]>>(`/photos/${username}`, {params}).then(responseBody),
     list: (params: URLSearchParams) => axios.get<PaginatedResult<Photo[]>>(`photos`, {params}).then(responseBody), 
 };
 

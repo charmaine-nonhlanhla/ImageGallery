@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import { useStore } from '../../app/stores/store';
 import { IoFilterSharp, IoSearchOutline } from 'react-icons/io5';
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { MdArrowBackIosNew, MdArrowForwardIos, MdChatBubbleOutline } from "react-icons/md";
 import { PagingParams } from '../../app/layout/models/pagination';
 import ImageModal from '../ImageModal/ImageModal';
 import { Category } from '../../app/layout/models/category';
@@ -28,6 +28,7 @@ export default observer(function HomePage() {
   const [loadingNext, setLoadingNext] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [commentVisible, setCommentVisible] = useState<string | null>(null); 
 
 
   useEffect(() => {
@@ -54,6 +55,10 @@ export default observer(function HomePage() {
     );
     photoStore.selectPhoto(photo.id);
   };
+
+  const handleChatClick = (photo: Photo) => {
+    setCommentVisible(prev => (prev === photo.id ? null : photo.id));
+};
 
 
   const handleNextPage = () => {
@@ -119,8 +124,13 @@ export default observer(function HomePage() {
         {filteredPhotos.length > 0 ? (
           filteredPhotos.map((photo) => (
             <div key={photo.id} className="picture-item" onClick={() => handlePhotoClick(photo)}>
-              <img className="photo" width={500} src={photo.url} alt={photo.photoTitle} />
+              <img className="photo" width={420} src={photo.url} alt={photo.photoTitle} />
               <p className="photo-title">{photo.photoTitle}</p>
+              <MdChatBubbleOutline 
+                                className="home-chat-icon"
+                                size={24} 
+                                onClick={() => handleChatClick(photo)} 
+                            />
             </div>
           ))
         ) : (

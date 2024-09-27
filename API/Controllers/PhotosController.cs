@@ -32,10 +32,10 @@ namespace API.Controllers
         }
 
         [HttpGet("{username}")]
-        public async Task<IActionResult> GetUserPhotos(string username)
+        public async Task<IActionResult> GetUserPhotos(string username, [FromQuery]PagingParams param )
         {
-            var result = await Mediator.Send(new UserPhotos.Query { Username = username });
-            return HandleResult(result);
+            var result = await Mediator.Send(new UserPhotos.Query { Username = username, Params = param });
+            return HandlePagedResult(result);
         }
     }
 }

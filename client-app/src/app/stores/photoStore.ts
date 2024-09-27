@@ -52,22 +52,25 @@ export default class PhotoStore {
         }
     }
 
-    setPagination = (pagination: Pagination) => {
-        this.pagination = pagination;
-    }
-
     loadUserPhotos = async (username: string) => {
         this.loadingPhotos = true;
         try {
-            const response = await agent.Photos.listByUser(username);
+            const result = await agent.Photos.listByUser(username, this.axiosParams);
+    
             runInAction(() => {
-                this.photos = response;
+                this.photos = result.data; 
+                this.filteredPhotos = this.filterPhotos();
                 this.loadingPhotos = false;
             });
+            this.setPagination(result.pagination); 
         } catch (error) {
             console.log("Error loading user photos:", error);
             runInAction(() => this.loadingPhotos = false);
         }
+    }
+
+    setPagination = (pagination: Pagination) => {
+        this.pagination = pagination;
     }
 
     selectPhoto = (id: string) => {

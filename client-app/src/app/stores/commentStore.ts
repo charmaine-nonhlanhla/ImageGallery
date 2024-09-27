@@ -4,6 +4,8 @@ import { makeAutoObservable, runInAction } from "mobx";
 import { store } from "./store";
 
 export default class CommentStore {
+    loading = false;
+
     comments: ChatComment[] = [];
     
     hubConnection: HubConnection | null = null;
@@ -27,7 +29,6 @@ export default class CommentStore {
                 .catch(error => console.error('Error establishing the connection:', error));
 
             this.hubConnection.on('LoadComments', (comments: ChatComment[]) => {
-                console.log('Received comments:', comments);
                 runInAction(() => {
                     comments.forEach(comment => {
                         comment.createdAt = new Date(comment.createdAt + 'Z');
@@ -38,8 +39,8 @@ export default class CommentStore {
 
             this.hubConnection.on('ReceiveComment', (comment: ChatComment) => {
                 runInAction(() => {
-                    comment.createdAt = new Date(comment.createdAt + 'Z'); 
-                    this.comments.push(comment);
+                    comment.createdAt = new Date(comment.createdAt); 
+                    this.comments.unshift(comment);
                 });
             });
         }
@@ -65,6 +66,14 @@ export default class CommentStore {
             await this.hubConnection.invoke('SendComment', values);
         } catch (error) {
             console.error('Error sending comment:', error);
+        }
+    }
+
+    deleteComment = async (commentId: number, photoId: string) => {
+        try {
+            await this.hubConnection?.invoke('DeleteComment', commentId, photoId);
+        } catch (error) {
+            console.error('Error deleting comment:', error);
         }
     }
 }

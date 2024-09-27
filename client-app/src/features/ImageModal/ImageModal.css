@@ -1,60 +1,62 @@
 .image-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-modal-content {
-    object-fit: cover;
-    width: 130rem;
-    height: 45rem;
-    margin-left: 32rem;
-    margin-top: 4rem;
-    background-color: white;
-    padding: 20px;
-    overflow: auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  object-fit: cover;
+  width: 130rem;
+  height: 45rem;
+  margin-left: 32rem;
+  margin-top: 6rem;
+  background-color: white;
+  padding: 20px;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close-button {
-    font-weight: 600;
-    font-size: 3rem;
-    position: absolute;
-    top: 3rem;
-    right: 22rem;
-    cursor: pointer;
-    color: black;
+  font-weight: 600;
+  font-size: 3rem;
+  position: absolute;
+  top: 3rem;
+  right: 16rem;
+  cursor: pointer;
+  color: black;
 }
 
 .modal-image-content img {
-   width: 80rem;
-   height: 50rem;
+  width: 80rem;
+  height: 50rem;
 }
-
-.modal-image-content img {
-   width: 80rem;
-   height: 50rem;
-}
-
 
 .image-info {
-    padding: 2rem;
-    position: absolute;
-    bottom: -6.3rem;
-    width: 80rem;
-    background-color: #7B7777B2;
-    color: white;
+  padding: 2rem;
+  position: absolute;
+  bottom: -6.3rem;
+  width: 80rem;
+  background-color: #7b7777b2;
+  color: white;
 }
 
 .image-info h3,
 .image-info p {
-    color: white;
+  color: white;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.modal-chat-bubble {
+    color: #165A72;
 }

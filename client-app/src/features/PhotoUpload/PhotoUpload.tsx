@@ -55,12 +55,13 @@ export const PhotoUpload: React.FC = () => {
     setSelectedFile(file);
   };
 
-  const handleSubmit = async (values: { phototitle: string; categoryId: string; photodescription: string }) => {
+  const handleSubmit = async (values: { phototitle: string; categoryId: string; photodescription: string },   { resetForm }: { resetForm: () => void }) => {
     if (!selectedFile) {
       console.error("No file selected");
       return;
     }
     await handlePhotoUpload(selectedFile, values.phototitle, values.categoryId, values.photodescription);
+    resetForm();
   };
 
   return (

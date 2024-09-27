@@ -1,19 +1,21 @@
 import './PhotoLibrary.css';
 import { Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react'; 
 import { useStore } from '../../app/stores/store';
 import { Photo } from '../../app/layout/models/photo';
 import ImageModal from '../ImageModal/ImageModal';
 import { PagingParams } from '../../app/layout/models/pagination';
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md"; 
+import { MdArrowBackIosNew, MdArrowForwardIos, MdChatBubbleOutline } from "react-icons/md"; 
 
 export const PhotoLibrary = observer(() => {
     const { photoStore, userStore, modalStore } = useStore();
     const username = userStore.user?.userName;
     const { loadingPhotos, loadUserPhotos, photos, selectPhoto, selectedPhoto, setPagingParams, pagination } = photoStore;
-    
+
     const [loadingNext, setLoadingNext] = useState(false);
+    const [commentVisible, setCommentVisible] = useState<string | null>(null); 
+    const imgRef = useRef<HTMLImageElement>(null); 
 
     useEffect(() => {
         if (username) {
@@ -27,11 +29,12 @@ export const PhotoLibrary = observer(() => {
         selectPhoto(photo.id); 
         modalStore.openModal(
             <div className="modal-image-content">
-                <img src={photo.url} alt={photo.photoTitle} />
+                <img ref={imgRef} src={photo.url} alt={photo.photoTitle} />
                 <h3>{photo.photoTitle}</h3>
                 <p>{photo.photoDescription}</p>
             </div>
         );
+        document.body.classList.add('no-scroll');
     };
 
     const handleNextPage = () => {
@@ -50,6 +53,10 @@ export const PhotoLibrary = observer(() => {
         }
     };
 
+    const handleChatClick = (photo: Photo) => {
+        setCommentVisible(prev => (prev === photo.id ? null : photo.id));
+    };
+
     return (
         <div className="photo-library">
             <h2 className="library-title">My Library</h2>
@@ -63,6 +70,11 @@ export const PhotoLibrary = observer(() => {
                         >
                             <img className="image-display" src={photo.url} alt={photo.photoTitle} />
                             <p className="image-title">{photo.photoTitle}</p>
+                            <MdChatBubbleOutline 
+                                className="chat-icon"
+                                size={24} 
+                                onClick={() => handleChatClick(photo)} 
+                            />
                         </div>
                     ))
                 ) : (
@@ -79,7 +91,7 @@ export const PhotoLibrary = observer(() => {
                     <MdArrowBackIosNew size={24} />
                 </button>
 
-                <span>
+                <span className='pagenumber'>
                     Page {pagination?.currentPage} of {pagination?.totalPages}
                 </span>
 
