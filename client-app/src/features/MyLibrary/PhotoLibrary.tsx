@@ -6,15 +6,18 @@ import { useStore } from '../../app/stores/store';
 import { Photo } from '../../app/layout/models/photo';
 import ImageModal from '../ImageModal/ImageModal';
 import { PagingParams } from '../../app/layout/models/pagination';
+import { FaList, FaRegTrashAlt } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 import { MdArrowBackIosNew, MdArrowForwardIos, MdChatBubbleOutline } from "react-icons/md"; 
 
 export const PhotoLibrary = observer(() => {
     const { photoStore, userStore, modalStore } = useStore();
     const username = userStore.user?.userName;
-    const { loadingPhotos, loadUserPhotos, photos, selectPhoto, selectedPhoto, setPagingParams, pagination } = photoStore;
-
+    const { loadingPhotos, loadUserPhotos, photos, selectPhoto, selectedPhoto, setPagingParams, pagination, deletePhoto, setMainPhoto } = photoStore;
     const [loadingNext, setLoadingNext] = useState(false);
     const [commentVisible, setCommentVisible] = useState<string | null>(null); 
+    const [optionsVisible, setOptionsVisible ] = useState(false);
+    const [visibleOptions] = useState<string | null>(null);
     const imgRef = useRef<HTMLImageElement>(null); 
 
     useEffect(() => {
@@ -57,6 +60,25 @@ export const PhotoLibrary = observer(() => {
         setCommentVisible(prev => (prev === photo.id ? null : photo.id));
     };
 
+    const handleOptionsClick = (photo: Photo) => {
+        selectPhoto(photo.id);
+        setOptionsVisible(true);
+    };
+
+    const handleDeletePhoto = () => {
+        if (selectedPhoto) {
+            deletePhoto(selectedPhoto);
+            setOptionsVisible(false);
+        }
+    };
+
+    const handleSetMainPhoto = () => {
+        if (selectedPhoto) {
+            setMainPhoto(selectedPhoto);
+            setOptionsVisible(false); 
+        }
+    };
+
     return (
         <div className="photo-library">
             <h2 className="library-title">My Library</h2>
@@ -73,8 +95,36 @@ export const PhotoLibrary = observer(() => {
                             <MdChatBubbleOutline 
                                 className="chat-icon"
                                 size={24} 
-                                onClick={() => handleChatClick(photo)} 
+                                onClick={(e) => { 
+                                    e.stopPropagation();
+                                    handleChatClick(photo); 
+                                }} 
                             />
+                            <FaList 
+                                className="image-options"
+                                size={24}
+                                onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    handleOptionsClick(photo); 
+                                }}
+                            />
+
+                            {visibleOptions === photo.id && (
+                                <div className="photo-options">
+                                    <CgProfile className="option-button" onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        handleSetMainPhoto();
+                                    }}>
+                                        Set as Main Photo
+                                    </CgProfile>
+                                    <FaRegTrashAlt className="option-button" onClick={(e) => {
+                                        e.stopPropagation(); 
+                                        handleDeletePhoto();
+                                    }}>
+                                        Delete Photo
+                                    </FaRegTrashAlt>
+                                </div>
+                            )}
                         </div>
                     ))
                 ) : (

@@ -32,10 +32,8 @@ export default observer(function ProfileHeader({profile}: Props) {
                     <FollowButton profile={profile} />
                     <Reveal animated='move'>
                         <RevealContent visible style={{width: '100%'}}>
-                            {/* <Button fluid color='teal' content='Following' /> */}
                          </RevealContent>
                         <RevealContent hidden style={{width: '100%'}}>
-                            {/* <Button fluid basic color={true ? 'red' : 'green'} content={true ? 'unfollow' : 'follow'} /> */}
                         </RevealContent>
                     </Reveal>
                 </GridColumn>
