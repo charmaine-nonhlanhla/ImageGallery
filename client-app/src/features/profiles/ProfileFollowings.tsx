@@ -16,7 +16,7 @@ export default observer(function ProfileFollowings() {
                     icon='user' 
                     content={ activeTab === 3 ? `People ${profile?.fullName} is following` : `People following ${profile?.fullName}` } />
                 </GridColumn>
-                <GridColumn width={16}>
+                <GridColumn width={10}>
                     <CardGroup itemsPerRow={4}>
                     {followings.map(profile => (
                         <ProfileCard key={profile.username} profile={profile} />  

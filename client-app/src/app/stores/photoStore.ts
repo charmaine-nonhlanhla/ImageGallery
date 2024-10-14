@@ -114,6 +114,7 @@ export default class PhotoStore {
         try {
             await agent.Profiles.setMainPhoto(photo.id);
             store.userStore.setImage(photo.url);
+            window.location.reload();
             runInAction(() => {
                 if (this.profile && this.profile.photos) {
                     this.profile.photos.find(p => p.isMain)!.isMain = false;
@@ -122,6 +123,7 @@ export default class PhotoStore {
                     this.loading = false;
                 }
             });
+
         } catch (error) {
             runInAction(() => this.loading = false);
             console.log(error);
@@ -132,6 +134,7 @@ export default class PhotoStore {
         this.loading = true;
         try {
             await agent.Profiles.deletePhoto(photo.id);
+            window.location.reload();
             runInAction(() => {
                 if (this.profile) {
                     this.profile.photos = this.profile.photos?.filter(p => p.id !== photo.id);
