@@ -9,7 +9,6 @@ namespace Persistence
         {
             if (context.Photos.Any()) return;
 
-            // Seed Users
             var users = new List<User>
             {
                 new User{FullName = "Bob", UserName = "bob", Email = "bob@test.com"},
@@ -22,7 +21,6 @@ namespace Persistence
                 await userManager.CreateAsync(user, "Pa$$w0rd");
             }
 
-            // Seed Categories
             var categories = new List<Category>
             {
                 new Category
@@ -41,7 +39,6 @@ namespace Persistence
             await context.Categories.AddRangeAsync(categories);
             await context.SaveChangesAsync();
 
-            // Seed Photos
             var photos = new List<Photo>
             {
                 new Photo
@@ -75,7 +72,6 @@ namespace Persistence
             await context.Photos.AddRangeAsync(photos);
             await context.SaveChangesAsync();
 
-            // Seed Comments
             var comments = new List<Comment>
             {
                 new Comment
@@ -100,7 +96,6 @@ namespace Persistence
             await context.Comments.AddRangeAsync(comments);
             await context.SaveChangesAsync();
 
-            // Associate Comments with Photos
             photos[0].Comments.Add(comments[0]);
             photos[1].Comments.Add(comments[1]);
             photos[2].Comments.Add(comments[2]);

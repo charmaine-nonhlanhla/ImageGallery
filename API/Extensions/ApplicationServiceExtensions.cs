@@ -1,8 +1,6 @@
 using Application.Categories;
-using Application.Comments;
 using Application.Core;
 using Application.Interfaces;
-using Application.Users;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Email;
@@ -38,7 +36,6 @@ namespace API.Extensions
 
           
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryList.Handler).Assembly));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserList.Handler).Assembly));
             services.AddAutoMapper(typeof(MappingProfiles).Assembly); 
             services.AddHttpContextAccessor(); 
             services.AddScoped<IUserAccessor, UserAccessor>();

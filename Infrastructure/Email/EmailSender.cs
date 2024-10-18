@@ -1,8 +1,6 @@
 using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
-using System;
 
 namespace Infrastructure.Email
 {
@@ -22,7 +20,7 @@ namespace Infrastructure.Email
                 {
                     Port = int.Parse(_config["Smtp:Port"]),
                     Credentials = new NetworkCredential(_config["Smtp:Username"], _config["Smtp:Password"]),
-                    EnableSsl = false // Set to true if your SMTP server requires SSL
+                    EnableSsl = false 
                 };
 
                 var message = new MailMessage
@@ -39,7 +37,6 @@ namespace Infrastructure.Email
             }
             catch (SmtpException smtpEx)
             {
-                // Log detailed SMTP error
                 Console.WriteLine($"SMTP Error: {smtpEx.Message}");
                 Console.WriteLine($"Status Code: {smtpEx.StatusCode}");
                 Console.WriteLine($"Inner Exception: {smtpEx.InnerException?.Message}");
@@ -47,7 +44,6 @@ namespace Infrastructure.Email
             }
             catch (Exception ex)
             {
-                // Log other general exceptions
                 Console.WriteLine($"General Error: {ex.Message}");
                 Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
                 throw new Exception($"General Error: {ex.Message}", ex);

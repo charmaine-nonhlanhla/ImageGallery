@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.Text;
 using API.DTOs;
-using Application.Profiles;
 using Domain.Models;
 using Infrastructure.Email;
 using Microsoft.AspNetCore.Authorization;

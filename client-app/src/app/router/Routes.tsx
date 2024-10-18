@@ -31,7 +31,7 @@ export const routes: RouteObject[] = [
                 element: <MainLayout />, 
                 children: [
                     { path: '', element: <HomePage /> }, 
-                    { path: 'modal', element: <ImageModal /> }, 
+                    { path: 'modal', element: <ImageModal photoId="" /> }, 
                     { path: 'upload', element: <PhotoUpload /> }, 
                     { path: 'library', element: <PhotoLibrary /> }, 
              
