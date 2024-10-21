@@ -3,12 +3,7 @@
 ## 1. Introduction
 The Image Gallery App allows users to upload, manage, and interact with images. This documentation outlines the technical design, functionalities, and usage instructions for the application.
 
-## 2. Project Architecture
-
-### 2.1 Architecture Diagrams
-- **Database Diagram**: [Insert your database diagram here]
-
-### 2.2 Overview
+### 2. Overview
 This application is built using a React frontend, an ASP.NET Core backend, and an SQL Server database. The architecture is designed for scalability and maintainability.
 
 ## 3. Technologies Used
@@ -91,7 +86,7 @@ POST https://localhost:5000/api/account/register
 - SQL Server
 
 ### 7.2 Configuration Steps
-1. Clone the repository .
+1. Clone the repository https://github.com/charmaine-nonhlanhla/ImageGallery.git.
 2. Open SQL Server Management Studio (SSMS) and create a new database named `ImageGallery`.
    ```sql
    CREATE DATABASE ImageGallery;
