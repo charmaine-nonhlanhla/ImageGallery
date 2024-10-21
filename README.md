@@ -147,6 +147,7 @@ Start the frontend development server:
 cd client-app
 npm run dev || npm start
 ```
+The clientside will be hosted on `https://localhost:3000`.
 
 ## 9. Bonus Features
 - **Verification Email**: Sent upon user registration for confirmation.
