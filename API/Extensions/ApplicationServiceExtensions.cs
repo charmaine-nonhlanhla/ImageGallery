@@ -15,31 +15,31 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddDbContext<ImageGalleryContext>(opt =>
             {
                 opt.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
-            services.AddCors(opt => {
-            opt.AddPolicy("CorsPolicy", policy =>
+            services.AddCors(opt =>
             {
-                policy
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials()
-                .WithExposedHeaders("WWW-Authenticate", "Pagination")
-                .WithOrigins("http://localhost:3000", "https://localhost:3000");
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .WithExposedHeaders("WWW-Authenticate", "Pagination")
+                    .WithOrigins("http://localhost:3000", "https://localhost:3000");
                 });
             });
 
-          
+
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CategoryList.Handler).Assembly));
-            services.AddAutoMapper(typeof(MappingProfiles).Assembly); 
-            services.AddHttpContextAccessor(); 
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
-            services.AddScoped<IPhotoAccessor, PhotoAccessor>(); 
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             services.AddScoped<EmailSender>();
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<CreateCategory>();
@@ -47,7 +47,7 @@ namespace API.Extensions
             services.AddSignalR();
 
 
-            
+
             return services;
         }
     }

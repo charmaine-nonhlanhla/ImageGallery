@@ -13,7 +13,7 @@ namespace Application.Photos
         public class Command : IRequest<Result<Photo>>
         {
             public IFormFile File { get; set; }
-             public string PhotoTitle { get; set; }
+            public string PhotoTitle { get; set; }
             public int CategoryId { get; set; }
             public string PhotoDescription { get; set; }
         }

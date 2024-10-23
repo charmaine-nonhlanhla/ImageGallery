@@ -202,15 +202,15 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.UserFollowing", b =>
                 {
-                    b.Property<string>("FollowerId")
+                    b.Property<string>("ObserverId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("FollowedId")
+                    b.Property<string>("TargetId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("FollowerId", "FollowedId");
+                    b.HasKey("ObserverId", "TargetId");
 
-                    b.HasIndex("FollowedId");
+                    b.HasIndex("TargetId");
 
                     b.ToTable("UserFollowings");
                 });
@@ -390,21 +390,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.UserFollowing", b =>
                 {
-                    b.HasOne("Domain.Models.User", "Followed")
-                        .WithMany("Followers")
-                        .HasForeignKey("FollowedId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.User", "Follower")
+                    b.HasOne("Domain.Models.User", "Observer")
                         .WithMany("Followings")
-                        .HasForeignKey("FollowerId")
+                        .HasForeignKey("ObserverId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.Navigation("Followed");
+                    b.HasOne("Domain.Models.User", "Target")
+                        .WithMany("Followers")
+                        .HasForeignKey("TargetId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Navigation("Follower");
+                    b.Navigation("Observer");
+
+                    b.Navigation("Target");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

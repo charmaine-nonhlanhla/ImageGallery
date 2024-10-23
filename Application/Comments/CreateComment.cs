@@ -31,7 +31,7 @@ namespace Application.Comments
             private readonly ImageGalleryContext _context;
             private readonly IMapper _mapper;
             private readonly IUserAccessor _userAccessor;
-            
+
             public Handler(ImageGalleryContext context, IMapper mapper, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
@@ -57,7 +57,7 @@ namespace Application.Comments
                 {
                     Author = user,
                     Photo = photo,
-                    CommentText = request.CommentText                  
+                    CommentText = request.CommentText
                 };
 
                 photo.Comments.Add(comment);
@@ -65,7 +65,7 @@ namespace Application.Comments
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Result<CommentDto>.Success(_mapper.Map<CommentDto>(comment));
-                
+
                 return Result<CommentDto>.Failure("Failed to add comment.");
             }
         }

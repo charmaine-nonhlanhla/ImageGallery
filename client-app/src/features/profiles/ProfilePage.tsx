@@ -8,29 +8,29 @@ import { useEffect } from "react";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 
 export default observer(function ProfilePage() {
-    const {username} = useParams<{username: string}>();
-    const {profileStore} = useStore();
-    const {loadingProfile, loadProfile, profile, setActiveTab } = profileStore;
+  const { username } = useParams<{ username: string }>();
+  const { profileStore } = useStore();
+  const { loadingProfile, loadProfile, profile, setActiveTab } = profileStore;
 
-
-useEffect(() => {
+  useEffect(() => {
     if (username) loadProfile(username);
     return () => {
-        setActiveTab(0);
-    }
-}, [loadProfile, username]);
+      setActiveTab(0);
+    };
+  }, [loadProfile, username]);
 
-if (loadingProfile) return<LoadingComponent content ='Loading profile...' />;
+  if (loadingProfile) return <LoadingComponent content="Loading profile..." />;
 
-    return (
-        <Grid>
-            <GridColumn width={16}>
-                {profile && 
-                <>
-                    <ProfileHeader profile={profile} />
-                    <ProfileContent profile={profile} />               
-                </>}
-            </GridColumn>
-        </Grid>
-    );
+  return (
+    <Grid>
+      <GridColumn width={16}>
+        {profile && (
+          <>
+            <ProfileHeader profile={profile} />
+            <ProfileContent profile={profile} />
+          </>
+        )}
+      </GridColumn>
+    </Grid>
+  );
 });

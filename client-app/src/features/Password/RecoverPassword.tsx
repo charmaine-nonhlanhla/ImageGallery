@@ -9,9 +9,7 @@ import { useStore } from "../../app/stores/store";
 import "./RecoverPassword.css";
 import styled from "styled-components";
 
-const RecoverButton = styled.button`
-
-`;
+const RecoverButton = styled.button``;
 
 const RecoverPassword = () => {
   const { userStore } = useStore();
@@ -40,36 +38,37 @@ const RecoverPassword = () => {
         >
           {({ handleSubmit, isSubmitting, errors, isValid, dirty }) => (
             <Form className="error" onSubmit={handleSubmit} autoComplete="off">
-                    <div className="email-field">
-                    <label className="label-input">Email Address</label>
-                    <MyTextInput
-                      className="text-input"
-                      placeholder="Enter Email"
-                      name="email"
-                      />
-                      </div>
-             
-                    <Link to="/login" className="back-to-login">
-                      Back to login
-                    </Link>
-                
-                {errors.error && (
-                  <ErrorMessage
-                    name="error"
-                    render={() => (
-                      <ValidationErrors errors={errors.error as unknown as string[]} />
-                    )}
-                  />
-                )}
+              <div className="email-field">
+                <label className="label-input">Email Address</label>
+                <MyTextInput
+                  className="text-input"
+                  placeholder="Enter Email"
+                  name="email"
+                />
+              </div>
 
-                <RecoverButton
-                  className="button-styled"
-                  type="submit"
-                  disabled={!isValid || !dirty || isSubmitting}
-                >
-                  {isSubmitting ? "Submitting..." : "Recover Password"}
-                </RecoverButton>
-         
+              <Link to="/login" className="back-to-login">
+                Back to login
+              </Link>
+
+              {errors.error && (
+                <ErrorMessage
+                  name="error"
+                  render={() => (
+                    <ValidationErrors
+                      errors={errors.error as unknown as string[]}
+                    />
+                  )}
+                />
+              )}
+
+              <RecoverButton
+                className="button-styled"
+                type="submit"
+                disabled={!isValid || !dirty || isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Recover Password"}
+              </RecoverButton>
             </Form>
           )}
         </Formik>

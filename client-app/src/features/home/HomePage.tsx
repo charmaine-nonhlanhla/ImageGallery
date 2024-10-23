@@ -1,15 +1,19 @@
-import './HomePage.css';
-import '../ImageModal/ImageModal.css';
-import { Loader } from 'semantic-ui-react';
-import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
-import { useStore } from '../../app/stores/store';
-import { IoFilterSharp, IoSearchOutline } from 'react-icons/io5';
-import { MdArrowBackIosNew, MdArrowForwardIos, MdChatBubbleOutline } from "react-icons/md";
-import { PagingParams } from '../../app/layout/models/pagination';
-import ImageModal from '../ImageModal/ImageModal';
-import { Category } from '../../app/layout/models/category';
-import { Photo } from '../../app/layout/models/photo';
+import "./HomePage.css";
+import "../ImageModal/ImageModal.css";
+import { Loader } from "semantic-ui-react";
+import { observer } from "mobx-react-lite";
+import { useEffect, useState } from "react";
+import { useStore } from "../../app/stores/store";
+import { IoFilterSharp, IoSearchOutline } from "react-icons/io5";
+import {
+  MdArrowBackIosNew,
+  MdArrowForwardIos,
+  MdChatBubbleOutline,
+} from "react-icons/md";
+import { PagingParams } from "../../app/layout/models/pagination";
+import ImageModal from "../ImageModal/ImageModal";
+import { Category } from "../../app/layout/models/category";
+import { Photo } from "../../app/layout/models/photo";
 
 export default observer(function HomePage() {
   const { photoStore, modalStore } = useStore();
@@ -27,9 +31,10 @@ export default observer(function HomePage() {
 
   const [loadingNext, setLoadingNext] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
-  const [commentVisible, setCommentVisible] = useState<string | null>(null); 
-
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
+  const [, setCommentVisible] = useState<string | null>(null);
 
   useEffect(() => {
     loadCategories();
@@ -37,13 +42,11 @@ export default observer(function HomePage() {
     return () => clearSelectedPhoto();
   }, [loadCategories, loadPhotos, clearSelectedPhoto]);
 
-
   const handleCategorySelect = (category: Category | null) => {
     setSelectedCategory(category);
     setCategory(category);
     setFilterVisible(false);
   };
-
 
   const handlePhotoClick = (photo: Photo) => {
     modalStore.openModal(
@@ -57,9 +60,8 @@ export default observer(function HomePage() {
   };
 
   const handleChatClick = (photo: Photo) => {
-    setCommentVisible(prev => (prev === photo.id ? null : photo.id));
-};
-
+    setCommentVisible((prev) => (prev === photo.id ? null : photo.id));
+  };
 
   const handleNextPage = () => {
     if (pagination && pagination.currentPage < pagination.totalPages) {
@@ -68,7 +70,6 @@ export default observer(function HomePage() {
       loadPhotos().then(() => setLoadingNext(false));
     }
   };
-
 
   const handlePrevPage = () => {
     if (pagination && pagination.currentPage > 1) {
@@ -82,12 +83,11 @@ export default observer(function HomePage() {
 
   return (
     <div className="page-container">
-
       <div className="search-options">
         <div className="search-tab">
           <IoSearchOutline className="search-icon" />
           <input
-            value={selectedCategory ? selectedCategory.categoryName : ''}
+            value={selectedCategory ? selectedCategory.categoryName : ""}
             placeholder="Search for..."
             className="search-bar"
             readOnly
@@ -102,10 +102,12 @@ export default observer(function HomePage() {
         </button>
       </div>
 
-  
       {filterVisible && (
         <div className="category-dropdown">
-          <div className="category-item" onClick={() => handleCategorySelect(null)}>
+          <div
+            className="category-item"
+            onClick={() => handleCategorySelect(null)}
+          >
             All
           </div>
           {categories.map((category) => (
@@ -123,14 +125,23 @@ export default observer(function HomePage() {
       <div className="pictures-container">
         {filteredPhotos.length > 0 ? (
           filteredPhotos.map((photo) => (
-            <div key={photo.id} className="picture-item" onClick={() => handlePhotoClick(photo)}>
-              <img className="photo" width={420} src={photo.url} alt={photo.photoTitle} />
+            <div
+              key={photo.id}
+              className="picture-item"
+              onClick={() => handlePhotoClick(photo)}
+            >
+              <img
+                className="photo"
+                width={420}
+                src={photo.url}
+                alt={photo.photoTitle}
+              />
               <p className="photo-title">{photo.photoTitle}</p>
-              <MdChatBubbleOutline 
-                                className="home-chat-icon"
-                                size={24} 
-                                onClick={() => handleChatClick(photo)} 
-                            />
+              <MdChatBubbleOutline
+                className="home-chat-icon"
+                size={24}
+                onClick={() => handleChatClick(photo)}
+              />
             </div>
           ))
         ) : (
@@ -138,9 +149,7 @@ export default observer(function HomePage() {
         )}
       </div>
 
-   
       <div className="pagination-controls">
- 
         <button
           onClick={handlePrevPage}
           disabled={!pagination || pagination.currentPage === 1 || loadingNext}
@@ -153,21 +162,24 @@ export default observer(function HomePage() {
           Page {pagination?.currentPage} of {pagination?.totalPages}
         </span>
 
-
         <button
           onClick={handleNextPage}
-          disabled={!pagination || pagination.currentPage === pagination.totalPages || loadingNext}
+          disabled={
+            !pagination ||
+            pagination.currentPage === pagination.totalPages ||
+            loadingNext
+          }
           className="pagination-button"
         >
           <MdArrowForwardIos size={24} />
         </button>
       </div>
 
-      
       {loadingNext && <Loader active={loadingNext} />}
 
- 
-      {photoStore.selectedPhoto && <ImageModal photoId={photoStore.selectedPhoto.id} />}
+      {photoStore.selectedPhoto && (
+        <ImageModal photoId={photoStore.selectedPhoto.id} />
+      )}
     </div>
   );
 });

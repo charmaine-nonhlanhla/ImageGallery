@@ -2,9 +2,9 @@ namespace Domain.Models
 {
     public class UserFollowing
     {
-        public string FollowerId { get; set; }
-        public User Follower { get; set; }
-        public string FollowedId { get; set; }
-        public User Followed { get; set; }
+        public string ObserverId { get; set; }
+        public User Observer { get; set; }
+        public string TargetId { get; set; }
+        public User Target { get; set; }
     }
 }

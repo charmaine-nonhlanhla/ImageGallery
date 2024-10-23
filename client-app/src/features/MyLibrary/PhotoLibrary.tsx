@@ -75,7 +75,7 @@ export const PhotoLibrary = observer(() => {
 
   const handleOptionsClick = (photo: Photo) => {
     selectPhoto(photo.id);
-    setOptionsVisible(prev => (prev === photo.id ? null : photo.id));
+    setOptionsVisible((prev) => (prev === photo.id ? null : photo.id));
   };
 
   const handleDeletePhoto = () => {

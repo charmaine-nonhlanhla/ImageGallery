@@ -1,7 +1,7 @@
 import { Photo } from "./profile";
 
 export interface Category {
-    categoryId: number;
-    categoryName: string;
-    photos: Photo[];
+  categoryId: number;
+  categoryName: string;
+  photos: Photo[];
 }

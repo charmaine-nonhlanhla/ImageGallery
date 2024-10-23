@@ -1,8 +1,7 @@
 .image-item {
-    margin: 1rem 4rem 0rem 5rem;
-    display: flex;
-    flex-direction: row;
-    background-color: blueviolet;
-    width: 35rem;
-    flex-wrap: nowrap;
- }
+  margin: 1rem 4rem 0rem 5rem;
+  display: flex;
+  flex-direction: row;
+  width: 35rem;
+  flex-wrap: nowrap;
+}

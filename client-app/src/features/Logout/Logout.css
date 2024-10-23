@@ -1,75 +1,72 @@
 .logout-page {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(236, 230, 230, 0.5); 
-    backdrop-filter: blur; 
-    -webkit-backdrop-filter: blur(8px); 
-  }
-  
-  .logout-box {
-    width: 514px;
-    height: 300px;
-    top: 162px;
-    margin-left: 30rem;
-    margin-bottom: 4rem;
-    border: 1px solid #0F3C4C;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border: none;
-    gap: 20px;
-  }
-  
-  .logo {
-    width: 97px;
-    height: 60px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 60px;
-    text-align: center;
-    color: #2187AB;
-    margin-top: 10px;
-  }
-  
-  .logout-message {
-    width: 400px;
-    height: 17px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16.94px;
-    text-align: center;
-    color: #0F3C4C;
-    border-top: 1px solid #0F3C4C;
-    padding-top: 5px;
-    
-  }
-  
-  .login-button {
-    width: 400px;
-    height: 44px;
-    background-color: #2187AB;
-    color: #E9F5F9;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    padding-top: 10px;
-    border: none;
-    margin-top: 2rem;
-  }
-  
-  .login-button:hover {
-    background-color: #0F3C4C;
-  }
-  
-  
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(236, 230, 230, 0.5);
+  backdrop-filter: blur;
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.logout-box {
+  width: 514px;
+  height: 300px;
+  top: 162px;
+  margin-left: 30rem;
+  margin-bottom: 4rem;
+  border: 1px solid #0f3c4c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border: none;
+  gap: 20px;
+}
+
+.logo {
+  width: 97px;
+  height: 60px;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 60px;
+  text-align: center;
+  color: #2187ab;
+  margin-top: 10px;
+}
+
+.logout-message {
+  width: 400px;
+  height: 17px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  text-align: center;
+  color: #0f3c4c;
+  border-top: 1px solid #0f3c4c;
+  padding-top: 5px;
+}
+
+.login-button {
+  width: 400px;
+  height: 44px;
+  background-color: #2187ab;
+  color: #e9f5f9;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  padding-top: 10px;
+  border: none;
+  margin-top: 2rem;
+}
+
+.login-button:hover {
+  background-color: #0f3c4c;
+}

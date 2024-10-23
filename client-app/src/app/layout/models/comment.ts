@@ -1,8 +1,8 @@
 export interface ChatComment {
-    commentId: number;
-    createdAt: Date;
-    commentText: string;
-    username: string;
-    fullName: string;
-    image: string;
+  commentId: number;
+  createdAt: Date;
+  commentText: string;
+  username: string;
+  fullName: string;
+  image: string;
 }

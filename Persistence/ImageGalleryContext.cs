@@ -24,19 +24,20 @@ namespace Persistence
                 .WithMany(c => c.Comments)
                 .OnDelete(DeleteBehavior.Cascade);
 
-             modelBuilder.Entity<UserFollowing>(b => {
-                b.HasKey(k => new { k.FollowerId, k.FollowedId });
+            modelBuilder.Entity<UserFollowing>(b =>
+            {
+                b.HasKey(k => new { k.ObserverId, k.TargetId });
 
-                b.HasOne(o => o.Follower)
+                b.HasOne(o => o.Observer)
                     .WithMany(f => f.Followings)
-                    .HasForeignKey(o => o.FollowerId)
+                    .HasForeignKey(o => o.ObserverId)
                     .OnDelete(DeleteBehavior.NoAction);
 
-                b.HasOne(o => o.Followed)
+                b.HasOne(o => o.Target)
                     .WithMany(f => f.Followers)
-                    .HasForeignKey(o => o.FollowedId)
-                    .OnDelete(DeleteBehavior.NoAction);           
-             });
+                    .HasForeignKey(o => o.TargetId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
         }
     }
 }

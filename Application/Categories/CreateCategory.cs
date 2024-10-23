@@ -23,11 +23,11 @@ namespace Application.Categories
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-        private readonly ImageGalleryContext _context;
+            private readonly ImageGalleryContext _context;
             public Handler(ImageGalleryContext context)
             {
-            _context = context;
-                
+                _context = context;
+
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {

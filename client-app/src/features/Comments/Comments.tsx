@@ -113,7 +113,7 @@ export default observer(function Comments({ photoId }: Props) {
                       )}
                       <div className="comments-list">
                         {commentStore.loading ? (
-                           <LoadingComponent content="Loading comments..." />
+                          <LoadingComponent content="Loading comments..." />
                         ) : commentStore.comments.length === 0 ? (
                           <div className="no-comments-message">
                             No comments available for this image.

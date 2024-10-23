@@ -1,23 +1,23 @@
-import { Container } from 'semantic-ui-react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import MyDropdownInput from '../../app/common/form/MyDropdownInput';
-import { useStore } from '../../app/stores/store';
-import './PhotoUpload.css';
-import React, { useState, useEffect } from 'react';
-import PhotoDropZone from './PhotoDropZone';
-import agent from '../../app/api/agent';
+import { Container } from "semantic-ui-react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import MyDropdownInput from "../../app/common/form/MyDropdownInput";
+import { useStore } from "../../app/stores/store";
+import "./PhotoUpload.css";
+import React, { useState, useEffect } from "react";
+import PhotoDropZone from "./PhotoDropZone";
+import agent from "../../app/api/agent";
 
 const initialValues = {
-  phototitle: '',
-  categoryId: '',
-  photodescription: '',
+  phototitle: "",
+  categoryId: "",
+  photodescription: "",
 };
 
 const validationSchema = Yup.object({
-  phototitle: Yup.string().required('Image title is required'),
-  categoryId: Yup.string().required('Category is required'),
-  photodescription: Yup.string().required('Description is required'),
+  phototitle: Yup.string().required("Image title is required"),
+  categoryId: Yup.string().required("Category is required"),
+  photodescription: Yup.string().required("Description is required"),
 });
 
 export const PhotoUpload: React.FC = () => {
@@ -32,22 +32,31 @@ export const PhotoUpload: React.FC = () => {
     }
   }, [profileStore]);
 
-  const categoryOptions = photoStore.categories.map(category => ({
+  const categoryOptions = photoStore.categories.map((category) => ({
     key: category.categoryId,
     text: category.categoryName,
-    value: category.categoryId
+    value: category.categoryId,
   }));
 
-  const handlePhotoUpload = async (file: Blob, photoTitle: string, categoryId: string, photoDescription: string) => {
+  const handlePhotoUpload = async (
+    file: Blob,
+    photoTitle: string,
+    categoryId: string,
+    photoDescription: string
+  ) => {
     setLoading(true);
     try {
-        await agent.Profiles.uploadPhoto(file, photoTitle, parseInt(categoryId), photoDescription);
-        setAddPhotoMode(false);
+      await agent.Profiles.uploadPhoto(
+        file,
+        photoTitle,
+        parseInt(categoryId),
+        photoDescription
+      );
+      setAddPhotoMode(false);
     } catch (error) {
-        console.error("Error uploading photo", error);
-        
+      console.error("Error uploading photo", error);
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -55,12 +64,24 @@ export const PhotoUpload: React.FC = () => {
     setSelectedFile(file);
   };
 
-  const handleSubmit = async (values: { phototitle: string; categoryId: string; photodescription: string },   { resetForm }: { resetForm: () => void }) => {
+  const handleSubmit = async (
+    values: {
+      phototitle: string;
+      categoryId: string;
+      photodescription: string;
+    },
+    { resetForm }: { resetForm: () => void }
+  ) => {
     if (!selectedFile) {
       console.error("No file selected");
       return;
     }
-    await handlePhotoUpload(selectedFile, values.phototitle, values.categoryId, values.photodescription);
+    await handlePhotoUpload(
+      selectedFile,
+      values.phototitle,
+      values.categoryId,
+      values.photodescription
+    );
     resetForm();
   };
 
@@ -77,36 +98,56 @@ export const PhotoUpload: React.FC = () => {
             <Form>
               <div className="form-field">
                 <label className="input-field">Image Title</label>
-                <Field className="title-input"
+                <Field
+                  className="title-input"
                   placeholder=""
                   name="phototitle"
                 />
-                <ErrorMessage name="phototitle" component="div" className="error-message" />
+                <ErrorMessage
+                  name="phototitle"
+                  component="div"
+                  className="error-message"
+                />
               </div>
 
               <div className="form-field">
                 <label className="input-field">Image Category</label>
-                <Field className="category-input" as={MyDropdownInput}
+                <Field
+                  className="category-input"
+                  as={MyDropdownInput}
                   placeholder="Select category"
                   name="categoryId"
                   options={categoryOptions}
                 />
-                <ErrorMessage name="categoryId" component="div" className="error-message" />
+                <ErrorMessage
+                  name="categoryId"
+                  component="div"
+                  className="error-message"
+                />
               </div>
 
               <div className="form-field">
                 <label className="input-field">Image Description</label>
-                <Field  className="text-area"
+                <Field className="text-area" name="photodescription" />
+                <ErrorMessage
                   name="photodescription"
+                  component="div"
+                  className="error-message"
                 />
-                <ErrorMessage name="photodescription" component="div" className="error-message" />
               </div>
 
               <div className="button-div">
-                <PhotoDropZone loading={loading} uploadPhoto={handleFileSelected} />
-                
-                <button className="upload-button" type="submit" disabled={isSubmitting || !selectedFile}>
-                  {isSubmitting ? 'Uploading...' : 'Upload'}
+                <PhotoDropZone
+                  loading={loading}
+                  uploadPhoto={handleFileSelected}
+                />
+
+                <button
+                  className="upload-button"
+                  type="submit"
+                  disabled={isSubmitting || !selectedFile}
+                >
+                  {isSubmitting ? "Uploading..." : "Upload"}
                 </button>
               </div>
             </Form>

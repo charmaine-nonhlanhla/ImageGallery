@@ -9,22 +9,22 @@ namespace API.Controllers
     public class CategoriesController : BaseApiController
     {
 
-        [HttpGet] 
+        [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
             return HandleResult(await Mediator.Send(new CategoryList.Query()));
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
-         return HandleResult(await Mediator.Send(new CategoryDetails.Query{Id = id}));
+            return HandleResult(await Mediator.Send(new CategoryDetails.Query { Id = id }));
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateCategory(Category category)
         {
-            await Mediator.Send(new CreateCategory.Command { Category = category});
+            await Mediator.Send(new CreateCategory.Command { Category = category });
 
             return Ok();
         }
@@ -34,13 +34,13 @@ namespace API.Controllers
         {
             category.CategoryId = id;
 
-           return HandleResult(await Mediator.Send(new EditCategory.Command { Category = category }));
+            return HandleResult(await Mediator.Send(new EditCategory.Command { Category = category }));
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            return HandleResult(await Mediator.Send(new DeleteCategory.Command { Id = id}));
+            return HandleResult(await Mediator.Send(new DeleteCategory.Command { Id = id }));
         }
     }
 }

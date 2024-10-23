@@ -16,30 +16,30 @@ namespace Application.Followers
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-        private readonly ImageGalleryContext _context;
-        private readonly IUserAccessor _userAccessor;
+            private readonly ImageGalleryContext _context;
+            private readonly IUserAccessor _userAccessor;
             public Handler(ImageGalleryContext context, IUserAccessor userAccessor)
             {
-            _userAccessor = userAccessor;
-            _context = context;
+                _userAccessor = userAccessor;
+                _context = context;
 
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var follower = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
+                var observer = await _context.Users.FirstOrDefaultAsync(x => x.UserName == _userAccessor.GetUsername());
 
-                var followed = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.TargetUsername);
+                var target = await _context.Users.FirstOrDefaultAsync(x => x.UserName == request.TargetUsername);
 
-                if (followed == null) return null;
+                if (target == null) return null;
 
-                var following = await _context.UserFollowings.FindAsync(follower.Id, followed.Id);
+                var following = await _context.UserFollowings.FindAsync(observer.Id, target.Id);
 
                 if (following == null)
                 {
                     following = new UserFollowing
                     {
-                        Follower = follower,
-                        Followed = followed
+                        Observer = observer,
+                        Target = target
                     };
 
                     _context.UserFollowings.Add(following);

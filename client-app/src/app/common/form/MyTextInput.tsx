@@ -19,8 +19,12 @@ export default function MyTextInput({ icon: IconComponent, ...props }: Props) {
       {props.label && <label>{props.label}</label>}
       <div className="input-container">
         {IconComponent && <IconComponent className="input-icon" />}
-        {/* Explicitly pass only the required props to the input */}
-        <input {...field} placeholder={props.placeholder} type={props.type} className="user-input" />
+        <input
+          {...field}
+          placeholder={props.placeholder}
+          type={props.type}
+          className="user-input"
+        />
       </div>
       {meta.touched && meta.error ? (
         <Label basic color="red">

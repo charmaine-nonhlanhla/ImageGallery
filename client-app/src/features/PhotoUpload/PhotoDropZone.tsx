@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { useDropzone } from 'react-dropzone';
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
-import { RiUploadCloud2Line } from 'react-icons/ri';
-import './PhotoDropZone.css'; 
+import React, { useState, useCallback, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+import { RiUploadCloud2Line } from "react-icons/ri";
+import "./PhotoDropZone.css";
 
 interface Props {
   loading: boolean;
@@ -43,27 +43,27 @@ const PhotoDropZone: React.FC<Props> = ({ loading, uploadPhoto }) => {
       {files && files.length > 0 ? (
         <div className="cropper-container">
           <Cropper
-            className='cropper'
+            className="cropper"
             src={files[0].preview}
-            aspectRatio={NaN}  
+            aspectRatio={NaN}
             preview=".img-preview"
             guides={false}
-            viewMode={2}        
-            autoCropArea={1}    
+            viewMode={2}
+            autoCropArea={1}
             background={false}
-            responsive={true}   
+            responsive={true}
             onInitialized={(cropper) => setCropper(cropper)}
           />
           <div className="img-preview" />
           <div className="button-group">
-            <button 
+            <button
               className="button button-positive"
               disabled={loading}
               onClick={onCrop}
             >
-              {loading ? 'Processing...' : 'Crop'}
+              {loading ? "Processing..." : "Crop"}
             </button>
-            <button 
+            <button
               className="button button-negative"
               disabled={loading}
               onClick={() => setFiles([])}
@@ -73,13 +73,16 @@ const PhotoDropZone: React.FC<Props> = ({ loading, uploadPhoto }) => {
           </div>
         </div>
       ) : (
-        <div {...getRootProps()} className={isDragActive ? 'dropzone dropzone-active' : 'dropzone'}>
+        <div
+          {...getRootProps()}
+          className={isDragActive ? "dropzone dropzone-active" : "dropzone"}
+        >
           <input {...getInputProps()} />
           <RiUploadCloud2Line className="cloud-icon" />
-            <span className="drop-text">
-                  <p className='drag-text'>Drag and Drop Files</p>
-                  <p>or</p>
-                </span>
+          <span className="drop-text">
+            <p className="drag-text">Drag and Drop Files</p>
+            <p>or</p>
+          </span>
         </div>
       )}
     </div>

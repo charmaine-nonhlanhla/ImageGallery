@@ -162,51 +162,6 @@ namespace API.Controllers
             return CreateUserObject(user);
         }
 
-
-        [AllowAnonymous]
-        [HttpPost("fbLogin")]
-        public async Task<ActionResult<UserDto>> FacebookLogin(string accessToken)
-        {
-            var fbVerifyKeys = _config["Facebook:AppId"] + "|" + _config["Facebook:ApiSecret"];
-
-            var verifyTokenResponse = await _httpClient
-                .GetAsync($"debug_token?input_token={accessToken}&access_token={fbVerifyKeys}");
-
-                if (!verifyTokenResponse.IsSuccessStatusCode) return Unauthorized();
-
-                var fbUrl = $"me?access_token={accessToken}&fields=name,email,picture.width(100).heigh(100)";
-
-                var fbInfo = await _httpClient.GetFromJsonAsync<FacebookDto>(fbUrl);
-
-                var user = await _userManager.Users.Include(p => p.Photos)
-                    .FirstOrDefaultAsync(x => x.Email == fbInfo.Email);
-
-                if (user != null) return CreateUserObject(user);
-
-                user = new User
-                {
-                    FullName = fbInfo.Name,
-                    Email = fbInfo.Email,
-                    UserName = fbInfo.Email,
-                    Photos = new List<Photo>
-                    {
-                        new Photo
-                        {
-                            Id = "fb_" + fbInfo.Id,
-                            Url = fbInfo.Picture.Data.Url,
-                            IsMain = true
-                        }
-                    }
-                };
-
-                var result = await _userManager.CreateAsync(user);
-
-                if(!result.Succeeded) return BadRequest("Problem creating user account");
-
-                await SetRefreshToken(user);
-                return CreateUserObject(user);
-        }
-
         [Authorize]
         [HttpPost("refreshToken")]
         public async Task<ActionResult<UserDto>> RefreshToken()
@@ -218,15 +173,15 @@ namespace API.Controllers
             .Include(p => p.Photos)
                 .FirstOrDefaultAsync(x => x.UserName == User.FindFirstValue(ClaimTypes.Name));
 
-                if (user == null ) return Unauthorized();
+            if (user == null) return Unauthorized();
 
-                var oldToken = user.RefreshTokens.SingleOrDefault(x => x.Token == refreshToken);
+            var oldToken = user.RefreshTokens.SingleOrDefault(x => x.Token == refreshToken);
 
-                if (oldToken != null && !oldToken.IsActive) return Unauthorized();
+            if (oldToken != null && !oldToken.IsActive) return Unauthorized();
 
-                if (oldToken != null) oldToken.Revoked = DateTime.UtcNow;
+            if (oldToken != null) oldToken.Revoked = DateTime.UtcNow;
 
-                return CreateUserObject(user);
+            return CreateUserObject(user);
         }
 
 

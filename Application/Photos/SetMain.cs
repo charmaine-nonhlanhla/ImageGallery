@@ -15,12 +15,12 @@ namespace Application.Photos
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-        private readonly ImageGalleryContext _context;
-        private readonly IUserAccessor _userAccessor;
+            private readonly ImageGalleryContext _context;
+            private readonly IUserAccessor _userAccessor;
             public Handler(ImageGalleryContext context, IUserAccessor userAccessor)
             {
-            _userAccessor = userAccessor;
-            _context = context;
+                _userAccessor = userAccessor;
+                _context = context;
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
@@ -30,7 +30,7 @@ namespace Application.Photos
 
                 var photo = user.Photos.FirstOrDefault(X => X.Id == request.Id);
 
-                if (photo == null) return null; 
+                if (photo == null) return null;
 
                 var currentMain = user.Photos.FirstOrDefault(x => x.IsMain);
 

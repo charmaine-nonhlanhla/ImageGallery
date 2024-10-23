@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import PasswordChangedImage from "../../assets/Background Image.jpg";
-import './RecoverPasswordSuccess.css'
+import "./RecoverPasswordSuccess.css";
 import { CiCircleCheck } from "react-icons/ci";
-import './PasswordChanged.css'
+import "./PasswordChanged.css";
 
 const PasswordChanged = () => {
   return (
     <div className="change-container">
-        <CiCircleCheck className="check-circle" />
+      <CiCircleCheck className="check-circle" />
       <h1 className="change">Password Changed!</h1>
-      <div className="change-paragraph-div">   
+      <div className="change-paragraph-div">
         <p className="change-paragraph">
           Your password has been changed successfully!
         </p>
@@ -21,7 +21,7 @@ const PasswordChanged = () => {
         src={PasswordChangedImage}
         alt="Password Changed Successfully"
         className="change-image"
-        />
+      />
     </div>
   );
 };

@@ -13,26 +13,26 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task <IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            return HandleResult(await Mediator.Send(new Delete.Command{Id = id}));
+            return HandleResult(await Mediator.Send(new Delete.Command { Id = id }));
         }
 
         [HttpPost("{id}/setMain")]
         public async Task<IActionResult> SetMain(string id)
         {
-            return HandleResult(await Mediator.Send(new SetMain.Command{Id = id}));
+            return HandleResult(await Mediator.Send(new SetMain.Command { Id = id }));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery]PagingParams param)
+        public async Task<IActionResult> GetAll([FromQuery] PagingParams param)
         {
-             return HandlePagedResult(await Mediator.Send(new AllPhotos.Query{Params = param }));
-           
+            return HandlePagedResult(await Mediator.Send(new AllPhotos.Query { Params = param }));
+
         }
 
         [HttpGet("{username}")]
-        public async Task<IActionResult> GetUserPhotos(string username, [FromQuery]PagingParams param )
+        public async Task<IActionResult> GetUserPhotos(string username, [FromQuery] PagingParams param)
         {
             var result = await Mediator.Send(new UserPhotos.Query { Username = username, Params = param });
             return HandlePagedResult(result);

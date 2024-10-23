@@ -15,14 +15,14 @@ namespace Application.Photos
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
-        private readonly ImageGalleryContext _context;
-        private readonly IPhotoAccessor _photoAccessor;
-        private readonly IUserAccessor _userAccessor;
+            private readonly ImageGalleryContext _context;
+            private readonly IPhotoAccessor _photoAccessor;
+            private readonly IUserAccessor _userAccessor;
             public Handler(ImageGalleryContext context, IPhotoAccessor photoAccessor, IUserAccessor userAccessor)
             {
-            _userAccessor = userAccessor;
-            _photoAccessor = photoAccessor;
-            _context = context;
+                _userAccessor = userAccessor;
+                _photoAccessor = photoAccessor;
+                _context = context;
 
             }
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
@@ -41,7 +41,7 @@ namespace Application.Photos
 
                 user.Photos.Remove(photo);
 
-                 _context.Photos.Remove(photo);
+                _context.Photos.Remove(photo);
 
                 var success = await _context.SaveChangesAsync() > 0;
 

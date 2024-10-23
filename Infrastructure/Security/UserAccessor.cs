@@ -10,7 +10,7 @@ namespace Infrastructure.Security
         public UserAccessor(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            
+
         }
         public string GetUsername()
         {

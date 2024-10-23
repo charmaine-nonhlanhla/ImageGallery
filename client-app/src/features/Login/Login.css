@@ -1,5 +1,5 @@
 .login-background {
-  background-image: url('../../assets/Background.jpg');
+  background-image: url("../../assets/Background.jpg");
   background-size: 2500px 1200px;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,9 +14,9 @@
 .login-frame {
   width: 1025px;
   height: 750px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0px 2px 4px 0px #0000001F;
+  box-shadow: 0px 2px 4px 0px #0000001f;
   opacity: 1;
   padding: 20px;
   position: absolute;
@@ -26,32 +26,32 @@
 }
 
 .header {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 600;
   line-height: 48px;
   text-align: center;
-  color: #0F3C4C;
+  color: #0f3c4c;
   padding: 20px;
 }
 
 .header-2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 40px;
   font-weight: 600;
   line-height: 48px;
   text-align: center;
-  color: #0F3C4C;
+  color: #0f3c4c;
 }
 
 .input-label {
   display: flex;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   line-height: 14.52px;
   text-align: left;
-  color: #0F3C4C;
+  color: #0f3c4c;
   margin: 5px;
   margin-top: 20px;
 }
@@ -59,14 +59,14 @@
 .input-container {
   display: flex;
   align-items: center;
-  border: 0.5px solid #0F3C4C;
+  border: 0.5px solid #0f3c4c;
   border-radius: 5px;
   padding: 10px;
 }
 
 .input-icon {
   margin-right: 10px;
-  color: #4B5558B2;
+  color: #4b5558b2;
 }
 
 .user-input {
@@ -76,25 +76,24 @@
   padding: 10px;
 }
 
-
 .forgot-password {
   margin-left: 34rem;
   font-size: 10px;
-  color: #0F3C4C;
+  color: #0f3c4c;
 }
 
 .register-link a {
   font-weight: 700;
-  color: #0F3C4C;
+  color: #0f3c4c;
 }
 
 .register-link {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 500;
   line-height: 12.1px;
   text-align: center;
-  color: #0F3C4C;
+  color: #0f3c4c;
   padding-top: 25px;
 }
 

@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import { FaUser, FaLock } from "react-icons/fa";
 import "../../features/Login/Login.css";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 const CustomButton = styled.button`
   background-color: #2187ab;
@@ -49,8 +49,10 @@ export default observer(function LoginForm() {
                   .catch((error) => setErrors({ error: error.response.data }))
               }
               validationSchema={Yup.object({
-                email: Yup.string().email('Invalid email address').required('Email is required'),
-                password: Yup.string().required('Password is required'),
+                email: Yup.string()
+                  .email("Invalid email address")
+                  .required("Email is required"),
+                password: Yup.string().required("Password is required"),
               })}
             >
               {({ handleSubmit, isSubmitting, errors }) => (

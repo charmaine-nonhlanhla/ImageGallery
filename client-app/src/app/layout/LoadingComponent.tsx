@@ -1,14 +1,14 @@
-import './LoadingComponent.css';
+import "./LoadingComponent.css";
 
 interface Props {
-    content?: string;
+  content?: string;
 }
 
-export default function LoadingComponent({ content = 'Loading...' }: Props) {
-    return (
-        <div className="loading-container">
-            <div className="spinner"></div>
-            <p>{content}</p>
-        </div>
-    );
+export default function LoadingComponent({ content = "Loading..." }: Props) {
+  return (
+    <div className="loading-container">
+      <div className="spinner"></div>
+      <p>{content}</p>
+    </div>
+  );
 }

@@ -7,26 +7,25 @@ import CommentStore from "./commentStore";
 import PhotoStore from "./photoStore";
 
 interface Store {
-    userStore: UserStore;
-    commonStore: CommonStore;
-    modalStore: ModalStore;
-    profileStore: ProfileStore;
-    commentStore: CommentStore;
-    photoStore: PhotoStore;
-
+  userStore: UserStore;
+  commonStore: CommonStore;
+  modalStore: ModalStore;
+  profileStore: ProfileStore;
+  commentStore: CommentStore;
+  photoStore: PhotoStore;
 }
 
 export const store: Store = {
-    userStore: new UserStore(),
-    commonStore: new CommonStore(),
-    modalStore: new ModalStore(),
-    profileStore: new ProfileStore(),
-    commentStore: new CommentStore(),
-    photoStore: new PhotoStore()
-}
+  userStore: new UserStore(),
+  commonStore: new CommonStore(),
+  modalStore: new ModalStore(),
+  profileStore: new ProfileStore(),
+  commentStore: new CommentStore(),
+  photoStore: new PhotoStore(),
+};
 
 export const StoreContext = createContext(store);
 
 export function useStore() {
-    return useContext(StoreContext);
+  return useContext(StoreContext);
 }

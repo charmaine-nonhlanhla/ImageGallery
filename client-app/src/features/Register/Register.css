@@ -1,102 +1,98 @@
 .register-background {
-    background-color: #ffffff;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    position: fixed;
-    align-items: center;
-  }
-  
-  .form-image-container {
-    display: flex;
-    width: 100vw;
-  }
-  
-  .form-container {
-    background-color: #ffffff;
-    margin-right: 15rem;
-    border-radius: 0px;
-    width: 35%;
-    height: 100vh;
-    text-align: center;
-    margin-top: 22rem;
-    margin-left: 10rem;
-  }
-  
-  .title-container {
-    background-color: #ffffff;
-  }
-  
-  .title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 38px;
-    font-weight: 600;
-    line-height: 48px;
-    text-align: left;
-    color: #0F3C4C;
- 
-  }
-  
-  .subtitle {
-    font-family: 'Poppins', sans-serif;
-    color: #0F3C4C;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 18px;
-    text-align: left;
-    padding-bottom: 4rem;
-  }
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  align-items: center;
+}
 
-  .input-label {
-    font-size: 15px;
-  }
-  
-  .styled-button {
-    background-color: #2187AB !important;
-    color: #fff !important;
-    margin-top: 5rem !important;
-    height: 44px !important;
-    border-radius: 4px !important;
-  }
-  
-  .or-text {
-    margin: 2rem;
-    font-size: 16px;
-  }
-  
-  .buttons {
-    display: flex;
-    flex-direction: column;
-  }
+.form-image-container {
+  display: flex;
+  width: 100vw;
+}
 
-  .social-button {    
-    height: 44px !important;
-    margin-bottom: 10px !important;
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: 0.1px solid #d4d4d5 !important;
-    
-    
-  }
+.form-container {
+  background-color: #ffffff;
+  margin-right: 15rem;
+  border-radius: 0px;
+  width: 35%;
+  height: 100vh;
+  text-align: center;
+  margin-top: 22rem;
+  margin-left: 10rem;
+}
 
-  .facebook-icon {
-    color: #5b5dda;
-    font-size: large;
-  }
-  
-  .google-icon {
-    font-size: large;
-  }
-  
-  .registration-image {
-    width: 95rem;
-    height: 75rem;
-    opacity: 1;
-    border-radius: 5px;
-    padding: 5rem 5rem 5rem;
-    margin-top: 12rem;
-    margin-bottom: 12rem;
-    margin-right: 0rem;
-    margin-left: -10rem;
-  }
-  
+.title-container {
+  background-color: #ffffff;
+}
+
+.title {
+  font-family: "Poppins", sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 48px;
+  text-align: left;
+  color: #0f3c4c;
+}
+
+.subtitle {
+  font-family: "Poppins", sans-serif;
+  color: #0f3c4c;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  padding-bottom: 4rem;
+}
+
+.input-label {
+  font-size: 15px;
+}
+
+.styled-button {
+  background-color: #2187ab !important;
+  color: #fff !important;
+  margin-top: 5rem !important;
+  height: 44px !important;
+  border-radius: 4px !important;
+}
+
+.or-text {
+  margin: 2rem;
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.social-button {
+  height: 44px !important;
+  margin-bottom: 10px !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 0.1px solid #d4d4d5 !important;
+}
+
+.facebook-icon {
+  color: #5b5dda;
+  font-size: large;
+}
+
+.google-icon {
+  font-size: large;
+}
+
+.registration-image {
+  width: 95rem;
+  height: 75rem;
+  opacity: 1;
+  border-radius: 5px;
+  padding: 5rem 5rem 5rem;
+  margin-top: 12rem;
+  margin-bottom: 12rem;
+  margin-right: 0rem;
+  margin-left: -10rem;
+}

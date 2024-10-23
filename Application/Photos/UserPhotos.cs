@@ -7,11 +7,9 @@ using Persistence;
 namespace Application.Photos
 
 {
-
     public class UserPhotos
 
     {
-
         public class Query : IRequest<Result<PagedList<Photo>>>
 
         {
@@ -38,7 +36,7 @@ namespace Application.Photos
                     .Include(p => p.Photos)
                     .SingleOrDefaultAsync(x => x.UserName == request.Username);
 
-                if (user == null) return null; 
+                if (user == null) return null;
 
 
                 var query = _context.Photos

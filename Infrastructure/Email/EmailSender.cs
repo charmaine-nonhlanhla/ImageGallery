@@ -20,7 +20,7 @@ namespace Infrastructure.Email
                 {
                     Port = int.Parse(_config["Smtp:Port"]),
                     Credentials = new NetworkCredential(_config["Smtp:Username"], _config["Smtp:Password"]),
-                    EnableSsl = false 
+                    EnableSsl = false
                 };
 
                 var message = new MailMessage

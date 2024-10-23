@@ -4,30 +4,38 @@ import useQuery from "../../app/utilities/hooks";
 import { Button, Header, Icon, Segment } from "semantic-ui-react";
 
 export default function RegisterSuccess() {
-    const email = useQuery().get('email') as string;
-    console.log('Email:', email);
+  const email = useQuery().get("email") as string;
+  console.log("Email:", email);
 
-    
+  function handleConfirmEmailResend() {
+    agent.Account.resendEmailConfirm(email)
+      .then(() => {
+        toast.success("Verification email resent - please check your email");
+      })
+      .catch((error) => console.log(error));
+  }
 
-    function handleConfirmEmailResend() {
-        agent.Account.resendEmailConfirm(email).then(() => {
-            toast.success('Verification email resent - please check your email');
-        }).catch(error => console.log(error));
-    }
-
-    return (
-        <Segment placeholder textAlign="center">
-            <Header icon color="green">
-                <Icon name="check"/>
-                Successfully registered!
-            </Header>
-            <p>Please check your email (including junk email) for the verification email</p>
-            {email &&
-                <>
-                    <p>Did not receive the email? Click the button below to resend</p>
-                    <Button primary onClick={handleConfirmEmailResend} content='Resend email' size='huge' />
-                </>
-            }
-        </Segment>
-    )
+  return (
+    <Segment placeholder textAlign="center">
+      <Header icon color="green">
+        <Icon name="check" />
+        Successfully registered!
+      </Header>
+      <p>
+        Please check your email (including junk email) for the verification
+        email
+      </p>
+      {email && (
+        <>
+          <p>Did not receive the email? Click the button below to resend</p>
+          <Button
+            primary
+            onClick={handleConfirmEmailResend}
+            content="Resend email"
+            size="huge"
+          />
+        </>
+      )}
+    </Segment>
+  );
 }

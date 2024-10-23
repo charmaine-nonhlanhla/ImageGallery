@@ -8,7 +8,7 @@ namespace Application.Categories
         public CategoryValidator()
         {
             RuleFor(x => x.CategoryName).NotEmpty();
-            
+
         }
     }
 }

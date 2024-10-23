@@ -16,15 +16,15 @@ namespace Application.Comments
 
         public class Handler : IRequestHandler<Query, Result<List<CommentDto>>>
         {
-        private readonly ImageGalleryContext _context;
-        private readonly IMapper _mapper;
+            private readonly ImageGalleryContext _context;
+            private readonly IMapper _mapper;
             public Handler(ImageGalleryContext context, IMapper mapper)
             {
-            _mapper = mapper;
-            _context = context;
+                _mapper = mapper;
+                _context = context;
 
             }
-            
+
             public async Task<Result<List<CommentDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var comments = await _context.Comments

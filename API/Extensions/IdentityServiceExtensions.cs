@@ -11,12 +11,12 @@ namespace API.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
 
         {
-            services.AddIdentityCore<User>(opt => 
+            services.AddIdentityCore<User>(opt =>
             {
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.SignIn.RequireConfirmedEmail = true;
                 opt.Password.RequiredUniqueChars = 3;
-                
+
             })
             .AddEntityFrameworkStores<ImageGalleryContext>()
             .AddSignInManager<SignInManager<User>>()
@@ -38,7 +38,7 @@ namespace API.Extensions
                 };
                 opt.Events = new JwtBearerEvents
                 {
-                    OnMessageReceived = context => 
+                    OnMessageReceived = context =>
                     {
                         var accessToken = context.Request.Query["access_token"];
                         var path = context.HttpContext.Request.Path;

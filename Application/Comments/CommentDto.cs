@@ -8,6 +8,6 @@ namespace Application.Comments
         public string Username { get; set; }
         public string FullName { get; set; }
         public string Image { get; set; }
-        
+
     }
 }
