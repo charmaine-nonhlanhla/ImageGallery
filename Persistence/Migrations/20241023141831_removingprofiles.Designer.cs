@@ -12,8 +12,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ImageGalleryContext))]
-    [Migration("20241023141831_removingprofiles")]
-    partial class removingprofiles
+    [Migration("20241023141831_RemovingProfiles")]
+    partial class RemovingProfiles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

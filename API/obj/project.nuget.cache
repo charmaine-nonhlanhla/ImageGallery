@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wlbLSpPD628=",
+  "dgSpecHash": "ooZLuH6GEM8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -178,12 +178,5 @@
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\CMogotlane.SINGULAR\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\CMogotlane.SINGULAR\\IMGALLERY\\ImageGallery\\API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
