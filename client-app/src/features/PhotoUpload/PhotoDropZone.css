@@ -1,0 +1,52 @@
+.photo-dropzone {
+  justify-content: center;
+  align-items: center;
+}
+
+.cropper-container {
+  width: 2rem;
+  margin-left: 9rem;
+  position: relative;
+}
+
+.button-group {
+  margin-left: 15rem;
+  display: flex;
+}
+.cloud-icon {
+  font-size: 15rem;
+  margin-left: 23rem;
+  height: 10rem;
+  color: #2187ab;
+  width: 200px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.drop-text {
+  text-align: center;
+  color: #165a72;
+}
+
+.cropper {
+  margin-left: 5rem;
+  margin-top: 2rem;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 4rem;
+}
+
+.button-positive {
+  background-color: #4caf50;
+  color: white;
+}
+
+.button-negative {
+  background-color: #f44336;
+  color: white;
+}

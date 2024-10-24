@@ -11,15 +11,37 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.3.3",
+    "@microsoft/signalr": "^8.0.7",
     "axios": "^1.7.2",
+    "date-fns": "^3.6.0",
+    "emoji-picker-react": "^4.12.0",
+    "formik": "^2.4.6",
+    "mobx": "^6.13.0",
+    "mobx-react-lite": "^4.0.7",
     "react": "^18.2.0",
+    "react-calendar": "^5.0.0",
+    "react-cropper": "^2.3.3",
+    "react-datepicker": "^7.3.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-icons": "^5.2.1",
+    "react-infinite-scroller": "^1.2.6",
+    "react-router-dom": "^6.24.1",
+    "react-toastify": "^10.0.5",
     "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^3.0.0-beta.2"
+    "semantic-ui-react": "^2.1.5",
+    "styled-components": "^6.1.12",
+    "uuid": "^10.0.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^18.2.22",
+    "@types/react-infinite-scroller": "^1.2.5",
+    "@types/uuid": "^10.0.0",
+    "@types/yup": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
@@ -27,6 +49,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vite-plugin-mkcert": "^1.17.6"
   }
 }

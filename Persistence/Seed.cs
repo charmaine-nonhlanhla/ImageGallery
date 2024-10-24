@@ -7,14 +7,13 @@ namespace Persistence
     {
         public static async Task SeedData(ImageGalleryContext context, UserManager<User> userManager)
         {
-            if (context.Images.Any()) return;
+            if (context.Photos.Any()) return;
 
-            // Seed Users
             var users = new List<User>
             {
-                new User{DisplayName = "Bob", UserName = "bob", Email = "bob@test.com"},
-                new User{DisplayName = "Tom", UserName = "tom", Email = "tom@test.com"},
-                new User{DisplayName = "Jane", UserName = "jane", Email = "jane@test.com"},
+                new User{FullName = "Bob", UserName = "bob", Email = "bob@test.com"},
+                new User{FullName = "Tom", UserName = "tom", Email = "tom@test.com"},
+                new User{FullName = "Jane", UserName = "jane", Email = "jane@test.com"},
             };
 
             foreach (var user in users)
@@ -22,7 +21,6 @@ namespace Persistence
                 await userManager.CreateAsync(user, "Pa$$w0rd");
             }
 
-            // Seed Categories
             var categories = new List<Category>
             {
                 new Category
@@ -41,125 +39,66 @@ namespace Persistence
             await context.Categories.AddRangeAsync(categories);
             await context.SaveChangesAsync();
 
-            // Seed Tags
-            var tags = new List<Tag>
+            var photos = new List<Photo>
             {
-                new Tag
+                new Photo
                 {
-                    TagName = "Summer"
-                },
-                new Tag
-                {
-                    TagName = "Vacation"
-                },
-                new Tag
-                {
-                    TagName = "Beach"
-                }
-            };
-            await context.Tags.AddRangeAsync(tags);
-            await context.SaveChangesAsync();
-
-            // Seed Images
-            var images = new List<Image>
-            {
-                new Image
-                {
-                    ImageTitle = "Vacation",
+                    PhotoTitle = "Vacation",
                     Url = "https://www.example.com/image1.jpg",
-                    Description = "Lemon Meringue Pie",
-                    UploadDate = DateTime.Now,
-                    UserId = users[0].Id,
+                    PhotoDescription = "Lemon Meringue Pie",
                     CategoryId = categories[0].CategoryId,
-                    SecretEditCode = "secretcode1"
+                    IsMain = true,
+                    Comments = new List<Comment>()
                 },
-                new Image
+                new Photo
                 {
-                    ImageTitle = "Vacation 2",
+                    PhotoTitle = "Vacation 2",
                     Url = "https://www.example.com/image2.jpg",
-                    Description = "Lemon Meringue Pie",
-                    UploadDate = DateTime.Now,
-                    UserId = users[1].Id,
+                    PhotoDescription = "Lemon Meringue Pie",
                     CategoryId = categories[1].CategoryId,
-                    SecretEditCode = "secretcode2"
+                    IsMain = true,
+                    Comments = new List<Comment>()
                 },
-                new Image
+                new Photo
                 {
-                    ImageTitle = "Vacation 3",
+                    PhotoTitle = "Vacation 3",
                     Url = "https://www.example.com/image3.jpg",
-                    Description = "Lemon Meringue Pie",
-                    UploadDate = DateTime.Now,
-                    UserId = users[2].Id,
+                    PhotoDescription = "Lemon Meringue Pie",
                     CategoryId = categories[2].CategoryId,
-                    SecretEditCode = "secretcode3"
+                    IsMain = true,
+                    Comments = new List<Comment>()
                 }
             };
-            await context.Images.AddRangeAsync(images);
+            await context.Photos.AddRangeAsync(photos);
             await context.SaveChangesAsync();
 
-            // Seed Comments
             var comments = new List<Comment>
             {
                 new Comment
                 {
-                    ImageId = images[0].ImageId,
-                    UserId = users[1].Id,
+                    Photo = photos[0],
+                    Author = users[1],
                     CommentText = "Great picture!",
-                    CommentDate = DateTime.Now
                 },
                 new Comment
                 {
-                    ImageId = images[1].ImageId,
-                    UserId = users[2].Id,
+                    Photo = photos[1],
+                    Author = users[2],
                     CommentText = "Amazing shot!",
-                    CommentDate = DateTime.Now
                 },
                 new Comment
                 {
-                    ImageId = images[2].ImageId,
-                    UserId = users[0].Id,
+                    Photo = photos[2],
+                    Author = users[0],
                     CommentText = "Beautiful scenery!",
-                    CommentDate = DateTime.Now
                 }
             };
             await context.Comments.AddRangeAsync(comments);
             await context.SaveChangesAsync();
 
-            // Seed ImageTags
-            var imageTags = new List<ImageTag>
-            {
-                new ImageTag
-                {
-                    ImageId = images[0].ImageId,
-                    TagId = tags[0].TagId
-                },
-                new ImageTag
-                {
-                    ImageId = images[0].ImageId,
-                    TagId = tags[1].TagId
-                },
-                new ImageTag
-                {
-                    ImageId = images[1].ImageId,
-                    TagId = tags[1].TagId
-                },
-                new ImageTag
-                {
-                    ImageId = images[1].ImageId,
-                    TagId = tags[2].TagId
-                },
-                new ImageTag
-                {
-                    ImageId = images[2].ImageId,
-                    TagId = tags[0].TagId
-                },
-                new ImageTag
-                {
-                    ImageId = images[2].ImageId,
-                    TagId = tags[2].TagId
-                }
-            };
-            await context.ImageTags.AddRangeAsync(imageTags);
+            photos[0].Comments.Add(comments[0]);
+            photos[1].Comments.Add(comments[1]);
+            photos[2].Comments.Add(comments[2]);
             await context.SaveChangesAsync();
         }
     }

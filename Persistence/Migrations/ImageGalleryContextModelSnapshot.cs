@@ -46,45 +46,42 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
-                    b.Property<DateTime>("CommentDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CommentText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("PhotoId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CommentId");
 
-                    b.HasIndex("ImageId");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PhotoId");
 
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Domain.Models.Image", b =>
+            modelBuilder.Entity("Domain.Models.Photo", b =>
                 {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"));
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhotoDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecretEditCode")
+                    b.Property<string>("PhotoTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UploadDate")
@@ -96,52 +93,40 @@ namespace Persistence.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ImageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Images");
+                    b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Domain.Models.ImageTag", b =>
+            modelBuilder.Entity("Domain.Models.RefreshToken", b =>
                 {
-                    b.Property<int>("ImageTagId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageTagId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("datetime2");
 
-                    b.HasKey("ImageTagId");
-
-                    b.HasIndex("ImageId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("ImageTags");
-                });
-
-            modelBuilder.Entity("Domain.Models.Tag", b =>
-                {
-                    b.Property<int>("TagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
-
-                    b.Property<string>("TagName")
+                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TagId");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.ToTable("Tags");
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("Domain.Models.User", b =>
@@ -159,15 +144,15 @@ namespace Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -350,56 +335,42 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.Comment", b =>
                 {
-                    b.HasOne("Domain.Models.Image", "Image")
+                    b.HasOne("Domain.Models.User", "Author")
                         .WithMany("Comments")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
 
-                    b.HasOne("Domain.Models.User", "User")
+                    b.HasOne("Domain.Models.Photo", "Photo")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("PhotoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("Image");
+                    b.Navigation("Author");
 
-                    b.Navigation("User");
+                    b.Navigation("Photo");
                 });
 
-            modelBuilder.Entity("Domain.Models.Image", b =>
+            modelBuilder.Entity("Domain.Models.Photo", b =>
                 {
                     b.HasOne("Domain.Models.Category", "Category")
-                        .WithMany("Images")
+                        .WithMany("Photos")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.User", "User")
-                        .WithMany("Images")
+                    b.HasOne("Domain.Models.User", null)
+                        .WithMany("Photos")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Models.ImageTag", b =>
+            modelBuilder.Entity("Domain.Models.RefreshToken", b =>
                 {
-                    b.HasOne("Domain.Models.Image", "Image")
-                        .WithMany("ImageTags")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Domain.Models.User", "User")
+                        .WithMany("RefreshTokens")
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("Domain.Models.Tag", "Tag")
-                        .WithMany("ImageTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-
-                    b.Navigation("Tag");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -455,26 +426,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.Category", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("Photos");
                 });
 
-            modelBuilder.Entity("Domain.Models.Image", b =>
+            modelBuilder.Entity("Domain.Models.Photo", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("ImageTags");
-                });
-
-            modelBuilder.Entity("Domain.Models.Tag", b =>
-                {
-                    b.Navigation("ImageTags");
                 });
 
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Images");
+                    b.Navigation("Photos");
+
+                    b.Navigation("RefreshTokens");
                 });
 #pragma warning restore 612, 618
         }

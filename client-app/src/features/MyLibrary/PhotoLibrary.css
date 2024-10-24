@@ -1,0 +1,79 @@
+.photo-library {
+  position: relative;
+  flex-direction: column;
+  margin-left: 35rem;
+}
+
+.library-title {
+  padding-top: 6rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: #165a72;
+}
+
+.images-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.image-display {
+  margin: 3rem 0.5rem 1px 2rem;
+  width: 30rem;
+}
+
+.image-title {
+  margin-left: 5rem;
+  margin-top: -4rem;
+  color: #ffffff;
+  font-size: large;
+}
+
+.pagination-controls {
+  margin-top: 5rem;
+  padding-bottom: 5rem;
+  margin-left: 50rem;
+}
+
+.pagination-button {
+  border: none;
+  background: none;
+  color: #165a72;
+  cursor: pointer;
+}
+
+.pagenumber {
+  color: #165a72;
+}
+
+.chat-icon {
+  cursor: pointer;
+  color: #165a72;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-bottom: -2rem;
+}
+
+.image-options {
+  display: flex;
+  margin-left: 30rem;
+  color: #165a72;
+  cursor: pointer;
+}
+
+.photo-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-button {
+  margin-top: 0.5rem;
+  margin-left: 30rem;
+}
+
+.delete-button {
+  margin-top: 0.5rem;
+  margin-left: 30rem;
+}

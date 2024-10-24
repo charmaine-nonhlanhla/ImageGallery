@@ -1,0 +1,26 @@
+.profile-container {
+  width: auto;
+  margin-left: 446px;
+  height: 90px;
+  box-shadow: 0 4px 8px rgba(149, 145, 145, 0.3);
+}
+
+.home2 {
+  font-size: larger;
+  font-weight: 600;
+  color: #165a72;
+}
+
+.arrow-forward {
+  color: #165a72;
+  font-size: x-large;
+}
+
+.arrow-down {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.displayname {
+  font-size: large;
+}

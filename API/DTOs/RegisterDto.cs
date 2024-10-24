@@ -12,10 +12,13 @@ namespace API.DTOs
         [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$", ErrorMessage = "Password must be complex")]
         public string Password { get; set; }
 
-        
         [Required]
-        public string DisplayName { get; set; }
-        
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string FullName { get; set; }
+
         [Required]
         public string UserName { get; set; }
     }

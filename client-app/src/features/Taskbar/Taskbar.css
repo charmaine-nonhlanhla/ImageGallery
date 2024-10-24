@@ -1,0 +1,120 @@
+.left-column {
+  width: 446px;
+  height: 1140px;
+  background: #2187ab;
+  position: fixed;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.logo-image {
+  width: 31.6rem;
+  height: 18rem;
+  margin-top: -4rem;
+}
+
+.home-element {
+  color: white;
+  top: 162px;
+  width: 400px;
+  height: 80px;
+  font-weight: 600;
+  font-size: larger;
+  position: absolute;
+  margin-left: 12px;
+  padding: 10px 0 0 0;
+  gap: 10px;
+  border-radius: 4px 0 0 0;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+
+.imageupload-element {
+  color: white;
+  top: 250px;
+  width: 400px;
+  height: 80px;
+  font-weight: 600;
+  font-size: larger;
+  position: absolute;
+  margin-left: 12px;
+  padding: 10px 0 0 0;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.library-element {
+  color: white;
+  top: 340px;
+  width: 400px;
+  height: 80px;
+  font-weight: 600;
+  font-size: larger;
+  position: absolute;
+  margin-left: 12px;
+  padding: 10px 0 0 0;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.home-element.active,
+.imageupload-element.active,
+.library-element.active,
+.logout-element.active {
+  background-color: #e9f5f9;
+  width: 355px;
+  height: 90px;
+  margin-left: 12px;
+  border-radius: 5px;
+}
+
+.home-element.active .home-icon,
+.imageupload-element.active .image-icon,
+.library-element.active .library-icon,
+.logout-element.active .logout-icon {
+  color: #165a72;
+}
+
+.home-element.active .home-text,
+.imageupload-element.active .image-text,
+.library-element.active .library-text,
+.logout-element.active .logout-text {
+  color: #165a72;
+}
+
+.logout-element {
+  width: 360px;
+  height: 80px;
+  position: absolute;
+  top: 830px;
+  left: 9px;
+  padding: 10px 0 0 0;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px 0 0 0;
+}
+
+.home-icon,
+.logout-icon,
+.image-icon,
+.library-icon {
+  width: 24px !important;
+  height: 24px;
+  color: #d9d9d9;
+}
+
+.logout-text {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-left: 10px;
+  cursor: pointer;
+}

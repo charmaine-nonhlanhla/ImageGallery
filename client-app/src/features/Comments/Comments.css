@@ -1,0 +1,116 @@
+.comments-container {
+  margin: 2rem;
+}
+
+.comments-header {
+  width: 80rem;
+  text-align: center;
+  background-color: #165a72;
+  padding: 1rem;
+  color: white;
+}
+
+.comments-form {
+  margin-top: 1rem;
+}
+
+.comments-field {
+  width: 80rem;
+  margin-top: -1rem;
+  padding-top: 1rem;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  width: 76rem;
+  margin-left: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+  background-color: #165a72;
+}
+
+.comment-content {
+  padding: 1rem;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.comment-author {
+  color: black;
+}
+
+.comment-time {
+  font-size: 0.875rem;
+  color: #888;
+  margin-left: 1rem;
+}
+
+.comment-text {
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.comment-textarea {
+  margin-top: 1rem;
+  outline: none;
+}
+
+.loading-spinner {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #165a72;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-comments {
+  margin-left: 1rem;
+  font-weight: 400;
+  color: #165a72;
+}
+
+.comment-actions {
+  margin-top: 5px;
+}
+
+.delete-comment-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-comment-button:hover {
+  background-color: #ff1a1a;
+}
+
+.emoji-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 77.5rem;
+  margin-top: -2rem;
+  bottom: 2rem;
+}

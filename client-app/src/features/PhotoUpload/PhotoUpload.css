@@ -1,0 +1,96 @@
+.photo-upload-frame {
+  display: flex;
+  flex-direction: column;
+  width: 80rem;
+  height: 880px;
+  margin-left: 18rem;
+  margin-top: 5px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(149, 145, 145, 0.3);
+  padding-top: 1rem;
+}
+
+.header-text {
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Poppins" sans-serif;
+  color: #165a72;
+}
+
+.title-input {
+  width: 60rem;
+  height: 3rem;
+  margin-left: 10rem;
+  border-radius: 4px;
+  background: none;
+  border: 0.5px solid #0f3c4c;
+}
+
+.text-area {
+  width: 60rem;
+  height: 4rem;
+  margin-left: 10rem;
+  border-radius: 4px;
+  font-size: medium;
+  border: 0.5px solid #0f3c4c;
+}
+
+.ui.fluid.dropdown {
+  display: block;
+  width: 60rem;
+  margin-left: 10rem;
+}
+
+.error-message {
+  border: 1px solid red;
+  color: red;
+  font-size: 0.875em;
+  padding-top: 0.3rem;
+  padding-left: 1rem;
+  margin-left: 10rem;
+  width: 11rem;
+  height: 2rem;
+  border-radius: 4px;
+}
+
+.input-field {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-left: 10rem;
+  display: block;
+  color: #0f3c4c;
+}
+
+.form-field {
+  margin-bottom: -1rem;
+}
+
+.button-div {
+  background-color: #e9f5f9;
+  border: 2px dashed #0f3c4c;
+  width: 60rem;
+  height: 24rem;
+  margin-left: 10rem;
+  padding-top: 1rem;
+  margin-top: 3rem;
+  border-radius: 4px;
+}
+
+.upload-button {
+  background-color: #2187ab;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 3rem;
+  margin-left: 20rem;
+  margin-top: 1.5rem;
+  font-size: 16px;
+  width: 20rem;
+
+  &:hover {
+    background-color: #2187ab;
+  }
+}
