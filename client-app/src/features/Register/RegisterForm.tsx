@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik } from "formik";
-import MyTextInput from "../../app/common/form/MyTextInput";
+import MyTextInput from "../../app/common/MyTextInput";
 import { Button, GridColumn, GridRow } from "semantic-ui-react";
 import { useStore } from "../../app/stores/store";
 import { observer } from "mobx-react-lite";

@@ -8,7 +8,6 @@ import LoginForm from "../../features/Login/LoginForm";
 import TestErrors from "../../features/Errors/TestError";
 import ServerError from "../../features/Errors/ServerError";
 import ImageModal from "../../features/ImageModal/ImageModal";
-import ProfilePage from "../../features/Profiles/ProfilePage";
 import RegisterForm from "../../features/Register/RegisterForm";
 import ConfirmEmail from "../../features/Register/ConfirmEmail";
 import ResetPassword from "../../features/Password/ResetPassword";
@@ -44,7 +43,6 @@ export const routes: RouteObject[] = [
       { path: "register", element: <RegisterForm /> },
       { path: "recover", element: <RecoverPassword /> },
       { path: "server-error", element: <ServerError /> },
-      { path: "profiles/:username", element: <ProfilePage /> },
       { path: "changepassword", element: <PasswordChanged /> },
       { path: "account/verifyEmail", element: <ConfirmEmail /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },

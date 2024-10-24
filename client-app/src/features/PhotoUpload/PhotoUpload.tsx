@@ -1,7 +1,7 @@
 import { Container } from "semantic-ui-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import MyDropdownInput from "../../app/common/form/MyDropdownInput";
+import MyDropdownInput from "../../app/common/MyDropdownInput";
 import { useStore } from "../../app/stores/store";
 import "./PhotoUpload.css";
 import React, { useState, useEffect } from "react";

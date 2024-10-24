@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import "./ResetPassword.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import ValidationErrors from "../Errors/ValidationErrors";
-import MyTextInput from "../../app/common/form/MyTextInput";
+import MyTextInput from "../../app/common/MyTextInput";
 import ResetPasswordImage from "../../assets/Background Image.jpg";
 
 const ResetButton = styled.button`

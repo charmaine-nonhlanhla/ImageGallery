@@ -1,7 +1,7 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { observer } from "mobx-react-lite";
-import MyTextInput from "../../app/common/form/MyTextInput";
+import MyTextInput from "../../app/common/MyTextInput";
 import ValidationErrors from "../Errors/ValidationErrors";
 import { Link, useNavigate } from "react-router-dom";
 import RecoverPasswordImage from "../../assets/Background Image.jpg";
