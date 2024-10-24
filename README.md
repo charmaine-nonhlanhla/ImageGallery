@@ -58,14 +58,11 @@ The application implements pagination for loading images in chunks.
 | /api/categories/                              | POST   | Create a new category                      |
 | /api/categories/(id)                          | PUT    | Edit a category name                       |
 | /api/categories/(id)                          | DELETE | Delete a category                          |
-| /api/follow/(username)                        | POST   | Follow a user                              |
-| /api/follow/(username)                        | GET    | Get user followers                         |
 | /api/photos/                                  | POST   | Upload a photo                             |
 | /api/photos/(id)                              | DELETE | Delete a photo                             |
 | /api/photos/(id)/setMain                      | POST   | Set a photo as a profile picture           |
 | /api/photos/                                  | GET    | Get all photos in the database             |
 | /api/photos/(username)                        | GET    | Get photos uploaded by a user              |
-| /api/profiles/(username)                      | GET    | Get a user’s profile                       |
 
 ### Example API Request
 **Register User:**
@@ -152,6 +149,6 @@ The clientside will be hosted on `https://localhost:3000`.
 ## 9. Bonus Features
 - **Verification Email**: Sent upon user registration for confirmation.
 - **Comments on Images**: Users can leave comments on images.
-- **User Profiles**: Users can manage their profiles and set profile pictures.
+- **User Profiles**: Users can set profile pictures.
 - **User Followings**: Users can follow each other.
 - **Pagination**: Users can view images in chunks using paged lists.
