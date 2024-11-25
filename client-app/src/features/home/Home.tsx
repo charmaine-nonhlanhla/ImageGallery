@@ -15,7 +15,7 @@ import ImageModal from "../ImageModal/ImageModal";
 import { Category } from "../../app/layout/models/category";
 import { Photo } from "../../app/layout/models/photo";
 
-export default observer(function HomePage() {
+export default observer(function Home() {
   const { photoStore, modalStore } = useStore();
   const {
     categories,
