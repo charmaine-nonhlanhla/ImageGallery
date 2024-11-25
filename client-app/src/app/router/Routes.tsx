@@ -2,7 +2,6 @@ import { Navigate, RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
 import { MainLayout } from "../router/MainLayout";
 import Logout from "../../features/Logout/Logout";
-import HomePage from "../../../src/features/Home/HomePage";
 import NotFound from "../../features/Errors/NotFound";
 import LoginForm from "../../features/Login/LoginForm";
 import Comments from "../../features/Comments/Comments";
@@ -18,6 +17,7 @@ import RegisterSuccess from "../../features/Register/RegisterSuccess";
 import RecoverPassword from "../../features/Password/RecoverPassword";
 import PasswordChanged from "../../features/Password/PasswordChanged";
 import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
+import HomePage from "../../features/Home/HomePage";
 
 export const routes: RouteObject[] = [
   {
