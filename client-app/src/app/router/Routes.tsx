@@ -17,7 +17,8 @@ import RegisterSuccess from "../../features/Register/RegisterSuccess";
 import RecoverPassword from "../../features/Password/RecoverPassword";
 import PasswordChanged from "../../features/Password/PasswordChanged";
 import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
-import HomePage from "../../features/Home/HomePage";
+import Home from "../../features/Home/Home";
+
 
 export const routes: RouteObject[] = [
   {
@@ -28,7 +29,7 @@ export const routes: RouteObject[] = [
         path: "",
         element: <MainLayout />,
         children: [
-          { path: "", element: <HomePage /> },
+          { path: "", element: <Home /> },
           { path: "modal", element: <ImageModal photoId="" /> },
           { path: "upload", element: <PhotoUpload /> },
           { path: "library", element: <PhotoLibrary /> },
