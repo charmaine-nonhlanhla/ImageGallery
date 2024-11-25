@@ -5,6 +5,7 @@ import Logout from "../../features/Logout/Logout";
 import HomePage from "../../features/Home/HomePage";
 import NotFound from "../../features/Errors/NotFound";
 import LoginForm from "../../features/Login/LoginForm";
+import Comments from "../../features/Comments/Comments";
 import TestErrors from "../../features/Errors/TestError";
 import ServerError from "../../features/Errors/ServerError";
 import ImageModal from "../../features/ImageModal/ImageModal";
@@ -17,7 +18,6 @@ import RegisterSuccess from "../../features/Register/RegisterSuccess";
 import RecoverPassword from "../../features/Password/RecoverPassword";
 import PasswordChanged from "../../features/Password/PasswordChanged";
 import RecoverPasswordSuccess from "../../features/Password/RecoverPasswordSuccess";
-import Comments from "../../features/Comments/Comments";
 
 export const routes: RouteObject[] = [
   {
